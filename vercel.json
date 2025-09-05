@@ -1,13 +1,13 @@
 {
   "functions": {
     "api/index.py": {
-      "runtime": "python3.9"
+      "runtime": "python@3.9"
     }
   },
   "routes": [
     {
       "src": "/(chat|upload|sessions|stats|health|save-session|chat-speech)",
-      "dest": "/api/index.py"
+      "dest": "/api/index"
     },
     {
       "src": "/(.*)",
