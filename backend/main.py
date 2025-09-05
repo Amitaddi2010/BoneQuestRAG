@@ -67,7 +67,7 @@ class BoneQuestRAG:
                     self.groq_client = None
         
         self.vectorizer = TfidfVectorizer(
-            max_features=5000,
+            max_features=10000,
             stop_words='english',
             ngram_range=(1, 2),
             min_df=1,
@@ -89,7 +89,7 @@ class BoneQuestRAG:
             text += page.extract_text()
         return text
     
-    def chunk_text(self, text: str, chunk_size: int = 500, overlap: int = 50) -> List[str]:
+    def chunk_text(self, text: str, chunk_size: int = 1500, overlap: int = 100) -> List[str]:
         text = text.replace('\n', ' ').replace('\t', ' ')
         text = ' '.join(text.split())
         
@@ -104,14 +104,29 @@ class BoneQuestRAG:
         return chunks
     
     def add_documents(self, texts: List[str], source: str):
+        # Limit total documents to prevent memory issues
+        max_docs = 2000
+        
         for i, text in enumerate(texts):
             self.documents.append(text)
             self.metadata.append({"source": source, "id": f"{source}_{i}", "timestamp": datetime.now().isoformat()})
         
-        if self.documents:
-            self.document_vectors = self.vectorizer.fit_transform(self.documents)
+        # Clean up if too many documents
+        if len(self.documents) > max_docs:
+            excess = len(self.documents) - max_docs
+            self.documents = self.documents[excess:]
+            self.metadata = self.metadata[excess:]
         
-        self.save_database()
+        try:
+            if self.documents:
+                self.document_vectors = self.vectorizer.fit_transform(self.documents)
+            self.save_database()
+        except Exception as e:
+            print(f"Database save error: {e}")
+            # Reset if corrupted
+            self.documents = []
+            self.metadata = []
+            self.document_vectors = None
     
     def search_documents(self, query: str, n_results: int = 5) -> List[Dict]:
         if not self.documents or self.document_vectors is None:
@@ -150,7 +165,7 @@ class BoneQuestRAG:
                 context_parts.append(f"[Source {i+1}]\n{result['text']}")
             
             context_text = "\n\n".join(context_parts)
-            return f"Based on your documents, here's what I found about '{query}':\n\n{context_text[:500]}...\n\nThis information comes from your uploaded documents."
+            return f"Based on your documents, here's what I found about '{query}':\n\n{context_text}\n\nThis information comes from your uploaded documents."
             
         return self._generate_complete_response(query, context_results)
     
@@ -186,7 +201,7 @@ Provide a comprehensive response based on the context. Use clear structure with 
                 
                 response = self.groq_client.chat.completions.create(
                     messages=[{"role": "user", "content": prompt}],
-                    model="openai/gpt-oss-120b",
+                    model="llama-3.1-70b-versatile",
                     temperature=0.2,
                     max_tokens=max_tokens,
                     stop=None
@@ -247,7 +262,7 @@ Be concise and direct for speech delivery."""
             try:
                 response = self.groq_client.chat.completions.create(
                     messages=[{"role": "user", "content": prompt}],
-                    model="openai/gpt-oss-120b",
+                    model="llama-3.1-70b-versatile",
                     temperature=0.1,
                     max_tokens=100
                 )
@@ -270,7 +285,7 @@ Answer in 1-2 sentences only. Be precise and direct for speech."""
         try:
             response = self.groq_client.chat.completions.create(
                 messages=[{"role": "user", "content": prompt}],
-                model="openai/gpt-oss-120b",
+                model="llama-3.1-70b-versatile",
                 temperature=0.1,
                 max_tokens=100
             )
