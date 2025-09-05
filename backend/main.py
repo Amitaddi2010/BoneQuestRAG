@@ -21,10 +21,7 @@ from sklearn.metrics.pairwise import cosine_similarity
 import io
 import json
 from datetime import datetime
-from sqlalchemy import create_engine, Column, Integer, String, Text, DateTime, LargeBinary
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import sessionmaker
-import base64
+# Removed PostgreSQL imports for Vercel compatibility
 
 load_dotenv()
 
@@ -52,28 +49,7 @@ class SessionRequest(BaseModel):
     session_id: str
     messages: List[Dict]
 
-Base = declarative_base()
-
-class Document(Base):
-    __tablename__ = 'documents'
-    id = Column(Integer, primary_key=True)
-    text = Column(Text)
-    source = Column(String(255))
-    doc_id = Column(String(255))
-    timestamp = Column(DateTime)
-
-class VectorizerData(Base):
-    __tablename__ = 'vectorizer_data'
-    id = Column(Integer, primary_key=True)
-    vectorizer_pickle = Column(LargeBinary)
-    vectors_pickle = Column(LargeBinary)
-
-class ChatSession(Base):
-    __tablename__ = 'chat_sessions'
-    id = Column(Integer, primary_key=True)
-    session_id = Column(String(255), unique=True)
-    messages = Column(Text)
-    timestamp = Column(DateTime)
+# Simplified storage for Vercel
 
 class BoneQuestRAG:
     def __init__(self):
