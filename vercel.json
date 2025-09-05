@@ -1,9 +1,14 @@
 {
-  "functions": {
-    "api/index.py": {
-      "runtime": "python@3.9"
+  "builds": [
+    {
+      "src": "api/index.py",
+      "use": "@vercel/python"
+    },
+    {
+      "src": "frontend/**",
+      "use": "@vercel/static"
     }
-  },
+  ],
   "routes": [
     {
       "src": "/(chat|upload|sessions|stats|health|save-session|chat-speech)",
@@ -11,7 +16,7 @@
     },
     {
       "src": "/(.*)",
-      "dest": "/frontend/index.html"
+      "dest": "/frontend/$1"
     }
   ]
 }
