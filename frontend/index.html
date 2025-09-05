@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BoneQuest AI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+        .typing-indicator { animation: pulse 1.5s ease-in-out infinite; }
+        .message-fade-in { animation: fadeIn 0.3s ease-in; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .gradient-bg { background: linear-gradient(135deg, #10b981 0%, #059669 100%); }
+        .chat-bubble { border-radius: 18px; max-width: 80%; }
+        .user-bubble { background: #10b981; margin-left: auto; }
+        .ai-bubble { background: #f3f4f6; color: #000; border: 1px solid #e5e7eb; }
+        .sidebar { background: #f9fafb; }
+        .nav-item { transition: all 0.2s; }
+        .nav-item:hover { background: #f3f4f6; }
+    </style>
+</head>
+<body class="bg-white">
+    <!-- Landing Page -->
+    <div id="landing-page" class="min-h-screen">
+        <!-- Navigation -->
+        <nav class="bg-white border-b border-gray-200 sticky top-0 z-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between items-center h-16">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 gradient-bg rounded-lg flex items-center justify-center">
+                            <span class="text-white font-bold">BQ</span>
+                        </div>
+                        <h1 class="text-xl font-bold text-gray-900">BoneQuest AI</h1>
+                    </div>
+                    <div class="hidden md:flex items-center space-x-8">
+                        <a href="#home" class="nav-item px-3 py-2 rounded-md text-gray-700 hover:text-green-600">Home</a>
+                        <a href="#about" class="nav-item px-3 py-2 rounded-md text-gray-700 hover:text-green-600">About</a>
+                        <a href="#docs" class="nav-item px-3 py-2 rounded-md text-gray-700 hover:text-green-600">Documentation</a>
+                        <button onclick="showChat()" class="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 transition-colors">
+                            Launch AI Chat
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Hero Section -->
+        <section id="home" class="py-20 bg-gradient-to-br from-green-50 to-blue-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center">
+                    <div class="w-24 h-24 gradient-bg rounded-2xl flex items-center justify-center mx-auto mb-8">
+                        <span class="text-white font-bold text-3xl">BQ</span>
+                    </div>
+                    <h1 class="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
+                        <span class="text-green-600">BoneQuest</span> AI
+                    </h1>
+                    <p class="text-xl text-gray-600 mb-4 max-w-3xl mx-auto">
+                        Orthopedics RAG Assistant - Clinical Support Tool
+                    </p>
+                    <p class="text-lg text-gray-500 mb-8 max-w-2xl mx-auto">
+                        Helping clinicians access hospital SOPs, guidelines, and orthopedic protocols through natural language queries with evidence-based recommendations.
+                    </p>
+                     
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                        <button onclick="showChat()" class="bg-green-600 text-white px-8 py-4 rounded-xl text-lg font-semibold hover:bg-green-700 transition-colors">
+                            Start AI Analysis
+                        </button>
+                        <button onclick="scrollToSection('about')" class="border border-green-600 text-green-600 px-8 py-4 rounded-xl text-lg font-semibold hover:bg-green-50 transition-colors">
+                            Learn More
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="py-20 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl font-bold text-gray-900 mb-4">AI-Powered Orthopedic Research</h2>
+                    <p class="text-lg text-gray-600">Advanced tools for biomechanical analysis and research</p>
+                </div>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="text-center p-8 rounded-2xl border border-gray-200 hover:shadow-lg transition-shadow">
+                        <div class="w-16 h-16 gradient-bg rounded-xl flex items-center justify-center mx-auto mb-6">
+                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-4">Clinical Guidelines</h3>
+                        <p class="text-gray-600">Access hospital SOPs, guidelines, and orthopedic protocols with evidence-based recommendations and citations</p>
+                    </div>
+                    
+                    <div class="text-center p-8 rounded-2xl border border-gray-200 hover:shadow-lg transition-shadow">
+                        <div class="w-16 h-16 gradient-bg rounded-xl flex items-center justify-center mx-auto mb-6">
+                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-4">Procedural Support</h3>
+                        <p class="text-gray-600">Stepwise procedural instructions with contraindications and red-flag alerts for emergency situations</p>
+                    </div>
+                    
+                    <div class="text-center p-8 rounded-2xl border border-gray-200 hover:shadow-lg transition-shadow">
+                        <div class="w-16 h-16 gradient-bg rounded-xl flex items-center justify-center mx-auto mb-6">
+                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-4">Role-Based Access</h3>
+                        <p class="text-gray-600">Tailored access for Junior Residents, Senior Residents, Consultants, and Administrators with structured JSON output</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="py-20 bg-gray-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid lg:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <h2 class="text-3xl font-bold text-gray-900 mb-6">About DRONAM</h2>
+                        <p class="text-lg text-gray-600 mb-6">
+                            DRONAM (Data for Research in Orthopedics, Navigation and Additive Manufacturing) represents India's pioneering research facility dedicated to foot and ankle biomechanics, strategically located at the prestigious PGIMER Chandigarh.
+                        </p>
+                        <p class="text-gray-600 mb-6">
+                            Our mission is to advance orthopedic understanding through cutting-edge research, innovative experimentation, and the integration of artificial intelligence in biomechanical analysis. We bridge the gap between traditional orthopedic research and modern AI-driven insights.
+                        </p>
+                        <div class="space-y-4">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-6 h-6 gradient-bg rounded-full flex items-center justify-center">
+                                    <svg class="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                    </svg>
+                                </div>
+                                <span class="text-gray-700">Specialized foot and ankle biomechanics research</span>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <div class="w-6 h-6 gradient-bg rounded-full flex items-center justify-center">
+                                    <svg class="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                    </svg>
+                                </div>
+                                <span class="text-gray-700">AI-powered document analysis and research</span>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <div class="w-6 h-6 gradient-bg rounded-full flex items-center justify-center">
+                                    <svg class="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                    </svg>
+                                </div>
+                                <span class="text-gray-700">Located at PGIMER Chandigarh</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white p-8 rounded-2xl shadow-lg">
+                        <h3 class="text-xl font-semibold mb-4">Research Focus Areas</h3>
+                        <div class="space-y-4">
+                            <div class="border-l-4 border-green-500 pl-4">
+                                <h4 class="font-medium">Foot & Ankle Biomechanics</h4>
+                                <p class="text-sm text-gray-600">Advanced analysis of gait patterns and joint mechanics</p>
+                            </div>
+                            <div class="border-l-4 border-blue-500 pl-4">
+                                <h4 class="font-medium">Orthopedic Navigation</h4>
+                                <p class="text-sm text-gray-600">Precision surgical planning and navigation systems</p>
+                            </div>
+                            <div class="border-l-4 border-purple-500 pl-4">
+                                <h4 class="font-medium">Additive Manufacturing</h4>
+                                <p class="text-sm text-gray-600">3D printing applications in orthopedic implants</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Documentation Section -->
+        <section id="docs" class="py-20 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl font-bold text-gray-900 mb-4">Documentation</h2>
+                    <p class="text-lg text-gray-600">Complete guide to using BoneQuest AI</p>
+                </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="bg-gray-50 p-6 rounded-xl">
+                        <h3 class="text-lg font-semibold mb-3">Getting Started</h3>
+                        <ul class="space-y-2 text-gray-600">
+                            <li>• Access hospital SOPs and guidelines</li>
+                            <li>• Get evidence-based recommendations</li>
+                            <li>• Role-based clinical support (JR/SR/Consultant)</li>
+                            <li>• Emergency red-flag alerts</li>
+                        </ul>
+                    </div>
+                    <div class="bg-gray-50 p-6 rounded-xl">
+                        <h3 class="text-lg font-semibold mb-3">AI Features</h3>
+                        <ul class="space-y-2 text-gray-600">
+                            <li>• Retrieval-Augmented Generation (RAG)</li>
+                            <li>• Citation-backed recommendations</li>
+                            <li>• Structured JSON output with confidence scores</li>
+                            <li>• Integration with external APIs (Together, Groq, OpenRouter)</li>
+                        </ul>
+                    </div>
+                    <div class="bg-gray-50 p-6 rounded-xl">
+                        <h3 class="text-lg font-semibold mb-3">Research Applications</h3>
+                        <ul class="space-y-2 text-gray-600">
+                            <li>• Clinical decision support</li>
+                            <li>• Stepwise procedural guidance</li>
+                            <li>• Contraindication alerts</li>
+                            <li>• Emergency protocol assistance</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="bg-gray-900 text-white py-12">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div>
+                        <div class="flex items-center space-x-3 mb-4">
+                            <div class="w-10 h-10 gradient-bg rounded-lg flex items-center justify-center">
+                                <span class="text-white font-bold">BQ</span>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold">BoneQuest AI</h3>
+                                <p class="text-sm text-gray-400">Clinical Support Tool</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-400">
+                            Advancing orthopedic research through AI-powered analysis and biomechanical insights.
+                        </p>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-semibold mb-4">Location</h4>
+                        <p class="text-gray-400">
+                            PGIMER Chandigarh<br>
+                            Sector 12, Chandigarh<br>
+                            India - 160012
+                        </p>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-semibold mb-4">Research Areas</h4>
+                        <ul class="space-y-2 text-gray-400">
+                            <li>Foot & Ankle Biomechanics</li>
+                            <li>Orthopedic Navigation</li>
+                            <li>Additive Manufacturing</li>
+                            <li>AI-Driven Analysis</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                    <p>&copy;BoneQuest AI is an Orthopedics RAG Assistant project under DRONAM. All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Chat Interface -->
+    <div id="chat-interface" class="hidden min-h-screen bg-white">
+        <!-- Chat Header -->
+        <header class="bg-white border-b border-gray-200 sticky top-0 z-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between items-center h-16">
+                    <div class="flex items-center space-x-3">
+                        <button onclick="showLanding()" class="p-2 text-gray-500 hover:text-gray-700">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                            </svg>
+                        </button>
+                        <div class="w-8 h-8 gradient-bg rounded-lg flex items-center justify-center">
+                            <span class="text-white font-bold text-sm">BQ</span>
+                        </div>
+                        <h1 class="text-lg font-semibold text-gray-900">BoneQuest AI</h1>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <button onclick="showAdmin()" class="text-gray-500 hover:text-gray-700 p-2 rounded-lg">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Chat Container -->
+        <div class="flex h-screen pt-0">
+            <!-- Sidebar -->
+            <div class="w-64 bg-gray-900 text-white flex flex-col">
+                <!-- New Chat Button -->
+                <div class="p-3">
+                    <button onclick="newChat()" class="w-full flex items-center justify-center gap-2 px-3 py-2.5 rounded-lg border border-gray-600 hover:bg-gray-700 transition-colors text-sm">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                        </svg>
+                        New chat
+                    </button>
+                </div>
+                
+                <!-- Chat History -->
+                <div class="flex-1 overflow-y-auto px-3">
+                    <div id="chat-history" class="space-y-1"></div>
+                </div>
+                
+                <!-- Bottom Section -->
+                <div class="p-3 border-t border-gray-700">
+                    <div class="text-xs text-gray-400 mb-3">
+                        <span id="doc-count">0 documents</span> • <span id="session-count">0 sessions</span>
+                    </div>
+                    <button onclick="showAdmin()" class="w-full flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-700 transition-colors text-sm">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                        </svg>
+                        Admin Panel
+                    </button>
+                </div>
+            </div>
+
+            <!-- Chat Area -->
+            <div class="flex-1 flex flex-col">
+                <!-- Welcome Screen -->
+                <div id="welcome-screen" class="flex-1 flex items-center justify-center">
+                    <div class="text-center max-w-md">
+                        <div class="w-20 h-20 gradient-bg rounded-2xl flex items-center justify-center mx-auto mb-6">
+                            <span class="text-white font-bold text-2xl">BQ</span>
+                        </div>
+                        <h2 class="text-2xl font-bold text-gray-900 mb-4">BoneQuest AI</h2>
+                        <p class="text-gray-600 mb-6">Clinical support tool for accessing hospital SOPs, guidelines, and orthopedic protocols. Get evidence-based recommendations with citations and confidence scores.</p>
+                    </div>
+                </div>
+
+                <!-- Messages Container -->
+                <div id="messages-container" class="hidden flex-1 overflow-y-auto p-4">
+                    <div id="messages" class="max-w-4xl mx-auto w-full space-y-4"></div>
+                </div>
+
+                <!-- Typing Indicator -->
+                <div id="typing-indicator" class="hidden max-w-4xl mx-auto w-full px-4">
+                    <div class="flex items-center space-x-2 mb-4">
+                        <div class="w-8 h-8 gradient-bg rounded-full flex items-center justify-center">
+                            <span class="text-white text-xs font-bold">BQ</span>
+                        </div>
+                        <div class="ai-bubble chat-bubble px-4 py-2">
+                            <div class="flex space-x-1">
+                                <div class="w-2 h-2 bg-gray-400 rounded-full typing-indicator"></div>
+                                <div class="w-2 h-2 bg-gray-400 rounded-full typing-indicator" style="animation-delay: 0.2s;"></div>
+                                <div class="w-2 h-2 bg-gray-400 rounded-full typing-indicator" style="animation-delay: 0.4s;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Input Area -->
+                <div class="p-4 bg-white border-t border-gray-200">
+                    <div class="max-w-4xl mx-auto">
+                        <div class="flex items-center space-x-3 p-3 bg-gray-50 rounded-2xl">
+                            <button id="voice-btn" onclick="toggleVoice()" class="p-2 text-gray-500 hover:text-green-600 transition-colors">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"></path>
+                                </svg>
+                            </button>
+                            
+                            <input 
+                                type="text" 
+                                id="message-input" 
+                                placeholder="Ask about clinical protocols, SOPs, procedures, or guidelines..."
+                                class="flex-1 bg-transparent border-none outline-none text-gray-900 placeholder-gray-500"
+                                onkeypress="handleKeyPress(event)"
+                            >
+                            
+                            <button onclick="sendMessage()" class="p-2 text-green-600 hover:text-green-700 transition-colors">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Beta Version Popup -->
+    <div id="beta-popup" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+        <div class="bg-white rounded-2xl p-6 w-full max-w-sm mx-4 text-center">
+            <div class="w-16 h-16 gradient-bg rounded-xl flex items-center justify-center mx-auto mb-4">
+                <span class="text-white font-bold text-xl">β</span>
+            </div>
+            <h3 class="text-xl font-semibold mb-2">Beta Version</h3>
+            <p class="text-gray-600 mb-6">You're using the beta version of BoneQuest AI. Features may be limited and subject to change.</p>
+            <button onclick="closeBetaPopup()" class="w-full bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 transition-colors">
+                Continue
+            </button>
+        </div>
+    </div>
+
+    <!-- Admin Modal -->
+    <div id="admin-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+        <div class="bg-white rounded-2xl p-6 w-full max-w-md mx-4">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-lg font-semibold">Admin Panel</h3>
+                <button onclick="closeAdmin()" class="text-gray-400 hover:text-gray-600">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            
+            <div class="mb-4">
+                <label class="block text-sm font-medium text-gray-700 mb-2">Password</label>
+                <input type="password" id="admin-password" placeholder="Enter admin password" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent">
+            </div>
+            
+            <div id="admin-content" class="hidden">
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Upload Research Document</label>
+                    <input type="file" id="file-input" accept=".pdf" class="w-full px-3 py-2 border border-gray-300 rounded-lg">
+                </div>
+                <button onclick="uploadDocument()" class="w-full bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 transition-colors">
+                    Upload PDF
+                </button>
+                <div id="upload-status" class="mt-2 text-sm"></div>
+            </div>
+            
+            <button onclick="verifyPassword()" id="verify-btn" class="w-full bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 transition-colors">
+                Login
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // API Base URL - auto-detect development vs production
+        const API_BASE = window.location.hostname === 'localhost' ? 'http://localhost:8000' : '';
+        
+        let currentSession = null;
+        let messages = [];
+        let isRecording = false;
+        let recognition = null;
+
+        // Initialize speech recognition
+        if ('webkitSpeechRecognition' in window) {
+            recognition = new webkitSpeechRecognition();
+            recognition.continuous = false;
+            recognition.interimResults = false;
+            recognition.lang = 'en-US';
+            
+            recognition.onresult = function(event) {
+                const transcript = event.results[0][0].transcript;
+                document.getElementById('message-input').value = transcript;
+                sendMessage();
+            };
+            
+            recognition.onerror = function(event) {
+                console.error('Speech recognition error:', event.error);
+                stopRecording();
+            };
+            
+            recognition.onend = function() {
+                stopRecording();
+            };
+        }
+
+        function showLanding() {
+            document.getElementById('landing-page').classList.remove('hidden');
+            document.getElementById('chat-interface').classList.add('hidden');
+        }
+
+        function showChat() {
+            document.getElementById('landing-page').classList.add('hidden');
+            document.getElementById('chat-interface').classList.remove('hidden');
+            loadChatHistory();
+            loadStats();
+        }
+
+        function scrollToSection(sectionId) {
+            document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function toggleVoice() {
+            if (!recognition) {
+                alert('Speech recognition not supported in this browser');
+                return;
+            }
+            
+            if (isRecording) {
+                recognition.stop();
+            } else {
+                recognition.start();
+                startRecording();
+            }
+        }
+
+        function startRecording() {
+            isRecording = true;
+            const voiceBtn = document.getElementById('voice-btn');
+            voiceBtn.innerHTML = '<svg class="w-5 h-5 text-red-500" fill="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/></svg>';
+        }
+
+        function stopRecording() {
+            isRecording = false;
+            const voiceBtn = document.getElementById('voice-btn');
+            voiceBtn.innerHTML = '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"></path></svg>';
+        }
+
+        function handleKeyPress(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        }
+
+        function newChat() {
+            currentSession = 'session_' + Date.now();
+            messages = [];
+            document.getElementById('messages').innerHTML = '';
+            document.getElementById('welcome-screen').classList.add('hidden');
+            document.getElementById('messages-container').classList.remove('hidden');
+            loadChatHistory();
+        }
+
+        async function sendMessage() {
+            const input = document.getElementById('message-input');
+            const message = input.value.trim();
+            
+            if (!message) return;
+            
+            if (!currentSession) {
+                newChat();
+            }
+            
+            addMessage(message, 'user');
+            input.value = '';
+            showTyping();
+            
+            try {
+                const response = await axios.post(`${API_BASE}/chat`, {
+                    query: message
+                });
+                
+                hideTyping();
+                addMessage(response.data.response, 'assistant');
+                await saveSession();
+                
+            } catch (error) {
+                hideTyping();
+                addMessage('Sorry, I encountered an error. Please try again.', 'assistant');
+                console.error('Chat error:', error);
+            }
+        }
+
+        function addMessage(content, role) {
+            const messagesContainer = document.getElementById('messages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'message-fade-in flex items-start space-x-3 mb-4';
+            
+            if (role === 'user') {
+                messageDiv.innerHTML = `
+                    <div class="flex-1"></div>
+                    <div class="user-bubble chat-bubble px-4 py-3 text-white">
+                        ${content}
+                    </div>
+                    <div class="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center flex-shrink-0">
+                        <span class="text-white text-xs font-bold">U</span>
+                    </div>
+                `;
+            } else {
+                messageDiv.innerHTML = `
+                    <div class="w-8 h-8 gradient-bg rounded-full flex items-center justify-center flex-shrink-0">
+                        <span class="text-white text-xs font-bold">D</span>
+                    </div>
+                    <div class="ai-bubble chat-bubble px-4 py-3">
+                        <div class="prose prose-sm max-w-none">${marked.parse(content)}</div>
+                    </div>
+                    <div class="flex-1"></div>
+                `;
+            }
+            
+            messagesContainer.appendChild(messageDiv);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            
+            messages.push({ role, content, timestamp: new Date().toISOString() });
+        }
+
+        function showTyping() {
+            document.getElementById('typing-indicator').classList.remove('hidden');
+            const container = document.getElementById('messages-container');
+            container.scrollTop = container.scrollHeight;
+        }
+
+        function hideTyping() {
+            document.getElementById('typing-indicator').classList.add('hidden');
+        }
+
+        async function saveSession() {
+            if (!currentSession || messages.length === 0) return;
+            
+            try {
+                await axios.post(`${API_BASE}/save-session`, {
+                    session_id: currentSession,
+                    messages: messages
+                });
+                loadChatHistory();
+            } catch (error) {
+                console.error('Save session error:', error);
+            }
+        }
+
+        async function loadChatHistory() {
+            try {
+                const response = await axios.get(`${API_BASE}/sessions`);
+                const sessions = response.data;
+                const historyContainer = document.getElementById('chat-history');
+                
+                historyContainer.innerHTML = '';
+                
+                Object.entries(sessions).reverse().slice(0, 10).forEach(([sessionId, sessionData]) => {
+                    const sessionDiv = document.createElement('div');
+                    sessionDiv.className = 'p-3 rounded-lg hover:bg-gray-700 cursor-pointer transition-colors group';
+                    
+                    const firstMessage = sessionData.messages.find(m => m.role === 'user');
+                    const preview = firstMessage ? firstMessage.content.substring(0, 40) + '...' : 'New Research Session';
+                    const date = new Date(sessionData.timestamp).toLocaleDateString();
+                    
+                    sessionDiv.innerHTML = `
+                        <div class="flex items-center justify-between">
+                            <div class="flex-1 min-w-0">
+                                <div class="font-medium text-sm text-white truncate">${preview}</div>
+                                <div class="text-xs text-gray-400">${date}</div>
+                            </div>
+                            <div class="opacity-0 group-hover:opacity-100 transition-opacity">
+                                <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+                                </svg>
+                            </div>
+                        </div>
+                    `;
+                    
+                    sessionDiv.onclick = () => loadSession(sessionId, sessionData);
+                    historyContainer.appendChild(sessionDiv);
+                });
+                
+                document.getElementById('session-count').textContent = `${Object.keys(sessions).length} sessions`;
+            } catch (error) {
+                console.error('Load history error:', error);
+            }
+        }
+
+        function loadSession(sessionId, sessionData) {
+            currentSession = sessionId;
+            messages = sessionData.messages || [];
+            
+            const messagesContainer = document.getElementById('messages');
+            messagesContainer.innerHTML = '';
+            
+            messages.forEach(msg => {
+                addMessageToDOM(msg.content, msg.role);
+            });
+            
+            document.getElementById('welcome-screen').classList.add('hidden');
+            document.getElementById('messages-container').classList.remove('hidden');
+        }
+
+        function addMessageToDOM(content, role) {
+            const messagesContainer = document.getElementById('messages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'flex items-start space-x-3 mb-4';
+            
+            if (role === 'user') {
+                messageDiv.innerHTML = `
+                    <div class="flex-1"></div>
+                    <div class="user-bubble chat-bubble px-4 py-3 text-white">
+                        ${content}
+                    </div>
+                    <div class="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center flex-shrink-0">
+                        <span class="text-white text-xs font-bold">U</span>
+                    </div>
+                `;
+            } else {
+                messageDiv.innerHTML = `
+                    <div class="w-8 h-8 gradient-bg rounded-full flex items-center justify-center flex-shrink-0">
+                        <span class="text-white text-xs font-bold">D</span>
+                    </div>
+                    <div class="ai-bubble chat-bubble px-4 py-3">
+                        <div class="prose prose-sm max-w-none">${marked.parse(content)}</div>
+                    </div>
+                    <div class="flex-1"></div>
+                `;
+            }
+            
+            messagesContainer.appendChild(messageDiv);
+        }
+
+        function showAdmin() {
+            document.getElementById('admin-modal').classList.remove('hidden');
+        }
+
+        function closeAdmin() {
+            document.getElementById('admin-modal').classList.add('hidden');
+            document.getElementById('admin-password').value = '';
+            document.getElementById('admin-content').classList.add('hidden');
+            document.getElementById('verify-btn').classList.remove('hidden');
+        }
+
+        function verifyPassword() {
+            const password = document.getElementById('admin-password').value;
+            if (password === 'admin123') {
+                document.getElementById('admin-content').classList.remove('hidden');
+                document.getElementById('verify-btn').classList.add('hidden');
+            } else {
+                alert('Incorrect password');
+            }
+        }
+
+        async function uploadDocument() {
+            const fileInput = document.getElementById('file-input');
+            const file = fileInput.files[0];
+            
+            if (!file) {
+                alert('Please select a PDF file');
+                return;
+            }
+            
+            const formData = new FormData();
+            formData.append('file', file);
+            
+            const statusDiv = document.getElementById('upload-status');
+            statusDiv.innerHTML = '<span class="text-green-600">Uploading...</span>';
+            
+            try {
+                await axios.post(`${API_BASE}/upload`, formData);
+                statusDiv.innerHTML = '<span class="text-green-600">✓ Upload successful</span>';
+                fileInput.value = '';
+                loadStats();
+            } catch (error) {
+                statusDiv.innerHTML = '<span class="text-red-600">✗ Upload failed</span>';
+                console.error('Upload error:', error);
+            }
+        }
+
+        async function loadStats() {
+            try {
+                const response = await axios.get(`${API_BASE}/stats`);
+                document.getElementById('doc-count').textContent = `${response.data.document_count} documents`;
+            } catch (error) {
+                console.error('Stats error:', error);
+            }
+        }
+
+        function closeBetaPopup() {
+            document.getElementById('beta-popup').classList.add('hidden');
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            // Show landing page by default
+            showLanding();
+        });
+    </script>
+</body>
+</html>
