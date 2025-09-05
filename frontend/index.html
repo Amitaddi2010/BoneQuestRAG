@@ -14,6 +14,9 @@
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
         .gradient-bg { background: linear-gradient(135deg, #10b981 0%, #059669 100%); }
         .chat-bubble { border-radius: 18px; max-width: 80%; }
+        @media (max-width: 768px) {
+            .chat-bubble { max-width: 85%; font-size: 14px; }
+        }
         .user-bubble { background: #10b981; margin-left: auto; }
         .ai-bubble { background: #f3f4f6; color: #000; border: 1px solid #e5e7eb; }
         .sidebar { background: #f9fafb; }
@@ -289,8 +292,15 @@
 
         <!-- Chat Container -->
         <div class="flex h-screen pt-0">
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-btn" class="md:hidden fixed top-20 left-4 z-50 p-2 bg-gray-900 text-white rounded-lg">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+            
             <!-- Sidebar -->
-            <div class="w-64 bg-gray-900 text-white flex flex-col">
+            <div id="sidebar" class="w-64 md:w-64 bg-gray-900 text-white flex flex-col fixed md:relative h-full z-40 transform -translate-x-full md:translate-x-0 transition-transform">
                 <!-- New Chat Button -->
                 <div class="p-3">
                     <button onclick="newChat()" class="w-full flex items-center justify-center gap-2 px-3 py-2.5 rounded-lg border border-gray-600 hover:bg-gray-700 transition-colors text-sm">
@@ -322,7 +332,7 @@
             </div>
 
             <!-- Chat Area -->
-            <div class="flex-1 flex flex-col">
+            <div class="flex-1 flex flex-col md:ml-0">
                 <!-- Welcome Screen -->
                 <div id="welcome-screen" class="flex-1 flex items-center justify-center">
                     <div class="text-center max-w-md">
@@ -356,9 +366,9 @@
                 </div>
 
                 <!-- Input Area -->
-                <div class="p-4 bg-white border-t border-gray-200">
+                <div class="p-2 md:p-4 bg-white border-t border-gray-200">
                     <div class="max-w-4xl mx-auto">
-                        <div class="flex items-center space-x-3 p-3 bg-gray-50 rounded-2xl">
+                        <div class="flex items-center space-x-2 md:space-x-3 p-2 md:p-3 bg-gray-50 rounded-2xl">
                             <button id="voice-btn" onclick="toggleVoice()" class="p-2 text-gray-500 hover:text-green-600 transition-colors">
                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"></path>
@@ -368,8 +378,8 @@
                             <input 
                                 type="text" 
                                 id="message-input" 
-                                placeholder="Ask about clinical protocols, SOPs, procedures, or guidelines..."
-                                class="flex-1 bg-transparent border-none outline-none text-gray-900 placeholder-gray-500"
+                                placeholder="Ask about protocols..."
+                                class="flex-1 bg-transparent border-none outline-none text-gray-900 placeholder-gray-500 text-sm md:text-base"
                                 onkeypress="handleKeyPress(event)"
                             >
                             
@@ -754,10 +764,19 @@
             document.getElementById('beta-popup').classList.add('hidden');
         }
 
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('-translate-x-full');
+        }
+        
         // Initialize
         document.addEventListener('DOMContentLoaded', function() {
             // Show landing page by default
             showLanding();
+            
+            // Mobile menu button
+            document.getElementById('mobile-menu-btn').addEventListener('click', toggleMobileMenu);
         });
     </script>
 </body>
