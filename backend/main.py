@@ -21,6 +21,10 @@ from sklearn.metrics.pairwise import cosine_similarity
 import io
 import json
 from datetime import datetime
+from sqlalchemy import create_engine, Column, Integer, String, Text, DateTime, LargeBinary
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import sessionmaker
+import base64
 
 load_dotenv()
 
@@ -47,6 +51,29 @@ class ChatResponse(BaseModel):
 class SessionRequest(BaseModel):
     session_id: str
     messages: List[Dict]
+
+Base = declarative_base()
+
+class Document(Base):
+    __tablename__ = 'documents'
+    id = Column(Integer, primary_key=True)
+    text = Column(Text)
+    source = Column(String(255))
+    doc_id = Column(String(255))
+    timestamp = Column(DateTime)
+
+class VectorizerData(Base):
+    __tablename__ = 'vectorizer_data'
+    id = Column(Integer, primary_key=True)
+    vectorizer_pickle = Column(LargeBinary)
+    vectors_pickle = Column(LargeBinary)
+
+class ChatSession(Base):
+    __tablename__ = 'chat_sessions'
+    id = Column(Integer, primary_key=True)
+    session_id = Column(String(255), unique=True)
+    messages = Column(Text)
+    timestamp = Column(DateTime)
 
 class BoneQuestRAG:
     def __init__(self):
@@ -78,8 +105,17 @@ class BoneQuestRAG:
         self.documents = []
         self.document_vectors = None
         self.metadata = []
-        self.db_file = "bonequest_db.pkl"
-        self.sessions_file = "chat_sessions.json"
+        
+        # Database setup
+        database_url = os.getenv("DATABASE_URL")
+        if not database_url:
+            database_url = "sqlite:///bonequest.db"  # Fallback for local
+        
+        self.engine = create_engine(database_url)
+        Base.metadata.create_all(self.engine)
+        Session = sessionmaker(bind=self.engine)
+        self.db_session = Session()
+        
         self.load_database()
         
     def extract_text_from_pdf(self, pdf_bytes) -> str:
@@ -130,6 +166,7 @@ class BoneQuestRAG:
     
     def search_documents(self, query: str, n_results: int = 5) -> List[Dict]:
         if not self.documents or self.document_vectors is None:
+            print(f"No documents available. Total docs: {len(self.documents)}")
             return []
         
         query = query.lower().strip()
@@ -142,13 +179,14 @@ class BoneQuestRAG:
             
             results = []
             for idx in top_indices:
-                if similarities[idx] > 0.01:
+                if similarities[idx] > 0.005:  # Lower threshold
                     results.append({
                         'text': self.documents[idx],
                         'score': float(similarities[idx]),
                         'metadata': self.metadata[idx]
                     })
             
+            print(f"Search found {len(results)} results for query: {query}")
             return results
             
         except Exception as e:
@@ -165,7 +203,8 @@ class BoneQuestRAG:
                 context_parts.append(f"[Source {i+1}]\n{result['text']}")
             
             context_text = "\n\n".join(context_parts)
-            return f"Based on your documents, here's what I found about '{query}':\n\n{context_text}\n\nThis information comes from your uploaded documents."
+            context_display = "\n\n".join([f"**Source {i+1}:**\n{result['text'][:800]}..." for i, result in enumerate(context_results[:3])])
+            return f"Based on your documents, here's what I found about '{query}':\n\n{context_display}\n\nThis information comes from your uploaded documents."
             
         return self._generate_complete_response(query, context_results)
     
@@ -201,7 +240,7 @@ Provide a comprehensive response based on the context. Use clear structure with 
                 
                 response = self.groq_client.chat.completions.create(
                     messages=[{"role": "user", "content": prompt}],
-                    model="llama-3.1-70b-versatile",
+                    model="openai/gpt-oss-120b",
                     temperature=0.2,
                     max_tokens=max_tokens,
                     stop=None
@@ -262,7 +301,7 @@ Be concise and direct for speech delivery."""
             try:
                 response = self.groq_client.chat.completions.create(
                     messages=[{"role": "user", "content": prompt}],
-                    model="llama-3.1-70b-versatile",
+                    model="openai/gpt-oss-120b",
                     temperature=0.1,
                     max_tokens=100
                 )
@@ -285,7 +324,7 @@ Answer in 1-2 sentences only. Be precise and direct for speech."""
         try:
             response = self.groq_client.chat.completions.create(
                 messages=[{"role": "user", "content": prompt}],
-                model="llama-3.1-70b-versatile",
+                model="openai/gpt-oss-120b",
                 temperature=0.1,
                 max_tokens=100
             )
@@ -294,47 +333,89 @@ Answer in 1-2 sentences only. Be precise and direct for speech."""
             return f"Error: {str(e)}"
     
     def save_session(self, session_id: str, messages: List[Dict]):
-        sessions = self.load_sessions()
-        sessions[session_id] = {
-            'messages': messages,
-            'timestamp': datetime.now().isoformat()
-        }
-        with open(self.sessions_file, 'w') as f:
-            json.dump(sessions, f)
+        try:
+            # Delete existing session
+            self.db_session.query(ChatSession).filter_by(session_id=session_id).delete()
+            
+            # Save new session
+            session = ChatSession(
+                session_id=session_id,
+                messages=json.dumps(messages),
+                timestamp=datetime.now()
+            )
+            self.db_session.add(session)
+            self.db_session.commit()
+        except Exception as e:
+            print(f"Save session error: {e}")
+            self.db_session.rollback()
     
     def load_sessions(self) -> Dict:
-        if os.path.exists(self.sessions_file):
-            try:
-                with open(self.sessions_file, 'r') as f:
-                    return json.load(f)
-            except:
-                return {}
-        return {}
+        try:
+            sessions = self.db_session.query(ChatSession).all()
+            result = {}
+            for session in sessions:
+                result[session.session_id] = {
+                    'messages': json.loads(session.messages),
+                    'timestamp': session.timestamp.isoformat()
+                }
+            return result
+        except Exception as e:
+            print(f"Load sessions error: {e}")
+            return {}
     
     def save_database(self):
-        data = {
-            'documents': self.documents,
-            'document_vectors': self.document_vectors,
-            'metadata': self.metadata,
-            'vectorizer': self.vectorizer
-        }
-        with open(self.db_file, 'wb') as f:
-            pickle.dump(data, f)
+        try:
+            # Clear existing data
+            self.db_session.query(Document).delete()
+            self.db_session.query(VectorizerData).delete()
+            
+            # Save documents
+            for i, doc in enumerate(self.documents):
+                doc_record = Document(
+                    text=doc,
+                    source=self.metadata[i].get('source', ''),
+                    doc_id=self.metadata[i].get('id', ''),
+                    timestamp=datetime.fromisoformat(self.metadata[i].get('timestamp', datetime.now().isoformat()))
+                )
+                self.db_session.add(doc_record)
+            
+            # Save vectorizer and vectors
+            if self.document_vectors is not None:
+                vectorizer_data = VectorizerData(
+                    vectorizer_pickle=pickle.dumps(self.vectorizer),
+                    vectors_pickle=pickle.dumps(self.document_vectors)
+                )
+                self.db_session.add(vectorizer_data)
+            
+            self.db_session.commit()
+            print(f"Database saved: {len(self.documents)} documents")
+        except Exception as e:
+            print(f"Save database error: {e}")
+            self.db_session.rollback()
     
     def load_database(self):
-        if os.path.exists(self.db_file):
-            try:
-                with open(self.db_file, 'rb') as f:
-                    data = pickle.load(f)
-                self.documents = data.get('documents', [])
-                self.document_vectors = data.get('document_vectors', None)
-                self.metadata = data.get('metadata', [])
-                if 'vectorizer' in data:
-                    self.vectorizer = data['vectorizer']
-            except:
-                self.documents = []
-                self.document_vectors = None
-                self.metadata = []
+        try:
+            # Load documents
+            docs = self.db_session.query(Document).all()
+            self.documents = [doc.text for doc in docs]
+            self.metadata = [{
+                'source': doc.source,
+                'id': doc.doc_id,
+                'timestamp': doc.timestamp.isoformat()
+            } for doc in docs]
+            
+            # Load vectorizer and vectors
+            vectorizer_data = self.db_session.query(VectorizerData).first()
+            if vectorizer_data:
+                self.vectorizer = pickle.loads(vectorizer_data.vectorizer_pickle)
+                self.document_vectors = pickle.loads(vectorizer_data.vectors_pickle)
+            
+            print(f"Database loaded: {len(self.documents)} documents")
+        except Exception as e:
+            print(f"Load database error: {e}")
+            self.documents = []
+            self.document_vectors = None
+            self.metadata = []
 
 rag_system = BoneQuestRAG()
 
@@ -387,12 +468,19 @@ async def get_sessions():
 async def get_stats():
     return {
         "document_count": len(rag_system.documents),
-        "sources": len(set([meta.get('source', '') for meta in rag_system.metadata]))
+        "sources": len(set([meta.get('source', '') for meta in rag_system.metadata])),
+        "vectorizer_ready": rag_system.document_vectors is not None,
+        "sample_docs": [doc[:100] + "..." for doc in rag_system.documents[:3]]
     }
 
 @app.get("/health")
 async def health_check():
-    return {"status": "healthy", "groq_available": rag_system.groq_client is not None}
+    return {
+        "status": "healthy", 
+        "groq_available": rag_system.groq_client is not None,
+        "documents_loaded": len(rag_system.documents),
+        "vectorizer_fitted": rag_system.document_vectors is not None
+    }
 
 if __name__ == "__main__":
     import uvicorn
