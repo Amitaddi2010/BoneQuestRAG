@@ -463,8 +463,7 @@ async def health_check():
     return {
         "status": "healthy", 
         "groq_available": rag_system.groq_client is not None,
-        "documents_loaded": len(rag_system.documents),
-        "vectorizer_fitted": rag_system.document_vectors is not None
+        "documents_loaded": len(rag_system.documents)
     }
 
 if __name__ == "__main__":
