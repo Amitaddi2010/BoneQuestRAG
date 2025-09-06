@@ -648,7 +648,7 @@
             showTyping();
             
             try {
-                const apiUrl = API_BASE ? `${API_BASE}/chat` : '/api/chat';
+                const apiUrl = API_BASE ? `${API_BASE}/chat` : '/chat';
                 const response = await axios.post(apiUrl, {
                     query: message,
                     chat_history: messages.slice(-8)  // Send last 8 messages for context
@@ -725,7 +725,7 @@
             if (!currentSession || messages.length === 0) return;
             
             try {
-                const apiUrl = API_BASE ? `${API_BASE}/save-session` : '/api/save-session';
+                const apiUrl = API_BASE ? `${API_BASE}/save-session` : '/save-session';
                 await axios.post(apiUrl, {
                     session_id: currentSession,
                     messages: messages
@@ -738,7 +738,7 @@
 
         async function loadChatHistory() {
             try {
-                const apiUrl = API_BASE ? `${API_BASE}/sessions` : '/api/sessions';
+                const apiUrl = API_BASE ? `${API_BASE}/sessions` : '/sessions';
                 const response = await axios.get(apiUrl);
                 const sessions = response.data;
                 const historyContainer = document.getElementById('chat-history');
@@ -861,7 +861,7 @@
             statusDiv.innerHTML = '<span class="text-green-600">Uploading...</span>';
             
             try {
-                const apiUrl = API_BASE ? `${API_BASE}/upload` : '/api/upload';
+                const apiUrl = API_BASE ? `${API_BASE}/upload` : '/upload';
                 await axios.post(apiUrl, formData);
                 statusDiv.innerHTML = '<span class="text-green-600">✓ Upload successful</span>';
                 fileInput.value = '';
@@ -874,7 +874,7 @@
 
         async function loadStats() {
             try {
-                const apiUrl = API_BASE ? `${API_BASE}/stats` : '/api/stats';
+                const apiUrl = API_BASE ? `${API_BASE}/stats` : '/stats';
                 const response = await axios.get(apiUrl);
                 document.getElementById('doc-count').textContent = `${response.data.document_count} documents`;
             } catch (error) {
@@ -990,7 +990,7 @@
             showTyping();
             
             try {
-                const apiUrl = API_BASE ? `${API_BASE}/chat` : '/api/chat';
+                const apiUrl = API_BASE ? `${API_BASE}/chat` : '/chat';
                 const response = await axios.post(apiUrl, {
                     query: lastUserMessage,
                     chat_history: messages.slice(-8)
@@ -1200,7 +1200,7 @@
             }
             
             try {
-                const apiUrl = API_BASE ? `${API_BASE}/sessions/${sessionId}` : `/api/sessions/${sessionId}`;
+                const apiUrl = API_BASE ? `${API_BASE}/sessions/${sessionId}` : `/sessions/${sessionId}`;
                 await axios.delete(apiUrl);
                 
                 // Refresh chat history
