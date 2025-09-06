@@ -11,7 +11,7 @@
   ],
   "routes": [
     {
-      "src": "/(chat|upload|sessions|stats|health|save-session|chat-speech)",
+      "src": "/api/(.*)",
       "dest": "/api/index"
     },
     {

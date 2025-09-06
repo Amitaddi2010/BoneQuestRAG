@@ -12,12 +12,8 @@ try:
 except ImportError:
     print("Groq import failed, using fallback")
     Groq = None
-import PyPDF2
 from typing import List, Dict
-import numpy as np
-import pickle
-from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.metrics.pairwise import cosine_similarity
+import PyPDF2
 import io
 import json
 from datetime import datetime
@@ -31,7 +27,7 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
     allow_credentials=True,
-    allow_methods=["*"],
+    allow_methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allow_headers=["*"],
 )
 
@@ -40,6 +36,7 @@ app.mount("/static", StaticFiles(directory="frontend"), name="static")
 
 class QueryRequest(BaseModel):
     query: str
+    chat_history: List[Dict] = []
 
 class ChatResponse(BaseModel):
     response: str
@@ -69,37 +66,24 @@ class BoneQuestRAG:
                     print(f"Groq client error: {e}")
                     self.groq_client = None
         
-        self.vectorizer = TfidfVectorizer(
-            max_features=10000,
-            stop_words='english',
-            ngram_range=(1, 2),
-            min_df=1,
-            max_df=0.95,
-            lowercase=True,
-            strip_accents='ascii'
-        )
         self.documents = []
-        self.document_vectors = None
         self.metadata = []
         
-        # Database setup
-        database_url = os.getenv("DATABASE_URL")
-        if not database_url:
-            database_url = "sqlite:///bonequest.db"  # Fallback for local
-        
-        self.engine = create_engine(database_url)
-        Base.metadata.create_all(self.engine)
-        Session = sessionmaker(bind=self.engine)
-        self.db_session = Session()
-        
+        # Simple file storage
+        self.db_file = "bonequest_db.json"
+        self.sessions_file = "chat_sessions.json"
         self.load_database()
         
     def extract_text_from_pdf(self, pdf_bytes) -> str:
-        text = ""
-        pdf_reader = PyPDF2.PdfReader(io.BytesIO(pdf_bytes))
-        for page in pdf_reader.pages:
-            text += page.extract_text()
-        return text
+        try:
+            text = ""
+            pdf_reader = PyPDF2.PdfReader(io.BytesIO(pdf_bytes))
+            for page in pdf_reader.pages:
+                text += page.extract_text()
+            return text
+        except Exception as e:
+            print(f"PDF extraction error: {e}")
+            return ""
     
     def chunk_text(self, text: str, chunk_size: int = 1500, overlap: int = 100) -> List[str]:
         text = text.replace('\n', ' ').replace('\t', ' ')
@@ -116,60 +100,38 @@ class BoneQuestRAG:
         return chunks
     
     def add_documents(self, texts: List[str], source: str):
-        # Limit total documents to prevent memory issues
-        max_docs = 2000
-        
         for i, text in enumerate(texts):
             self.documents.append(text)
             self.metadata.append({"source": source, "id": f"{source}_{i}", "timestamp": datetime.now().isoformat()})
         
-        # Clean up if too many documents
-        if len(self.documents) > max_docs:
-            excess = len(self.documents) - max_docs
-            self.documents = self.documents[excess:]
-            self.metadata = self.metadata[excess:]
-        
-        try:
-            if self.documents:
-                self.document_vectors = self.vectorizer.fit_transform(self.documents)
-            self.save_database()
-        except Exception as e:
-            print(f"Database save error: {e}")
-            # Reset if corrupted
-            self.documents = []
-            self.metadata = []
-            self.document_vectors = None
+        self.save_database()
     
     def search_documents(self, query: str, n_results: int = 5) -> List[Dict]:
-        if not self.documents or self.document_vectors is None:
-            print(f"No documents available. Total docs: {len(self.documents)}")
-            return []
-        
         query = query.lower().strip()
+        results = []
         
-        try:
-            query_vector = self.vectorizer.transform([query])
-            similarities = cosine_similarity(query_vector, self.document_vectors).flatten()
+        # Simple keyword matching
+        for i, doc in enumerate(self.documents):
+            doc_lower = doc.lower()
+            score = 0
             
-            top_indices = np.argsort(similarities)[-n_results:][::-1]
+            # Count keyword matches
+            for word in query.split():
+                if word in doc_lower:
+                    score += doc_lower.count(word)
             
-            results = []
-            for idx in top_indices:
-                if similarities[idx] > 0.005:  # Lower threshold
-                    results.append({
-                        'text': self.documents[idx],
-                        'score': float(similarities[idx]),
-                        'metadata': self.metadata[idx]
-                    })
-            
-            print(f"Search found {len(results)} results for query: {query}")
-            return results
-            
-        except Exception as e:
-            print(f"Search error: {e}")
-            return []
+            if score > 0:
+                results.append({
+                    'text': doc,
+                    'score': score / len(query.split()),
+                    'metadata': self.metadata[i] if i < len(self.metadata) else {}
+                })
+        
+        # Sort by score and return top results
+        results.sort(key=lambda x: x['score'], reverse=True)
+        return results[:n_results]
     
-    def generate_response(self, query: str, context_results: List[Dict]) -> str:
+    def generate_response(self, query: str, context_results: List[Dict], chat_history: List[Dict] = None) -> str:
         if not self.groq_client:
             if not context_results:
                 return f"I'm BoneQuest AI assistant. You asked: '{query}'. Please upload documents for more specific information, or I can provide general guidance on this topic."
@@ -179,47 +141,103 @@ class BoneQuestRAG:
                 context_parts.append(f"[Source {i+1}]\n{result['text']}")
             
             context_text = "\n\n".join(context_parts)
-            context_display = "\n\n".join([f"**Source {i+1}:**\n{result['text'][:800]}..." for i, result in enumerate(context_results[:3])])
-            return f"Based on your documents, here's what I found about '{query}':\n\n{context_display}\n\nThis information comes from your uploaded documents."
+            context_display = "\n\n".join([f"📄 **Source {i+1}** (Score: {result['score']:.2f}):\n{result['text'][:300]}..." for i, result in enumerate(context_results[:2])])
+            return f"🔍 **RAG Response** - Based on your uploaded documents:\n\n{context_display}\n\n✅ This information comes from your knowledge base."
             
-        return self._generate_complete_response(query, context_results)
+        return self._generate_complete_response(query, context_results, chat_history)
     
-    def _generate_complete_response(self, query: str, context_results: List[Dict]) -> str:
+    def _generate_complete_response(self, query: str, context_results: List[Dict], chat_history: List[Dict] = None) -> str:
         """Generate complete response with cutoff detection and retry"""
         max_retries = 2
         
+        # Extract length requirements from query
+        length_indicators = {
+            'in 1 line': 1,
+            'in 2 lines': 2, 
+            'in 3 lines': 3,
+            'in 2-3 lines': 3,
+            'briefly': 2,
+            'short': 2,
+            'summarize': 3,
+            'quick': 1
+        }
+        
+        max_lines = None
+        query_lower = query.lower()
+        for indicator, lines in length_indicators.items():
+            if indicator in query_lower:
+                max_lines = lines
+                break
+        
         for attempt in range(max_retries):
             try:
-                max_tokens = 2500 + (attempt * 1000)
+                # Adjust tokens based on length requirement
+                if max_lines and max_lines <= 3:
+                    max_tokens = 80 + (attempt * 20)  # Very short responses
+                else:
+                    max_tokens = 800 + (attempt * 200)  # Normal responses
+                
+                # Build chat history context
+                history_context = ""
+                if chat_history and len(chat_history) > 0:
+                    recent_history = chat_history[-4:]  # Last 4 messages for context
+                    history_parts = []
+                    for msg in recent_history:
+                        role = "User" if msg['role'] == 'user' else "Assistant"
+                        history_parts.append(f"{role}: {msg['content'][:200]}..." if len(msg['content']) > 200 else f"{role}: {msg['content']}")
+                    history_context = f"\n\nPrevious conversation context:\n" + "\n".join(history_parts) + "\n"
                 
                 if not context_results:
-                    prompt = f"""You are BoneQuest AI, a medical assistant specializing in bone and skeletal conditions.
+                    if max_lines:
+                        prompt = f"""STRICT INSTRUCTION: Answer in EXACTLY {max_lines} line(s). Do not exceed this limit.{history_context}
+Current Question: {query}
 
+Response format: "💡 **General Response** - [Your {max_lines} line answer here]"
+
+IMPORTANT: Stop after {max_lines} line(s). No additional text."""
+                    else:
+                        prompt = f"""You are BoneQuest AI, a medical assistant specializing in bone and skeletal conditions.{history_context}
 User Question: {query}
 
-Provide a complete, well-structured response. Use headings, bullet points, and clear formatting. Ensure your response ends naturally with a complete sentence or conclusion."""
+Start with "💡 **General Response** - " and provide a complete, well-structured response. Use headings, bullet points, and clear formatting. Ensure your response ends naturally with a complete sentence or conclusion."""
                 else:
                     context_parts = []
-                    for i, result in enumerate(context_results[:3]):
-                        context_parts.append(f"[Source {i+1}]\n{result['text']}")
+                    for i, result in enumerate(context_results[:2]):
+                        truncated_text = result['text'][:300] + "..." if len(result['text']) > 300 else result['text']
+                        context_parts.append(f"📄 Source {i+1} (Score: {result['score']:.2f}):\n{truncated_text}")
                     
                     context_text = "\n\n".join(context_parts)
                     
-                    prompt = f"""You are BoneQuest AI, a medical assistant. Based on the provided medical documents, give a complete response.
+                    if max_lines:
+                        prompt = f"""STRICT INSTRUCTION: Answer in EXACTLY {max_lines} line(s). Do not exceed this limit.{history_context}
+Medical Context:
+{context_text}
 
+Current Question: {query}
+
+Response format: "🔍 **RAG Response** - [Your {max_lines} line answer here] ✅ Knowledge base."
+
+IMPORTANT: Stop after {max_lines} line(s). No additional text."""
+                    else:
+                        prompt = f"""You are BoneQuest AI, a medical assistant. Based on the provided medical documents, give a complete response.{history_context}
 Medical Context:
 {context_text}
 
 User Question: {query}
 
-Provide a comprehensive response based on the context. Use clear structure with headings and bullet points. Ensure your response ends naturally with a complete sentence or conclusion."""
+Start with "🔍 **RAG Response** - Based on your uploaded documents:" and provide a comprehensive response based on the context. Use clear structure with headings and bullet points. End with "✅ This information comes from your knowledge base." Ensure your response ends naturally with a complete sentence or conclusion."""
+                
+                # Add stop tokens for short responses (max 4 items)
+                stop_tokens = None
+                if max_lines and max_lines <= 3:
+                    stop_tokens = ["\n\n", "Additionally", "Furthermore", "Moreover"]
                 
                 response = self.groq_client.chat.completions.create(
                     messages=[{"role": "user", "content": prompt}],
-                    model="openai/gpt-oss-120b",
-                    temperature=0.2,
+                    model="llama-3.1-8b-instant",
+                    temperature=0.1,
                     max_tokens=max_tokens,
-                    stop=None
+                    stop=stop_tokens
                 )
                 
                 response_text = response.choices[0].message.content.strip()
@@ -310,88 +328,65 @@ Answer in 1-2 sentences only. Be precise and direct for speech."""
     
     def save_session(self, session_id: str, messages: List[Dict]):
         try:
-            # Delete existing session
-            self.db_session.query(ChatSession).filter_by(session_id=session_id).delete()
-            
-            # Save new session
-            session = ChatSession(
-                session_id=session_id,
-                messages=json.dumps(messages),
-                timestamp=datetime.now()
-            )
-            self.db_session.add(session)
-            self.db_session.commit()
+            sessions = self.load_sessions()
+            sessions[session_id] = {
+                'messages': messages,
+                'timestamp': datetime.now().isoformat()
+            }
+            with open(self.sessions_file, 'w') as f:
+                json.dump(sessions, f)
         except Exception as e:
             print(f"Save session error: {e}")
-            self.db_session.rollback()
     
     def load_sessions(self) -> Dict:
+        if os.path.exists(self.sessions_file):
+            try:
+                with open(self.sessions_file, 'r') as f:
+                    return json.load(f)
+            except Exception as e:
+                print(f"Load sessions error: {e}")
+                return {}
+        return {}
+    
+    def delete_session(self, session_id: str):
         try:
-            sessions = self.db_session.query(ChatSession).all()
-            result = {}
-            for session in sessions:
-                result[session.session_id] = {
-                    'messages': json.loads(session.messages),
-                    'timestamp': session.timestamp.isoformat()
-                }
-            return result
+            sessions = self.load_sessions()
+            if session_id in sessions:
+                del sessions[session_id]
+                with open(self.sessions_file, 'w') as f:
+                    json.dump(sessions, f)
+                return True
+            return False
         except Exception as e:
-            print(f"Load sessions error: {e}")
-            return {}
+            print(f"Delete session error: {e}")
+            return False
     
     def save_database(self):
         try:
-            # Clear existing data
-            self.db_session.query(Document).delete()
-            self.db_session.query(VectorizerData).delete()
-            
-            # Save documents
-            for i, doc in enumerate(self.documents):
-                doc_record = Document(
-                    text=doc,
-                    source=self.metadata[i].get('source', ''),
-                    doc_id=self.metadata[i].get('id', ''),
-                    timestamp=datetime.fromisoformat(self.metadata[i].get('timestamp', datetime.now().isoformat()))
-                )
-                self.db_session.add(doc_record)
-            
-            # Save vectorizer and vectors
-            if self.document_vectors is not None:
-                vectorizer_data = VectorizerData(
-                    vectorizer_pickle=pickle.dumps(self.vectorizer),
-                    vectors_pickle=pickle.dumps(self.document_vectors)
-                )
-                self.db_session.add(vectorizer_data)
-            
-            self.db_session.commit()
+            data = {
+                'documents': self.documents,
+                'metadata': self.metadata
+            }
+            with open(self.db_file, 'w') as f:
+                json.dump(data, f)
             print(f"Database saved: {len(self.documents)} documents")
         except Exception as e:
             print(f"Save database error: {e}")
-            self.db_session.rollback()
     
     def load_database(self):
-        try:
-            # Load documents
-            docs = self.db_session.query(Document).all()
-            self.documents = [doc.text for doc in docs]
-            self.metadata = [{
-                'source': doc.source,
-                'id': doc.doc_id,
-                'timestamp': doc.timestamp.isoformat()
-            } for doc in docs]
-            
-            # Load vectorizer and vectors
-            vectorizer_data = self.db_session.query(VectorizerData).first()
-            if vectorizer_data:
-                self.vectorizer = pickle.loads(vectorizer_data.vectorizer_pickle)
-                self.document_vectors = pickle.loads(vectorizer_data.vectors_pickle)
-            
-            print(f"Database loaded: {len(self.documents)} documents")
-        except Exception as e:
-            print(f"Load database error: {e}")
-            self.documents = []
-            self.document_vectors = None
-            self.metadata = []
+        if os.path.exists(self.db_file):
+            try:
+                with open(self.db_file, 'r') as f:
+                    data = json.load(f)
+                self.documents = data.get('documents', [])
+                self.metadata = data.get('metadata', [])
+                print(f"Database loaded: {len(self.documents)} documents")
+            except Exception as e:
+                print(f"Load database error: {e}")
+                self.documents = []
+                self.metadata = []
+        else:
+            print("No database file found")
 
 rag_system = BoneQuestRAG()
 
@@ -402,7 +397,7 @@ async def read_root():
 @app.post("/chat", response_model=ChatResponse)
 async def chat(request: QueryRequest):
     context_results = rag_system.search_documents(request.query)
-    response = rag_system.generate_response(request.query, context_results)
+    response = rag_system.generate_response(request.query, context_results, request.chat_history)
     
     return ChatResponse(
         response=response,
@@ -440,14 +435,28 @@ async def save_session(request: SessionRequest):
 async def get_sessions():
     return rag_system.load_sessions()
 
+@app.delete("/sessions/{session_id}")
+async def delete_session(session_id: str):
+    success = rag_system.delete_session(session_id)
+    if success:
+        return {"message": "Session deleted successfully"}
+    else:
+        raise HTTPException(status_code=404, detail="Session not found")
+
 @app.get("/stats")
 async def get_stats():
-    return {
-        "document_count": len(rag_system.documents),
-        "sources": len(set([meta.get('source', '') for meta in rag_system.metadata])),
-        "vectorizer_ready": rag_system.document_vectors is not None,
-        "sample_docs": [doc[:100] + "..." for doc in rag_system.documents[:3]]
-    }
+    try:
+        sources = set()
+        if rag_system.metadata:
+            sources = set([meta.get('source', '') for meta in rag_system.metadata if meta.get('source')])
+        
+        return {
+            "document_count": len(rag_system.documents),
+            "sources": len(sources),
+            "sample_docs": [doc[:100] + "..." for doc in rag_system.documents[:3]] if rag_system.documents else []
+        }
+    except Exception as e:
+        return {"document_count": 0, "sources": 0, "sample_docs": [], "error": str(e)}
 
 @app.get("/health")
 async def health_check():
