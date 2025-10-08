@@ -26,6 +26,13 @@
         body.dark .hover\:bg-blue-700:hover { background-color: #1d4ed8 !important; color: #ffffff !important; }
         body.dark .text-gray-400 { color: #94a3b8 !important; }
         body.dark .hover\:bg-gray-100:hover { background-color: #334155 !important; color: #f1f5f9 !important; }
+        #mode-selector option { color: black !important; }
+        #model-selector option { color: black !important; }
+        #image-type option { color: black !important; }
+        #image-type option:checked { color: blue !important; }
+        body.dark #image-type option:checked { color: blue !important; }
+        #image-type { color: black !important; }
+        #image-query { color: black !important; }
         .typing-indicator { animation: pulse 1.5s ease-in-out infinite; }
         .message-fade-in { animation: fadeIn 0.3s ease-in; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
@@ -35,7 +42,10 @@
             .chat-bubble { max-width: 85%; font-size: 14px; }
         }
         .user-bubble { background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); margin-left: auto; }
-        .ai-bubble { background: #f8fafc; color: #1e293b; border: 1px solid #e2e8f0; }
+        .ai-bubble { background: #ffffff; color: #1e293b; border: 1px solid #e5e7eb; box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1); }
+        .message-group { margin-bottom: 1.5rem; }
+        .message-avatar { width: 32px; height: 32px; border-radius: 50%; flex-shrink: 0; }
+        .message-content { border-radius: 1rem; padding: 0.75rem 1rem; max-width: 70%; word-wrap: break-word; }
         .sidebar { background: #1e293b; }
         .nav-item { transition: all 0.2s; }
         .nav-item:hover { background: #f1f5f9; }
@@ -59,7 +69,9 @@
                     <div class="hidden md:flex items-center space-x-8">
                         <a href="#home" class="nav-item px-3 py-2 rounded-md text-gray-700 hover:text-green-600">Home</a>
                         <a href="#about" class="nav-item px-3 py-2 rounded-md text-gray-700 hover:text-green-600">About</a>
-                        <a href="#docs" class="nav-item px-3 py-2 rounded-md text-gray-700 hover:text-green-600">Documentation</a>
+                        <a href="surgical-planning.html" class="nav-item px-3 py-2 rounded-md text-gray-700 hover:text-green-600">RAG Surgical Planning</a>
+                        <a href="medical-calculators.html" class="nav-item px-3 py-2 rounded-md text-gray-700 hover:text-green-600">Medical Calculators</a>
+                        <a href="docs.html" class="nav-item px-3 py-2 rounded-md text-gray-700 hover:text-green-600">Documentation</a>
                         <button onclick="toggleDarkMode()" class="p-2 text-gray-500 hover:text-gray-700 rounded-lg" title="Toggle Dark Mode">
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
@@ -300,31 +312,46 @@
     </div>
 
     <!-- Chat Interface -->
-    <div id="chat-interface" class="hidden min-h-screen bg-white">
-        <!-- Chat Header -->
-        <header class="bg-white border-b border-gray-200 sticky top-0 z-50">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="flex justify-between items-center h-16">
+    <div id="chat-interface" class="hidden min-h-screen bg-gray-50">
+        <!-- Modern Chat Header -->
+        <header class="bg-white/80 backdrop-blur-md border-b border-gray-200/50 sticky top-0 z-50">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6">
+                <div class="flex justify-between items-center h-14">
                     <div class="flex items-center space-x-3">
-                        <button onclick="showLanding()" class="p-2 text-gray-500 hover:text-gray-700">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                        <button onclick="showLanding()" class="p-2 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-lg transition-all">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
                             </svg>
                         </button>
-                        <div class="w-8 h-8 gradient-bg rounded-lg flex items-center justify-center">
-                            <span class="text-white font-bold text-sm">BQ</span>
+                        <div class="flex items-center space-x-2">
+                            <div class="w-7 h-7 gradient-bg rounded-lg flex items-center justify-center">
+                                <span class="text-white font-bold text-xs">BQ</span>
+                            </div>
+                            <div>
+                                <h1 class="text-sm font-semibold text-gray-900">BoneQuest AI</h1>
+                                <p class="text-xs text-gray-500">Clinical Assistant</p>
+                            </div>
                         </div>
-                        <h1 class="text-lg font-semibold text-gray-900">BoneQuest AI</h1>
                     </div>
-                    <div class="flex items-center space-x-4">
-                        <button id="references-btn" onclick="toggleReferences()" class="text-gray-500 hover:text-gray-700 p-2 rounded-lg">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <div class="flex items-center space-x-1">
+                        <button onclick="newChat()" class="p-2 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-lg transition-all" title="New Chat">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                            </svg>
+                        </button>
+                        <button onclick="toggleAdvancedRAG()" class="p-2 text-gray-400 hover:text-green-600 hover:bg-gray-100 rounded-lg transition-all" title="Advanced RAG Settings">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4"></path>
+                            </svg>
+                        </button>
+                        <button id="references-btn" onclick="toggleReferences()" class="p-2 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-lg transition-all" title="References">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
                             </svg>
                         </button>
                         <div class="relative">
-                            <button onclick="toggleQuickActions()" class="text-gray-500 hover:text-gray-700 p-2 rounded-lg" title="More Actions">
-                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <button onclick="toggleQuickActions()" class="p-2 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-lg transition-all" title="More">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"></path>
                                 </svg>
                             </button>
@@ -348,6 +375,14 @@
                                 <button onclick="showBookmarks(); toggleQuickActions()" class="w-full text-left px-4 py-2 hover:bg-gray-100 flex items-center space-x-2">
                                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"></path></svg>
                                     <span>Bookmarks</span>
+                                </button>
+                                <button onclick="showSurgicalPlanning(); toggleQuickActions()" class="w-full text-left px-4 py-2 hover:bg-gray-100 flex items-center space-x-2">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path></svg>
+                                    <span>Surgical Planning</span>
+                                </button>
+                                <button onclick="showMedicalCalculators(); toggleQuickActions()" class="w-full text-left px-4 py-2 hover:bg-gray-100 flex items-center space-x-2">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
+                                    <span>Medical Calculators</span>
                                 </button>
                             </div>
                         </div>
@@ -424,6 +459,117 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- Feedback Modal -->
+                <div id="feedback-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
+                    <div class="bg-white rounded-lg p-6 w-full max-w-md mx-4">
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 class="text-lg font-semibold">Detailed Feedback</h3>
+                            <button onclick="closeFeedbackModal()" class="text-gray-500 hover:text-gray-700">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                                </svg>
+                            </button>
+                        </div>
+                        
+                        <form id="feedback-form" class="space-y-4">
+                            <input type="hidden" id="feedback-message-id">
+                            <input type="hidden" id="feedback-query">
+                            <input type="hidden" id="feedback-response">
+                            
+                            <div>
+                                <label class="block text-sm font-medium mb-2">Overall Rating</label>
+                                <div class="flex space-x-2">
+                                    <button type="button" onclick="setRating(1)" class="rating-btn w-8 h-8 rounded-full border-2 border-gray-300 flex items-center justify-center text-sm hover:bg-blue-50">1</button>
+                                    <button type="button" onclick="setRating(2)" class="rating-btn w-8 h-8 rounded-full border-2 border-gray-300 flex items-center justify-center text-sm hover:bg-blue-50">2</button>
+                                    <button type="button" onclick="setRating(3)" class="rating-btn w-8 h-8 rounded-full border-2 border-gray-300 flex items-center justify-center text-sm hover:bg-blue-50">3</button>
+                                    <button type="button" onclick="setRating(4)" class="rating-btn w-8 h-8 rounded-full border-2 border-gray-300 flex items-center justify-center text-sm hover:bg-blue-50">4</button>
+                                    <button type="button" onclick="setRating(5)" class="rating-btn w-8 h-8 rounded-full border-2 border-gray-300 flex items-center justify-center text-sm hover:bg-blue-50">5</button>
+                                </div>
+                            </div>
+                            
+                            <div class="grid grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-xs font-medium mb-1">Search Relevance</label>
+                                    <select id="search-relevance" class="w-full px-2 py-1 border rounded text-sm">
+                                        <option value="1">1 - Poor</option>
+                                        <option value="2">2 - Fair</option>
+                                        <option value="3" selected>3 - Good</option>
+                                        <option value="4">4 - Very Good</option>
+                                        <option value="5">5 - Excellent</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-medium mb-1">Response Accuracy</label>
+                                    <select id="response-accuracy" class="w-full px-2 py-1 border rounded text-sm">
+                                        <option value="1">1 - Poor</option>
+                                        <option value="2">2 - Fair</option>
+                                        <option value="3" selected>3 - Good</option>
+                                        <option value="4">4 - Very Good</option>
+                                        <option value="5">5 - Excellent</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-medium mb-1">Completeness</label>
+                                    <select id="response-completeness" class="w-full px-2 py-1 border rounded text-sm">
+                                        <option value="1">1 - Poor</option>
+                                        <option value="2">2 - Fair</option>
+                                        <option value="3" selected>3 - Good</option>
+                                        <option value="4">4 - Very Good</option>
+                                        <option value="5">5 - Excellent</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-medium mb-1">Context Quality</label>
+                                    <select id="context-quality" class="w-full px-2 py-1 border rounded text-sm">
+                                        <option value="1">1 - Poor</option>
+                                        <option value="2">2 - Fair</option>
+                                        <option value="3" selected>3 - Good</option>
+                                        <option value="4">4 - Very Good</option>
+                                        <option value="5">5 - Excellent</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-medium mb-2">Comments (Optional)</label>
+                                <textarea id="feedback-comment" rows="3" class="w-full px-3 py-2 border rounded-lg text-sm" placeholder="What could be improved?"></textarea>
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-medium mb-2">Suggested Correction (Optional)</label>
+                                <textarea id="feedback-correction" rows="2" class="w-full px-3 py-2 border rounded-lg text-sm" placeholder="Provide the correct answer if you know it"></textarea>
+                            </div>
+                            
+                            <div class="flex space-x-3">
+                                <button type="button" onclick="submitDetailedFeedback()" class="flex-1 bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 text-sm">Submit Feedback</button>
+                                <button type="button" onclick="closeFeedbackModal()" class="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 text-sm">Cancel</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Analytics Dashboard Modal -->
+                <div id="analytics-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
+                    <div class="bg-white rounded-lg p-6 w-full max-w-4xl mx-4 max-h-[90vh] overflow-y-auto">
+                        <div class="flex justify-between items-center mb-6">
+                            <h3 class="text-xl font-semibold">Feedback Analytics Dashboard</h3>
+                            <button onclick="closeAnalyticsModal()" class="text-gray-500 hover:text-gray-700">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                                </svg>
+                            </button>
+                        </div>
+                        
+                        <div id="analytics-content" class="space-y-6">
+                            <div class="text-center py-8">
+                                <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto"></div>
+                                <p class="mt-2 text-gray-500">Loading analytics...</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Welcome Screen -->
                 <div id="welcome-screen" class="flex-1 flex items-center justify-center">
                     <div class="text-center max-w-md">
@@ -460,6 +606,21 @@
                 <div class="p-2 md:p-4 bg-white border-t border-gray-200">
                     <div class="max-w-4xl mx-auto">
                         <div class="flex items-center space-x-2 md:space-x-3 p-2 md:p-3 bg-gray-50 rounded-2xl">
+                            <button onclick="toggleImageUpload()" class="p-2 text-gray-500 hover:text-blue-600 transition-colors" title="Upload Medical Image">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                                </svg>
+                            </button>
+                            <!-- <button onclick="showSurgicalPlanning()" class="p-2 text-gray-500 hover:text-green-600 transition-colors" title="Surgical Planning">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path>
+                                </svg>
+                            </button>
+                            <button onclick="showMedicalCalculators()" class="p-2 text-gray-500 hover:text-purple-600 transition-colors" title="Medical Calculators">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+                                </svg>
+                            </button> -->
                             <button id="voice-btn" onclick="toggleVoice()" class="p-2 text-gray-500 hover:text-blue-600 transition-colors">
                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"></path>
@@ -474,10 +635,32 @@
                                     class="w-full bg-transparent border-none outline-none text-gray-900 placeholder-gray-500 text-sm md:text-base"
                                     onkeypress="handleKeyPress(event)"
                                 >
-                                <div class="absolute right-0 top-0 flex space-x-1">
-                                    <button onclick="insertTemplate('hip')" class="text-xs bg-gray-400 px-2 py-1 rounded hover:bg-gray-300" title="Hip template">Hip</button>
-                                    <button onclick="insertTemplate('knee')" class="text-xs bg-gray-400 px-2 py-1 rounded hover:bg-gray-300" title="Knee template">Knee</button>
+                                <div class="absolute right-0 top-0 flex items-center">
+                                    <div class="relative">
+                                        <select id="mode-selector" class="appearance-none bg-gradient-to-r from-blue-500 to-blue-600 text-white text-xs font-medium px-3 py-1.5 pr-8 rounded-full border-none shadow-sm hover:from-blue-600 hover:to-blue-700 transition-all cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-300" title="Select role">
+                                            <option value="normal">👤 Patient</option>
+                                            <option value="jr">🎓 Junior Resident</option>
+                                            <option value="sr">👨‍⚕️ Senior Resident</option>
+                                            <option value="consultant">🩺 Consultant</option>
+                                        </select>
+                                        <div class="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
+                                            <svg class="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                            </svg>
+                                        </div>
+                                    </div>
                                 </div>
+                            </div>
+                            
+                            <div class="flex items-center space-x-1">
+                                <select id="model-selector" class="appearance-none bg-gradient-to-r from-purple-500 to-purple-600 text-white text-xs font-medium px-2 py-1 pr-5 rounded-full border-none shadow-sm hover:from-purple-600 hover:to-purple-700 transition-all cursor-pointer focus:outline-none" title="AI Model">
+                                    <option value="meta-llama/llama-4-scout-17b-16e-instruct">🔍 Scout - Vision </option>
+                                    <option value="meta-llama/llama-4-maverick-17b-128e-instruct">🚀 Maverick - Vision</option>
+                                    <option value="llama-3.1-8b-instant">⚡ Fast</option>
+                                    <option value="openai/gpt-oss-20b">🧠 GPT-OSS 20B</option>
+                                    <option value="openai/gpt-oss-120b">🧠 GPT-OSS 120B</option>
+                                    <option value="qwen/qwen3-32b">🤖 Qwen 3 32B</option>
+                                </select>
                             </div>
                             
                             <button onclick="sendMessage()" class="p-2 text-blue-600 hover:text-blue-700 transition-colors">
@@ -525,10 +708,17 @@
             
             <div id="admin-content" class="hidden">
                 <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Feedback Mode</label>
+                    <div class="flex items-center space-x-3">
+                        <input type="checkbox" id="feedback-toggle" class="rounded">
+                        <span class="text-sm text-gray-600">Enable user feedback collection</span>
+                    </div>
+                </div>
+                <div class="mb-4">
                     <label class="block text-sm font-medium text-gray-700 mb-2">Upload Research Document</label>
                     <input type="file" id="file-input" accept=".pdf" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
                 </div>
-                <button onclick="uploadDocument()" class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition-colors">
+                <button onclick="uploadDocument()" class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition-colors mb-2">
                     Upload PDF
                 </button>
                 <div id="upload-status" class="mt-2 text-sm"></div>
@@ -540,9 +730,372 @@
         </div>
     </div>
 
+    <!-- Image Upload Modal -->
+    <div id="image-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+        <div class="bg-white rounded-2xl p-6 w-full max-w-lg mx-4">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-lg font-semibold">Medical Image Analysis</h3>
+                <button onclick="closeImageModal()" class="text-gray-400 hover:text-gray-600">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            
+            <div class="mb-4">
+                <label class="block text-sm font-medium text-gray-700 mb-2">Image Type</label>
+                <select id="image-type" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+                    <option value="xray">X-Ray</option>
+                    <option value="mri">MRI</option>
+                    <option value="ct">CT Scan</option>
+                    <option value="dicom">DICOM</option>
+                </select>
+            </div>
+            
+            <div class="mb-4">
+                <label class="block text-sm font-medium text-gray-700 mb-2">Upload Image</label>
+                <div class="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-blue-400 transition-colors">
+                    <input type="file" id="image-input" accept="image/*,.dcm" class="hidden" onchange="handleImageSelect()">
+                    <div id="drop-zone" onclick="document.getElementById('image-input').click()" class="cursor-pointer">
+                        <svg class="w-12 h-12 text-gray-400 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
+                        </svg>
+                        <p class="text-gray-600">Click to upload or drag and drop</p>
+                        <p class="text-xs text-gray-500 mt-1">Supports: JPG, PNG, TIFF, DICOM</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="image-preview" class="hidden mb-4">
+                <img id="preview-img" class="w-full h-48 object-contain bg-gray-100 rounded-lg">
+                <p id="image-info" class="text-xs text-gray-500 mt-2"></p>
+            </div>
+            
+            <div class="mb-4">
+                <label class="block text-sm font-medium text-gray-700 mb-2">Analysis Query (Optional)</label>
+                <input type="text" id="image-query" placeholder="What would you like to know about this image?" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+            </div>
+            
+            <div class="flex space-x-3">
+                <button onclick="analyzeImage()" id="analyze-btn" disabled class="flex-1 bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition-colors disabled:bg-gray-300 disabled:cursor-not-allowed">
+                    Analyze Image
+                </button>
+                <button onclick="closeImageModal()" class="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
+                    Cancel
+                </button>
+            </div>
+            
+            <div id="analysis-status" class="mt-4 text-sm hidden"></div>
+        </div>
+    </div>
+
+    <!-- Surgical Planning Modal -->
+    <div id="surgical-planning-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+        <div class="bg-white rounded-2xl p-6 w-full max-w-4xl mx-4 max-h-[90vh] overflow-y-auto">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-xl font-semibold text-gray-900">🏥 Surgical Planning Assistant</h3>
+                <button onclick="closeSurgicalPlanning()" class="text-gray-400 hover:text-gray-600">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-6">
+                <!-- Pre-Operative Planning -->
+                <div class="bg-blue-50 rounded-lg p-4">
+                    <h4 class="text-lg font-semibold text-blue-800 mb-4">📋 Pre-Operative Planning</h4>
+                    
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Surgery Type</label>
+                            <select id="surgery-type" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+                                <option value="">Select Surgery Type</option>
+                                <option value="hip-replacement">Hip Replacement</option>
+                                <option value="knee-replacement">Knee Replacement</option>
+                                <option value="spine-fusion">Spine Fusion</option>
+                                <option value="shoulder-arthroscopy">Shoulder Arthroscopy</option>
+                                <option value="fracture-fixation">Fracture Fixation</option>
+                                <option value="ankle-fusion">Ankle Fusion</option>
+                            </select>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Patient Age</label>
+                            <input type="number" id="patient-age" placeholder="Enter age" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Comorbidities</label>
+                            <div class="space-y-2">
+                                <label class="flex items-center"><input type="checkbox" id="diabetes" class="mr-2"> Diabetes</label>
+                                <label class="flex items-center"><input type="checkbox" id="hypertension" class="mr-2"> Hypertension</label>
+                                <label class="flex items-center"><input type="checkbox" id="cardiac" class="mr-2"> Cardiac Disease</label>
+                                <label class="flex items-center"><input type="checkbox" id="obesity" class="mr-2"> Obesity</label>
+                            </div>
+                        </div>
+                        
+                        <button onclick="generatePreOpPlan()" class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition-colors">
+                            Generate Pre-Op Plan
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Post-Operative Planning -->
+                <div class="bg-green-50 rounded-lg p-4">
+                    <h4 class="text-lg font-semibold text-green-800 mb-4">🔄 Post-Operative Planning</h4>
+                    
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Surgery Completed</label>
+                            <select id="completed-surgery" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500">
+                                <option value="">Select Completed Surgery</option>
+                                <option value="hip-replacement">Hip Replacement</option>
+                                <option value="knee-replacement">Knee Replacement</option>
+                                <option value="spine-fusion">Spine Fusion</option>
+                                <option value="shoulder-arthroscopy">Shoulder Arthroscopy</option>
+                                <option value="fracture-fixation">Fracture Fixation</option>
+                            </select>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Days Post-Op</label>
+                            <input type="number" id="days-postop" placeholder="Days since surgery" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Complications</label>
+                            <div class="space-y-2">
+                                <label class="flex items-center"><input type="checkbox" id="infection" class="mr-2"> Infection</label>
+                                <label class="flex items-center"><input type="checkbox" id="bleeding" class="mr-2"> Bleeding</label>
+                                <label class="flex items-center"><input type="checkbox" id="dvt" class="mr-2"> DVT/PE Risk</label>
+                                <label class="flex items-center"><input type="checkbox" id="pain" class="mr-2"> Severe Pain</label>
+                            </div>
+                        </div>
+                        
+                        <button onclick="generatePostOpPlan()" class="w-full bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 transition-colors">
+                            Generate Post-Op Plan
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Guidelines Section -->
+            <div class="mt-6 bg-yellow-50 rounded-lg p-4">
+                <h4 class="text-lg font-semibold text-yellow-800 mb-4">📚 Clinical Guidelines</h4>
+                <div class="grid md:grid-cols-3 gap-4">
+                    <button onclick="showGuideline('preop-checklist')" class="bg-white p-3 rounded-lg border border-yellow-200 hover:bg-yellow-100 transition-colors text-left">
+                        <div class="font-medium text-yellow-800">Pre-Op Checklist</div>
+                        <div class="text-sm text-yellow-600">WHO Surgical Safety</div>
+                    </button>
+                    <button onclick="showGuideline('antibiotic-prophylaxis')" class="bg-white p-3 rounded-lg border border-yellow-200 hover:bg-yellow-100 transition-colors text-left">
+                        <div class="font-medium text-yellow-800">Antibiotic Prophylaxis</div>
+                        <div class="text-sm text-yellow-600">Infection Prevention</div>
+                    </button>
+                    <button onclick="showGuideline('thromboprophylaxis')" class="bg-white p-3 rounded-lg border border-yellow-200 hover:bg-yellow-100 transition-colors text-left">
+                        <div class="font-medium text-yellow-800">Thromboprophylaxis</div>
+                        <div class="text-sm text-yellow-600">VTE Prevention</div>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Results Display -->
+            <div id="surgical-plan-results" class="mt-6 hidden">
+                <h4 class="text-lg font-semibold text-gray-800 mb-4">📄 Generated Plan</h4>
+                <div id="plan-content" class="bg-gray-50 rounded-lg p-4 text-sm"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Medical Calculators Modal -->
+    <div id="medical-calculators-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+        <div class="bg-white rounded-2xl p-6 w-full max-w-4xl mx-4 max-h-[90vh] overflow-y-auto">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-xl font-semibold text-gray-900">🧮 Medical Calculators</h3>
+                <button onclick="closeMedicalCalculators()" class="text-gray-400 hover:text-gray-600">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- BMI Calculator -->
+                <div class="bg-blue-50 rounded-lg p-4">
+                    <h4 class="text-lg font-semibold text-blue-800 mb-4">📏 BMI Calculator</h4>
+                    <div class="space-y-3">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Weight (kg)</label>
+                            <input type="number" id="bmi-weight" placeholder="70" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Height (cm)</label>
+                            <input type="number" id="bmi-height" placeholder="170" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+                        </div>
+                        <button onclick="calculateBMI()" class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition-colors">
+                            Calculate BMI
+                        </button>
+                        <div id="bmi-result" class="text-sm font-medium text-center hidden"></div>
+                    </div>
+                </div>
+                
+                <!-- Dosage Calculator -->
+                <div class="bg-green-50 rounded-lg p-4">
+                    <h4 class="text-lg font-semibold text-green-800 mb-4">💊 Dosage Calculator</h4>
+                    <div class="space-y-3">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Medication</label>
+                            <select id="medication" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500">
+                                <option value="">Select Medication</option>
+                                <option value="morphine">Morphine (0.1-0.2 mg/kg)</option>
+                                <option value="paracetamol">Paracetamol (10-15 mg/kg)</option>
+                                <option value="ibuprofen">Ibuprofen (5-10 mg/kg)</option>
+                                <option value="tramadol">Tramadol (1-2 mg/kg)</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Patient Weight (kg)</label>
+                            <input type="number" id="dosage-weight" placeholder="70" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500">
+                        </div>
+                        <button onclick="calculateDosage()" class="w-full bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 transition-colors">
+                            Calculate Dosage
+                        </button>
+                        <div id="dosage-result" class="text-sm font-medium text-center hidden"></div>
+                    </div>
+                </div>
+                
+                <!-- Creatinine Clearance -->
+                <div class="bg-purple-50 rounded-lg p-4">
+                    <h4 class="text-lg font-semibold text-purple-800 mb-4">🧪 Creatinine Clearance</h4>
+                    <div class="space-y-3">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Age (years)</label>
+                            <input type="number" id="creat-age" placeholder="65" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Weight (kg)</label>
+                            <input type="number" id="creat-weight" placeholder="70" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Serum Creatinine (mg/dL)</label>
+                            <input type="number" step="0.1" id="creat-level" placeholder="1.2" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Gender</label>
+                            <select id="creat-gender" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500">
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                            </select>
+                        </div>
+                        <button onclick="calculateCreatinine()" class="w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700 transition-colors">
+                            Calculate CrCl
+                        </button>
+                        <div id="creatinine-result" class="text-sm font-medium text-center hidden"></div>
+                    </div>
+                </div>
+                
+                <!-- Pain Scale -->
+                <div class="bg-red-50 rounded-lg p-4">
+                    <h4 class="text-lg font-semibold text-red-800 mb-4">😣 Pain Assessment</h4>
+                    <div class="space-y-3">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Pain Level (0-10)</label>
+                            <input type="range" id="pain-scale" min="0" max="10" value="0" class="w-full" oninput="updatePainLevel()">
+                            <div class="flex justify-between text-xs text-gray-500">
+                                <span>No Pain</span>
+                                <span id="pain-value">0</span>
+                                <span>Worst Pain</span>
+                            </div>
+                        </div>
+                        <div id="pain-assessment" class="text-sm font-medium text-center p-2 rounded bg-white">No Pain</div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Pain Type</label>
+                            <select id="pain-type" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500">
+                                <option value="acute">Acute</option>
+                                <option value="chronic">Chronic</option>
+                                <option value="neuropathic">Neuropathic</option>
+                                <option value="inflammatory">Inflammatory</option>
+                            </select>
+                        </div>
+                        <button onclick="generatePainPlan()" class="w-full bg-red-600 text-white py-2 rounded-lg hover:bg-red-700 transition-colors">
+                            Generate Pain Plan
+                        </button>
+                        <div id="pain-plan" class="text-sm hidden"></div>
+                    </div>
+                </div>
+                
+                <!-- Blood Loss Calculator -->
+                <div class="bg-orange-50 rounded-lg p-4">
+                    <h4 class="text-lg font-semibold text-orange-800 mb-4">🩸 Blood Loss Calculator</h4>
+                    <div class="space-y-3">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Pre-op Hgb (g/dL)</label>
+                            <input type="number" step="0.1" id="preop-hgb" placeholder="12.5" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Post-op Hgb (g/dL)</label>
+                            <input type="number" step="0.1" id="postop-hgb" placeholder="10.2" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Patient Weight (kg)</label>
+                            <input type="number" id="blood-weight" placeholder="70" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500">
+                        </div>
+                        <button onclick="calculateBloodLoss()" class="w-full bg-orange-600 text-white py-2 rounded-lg hover:bg-orange-700 transition-colors">
+                            Calculate Blood Loss
+                        </button>
+                        <div id="blood-loss-result" class="text-sm font-medium text-center hidden"></div>
+                    </div>
+                </div>
+                
+                <!-- ASA Score -->
+                <div class="bg-indigo-50 rounded-lg p-4">
+                    <h4 class="text-lg font-semibold text-indigo-800 mb-4">⚕️ ASA Physical Status</h4>
+                    <div class="space-y-3">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Patient Condition</label>
+                            <div class="space-y-2">
+                                <label class="flex items-center"><input type="radio" name="asa" value="1" class="mr-2"> ASA I - Healthy</label>
+                                <label class="flex items-center"><input type="radio" name="asa" value="2" class="mr-2"> ASA II - Mild systemic disease</label>
+                                <label class="flex items-center"><input type="radio" name="asa" value="3" class="mr-2"> ASA III - Severe systemic disease</label>
+                                <label class="flex items-center"><input type="radio" name="asa" value="4" class="mr-2"> ASA IV - Life-threatening disease</label>
+                                <label class="flex items-center"><input type="radio" name="asa" value="5" class="mr-2"> ASA V - Moribund</label>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="flex items-center"><input type="checkbox" id="emergency" class="mr-2"> Emergency Surgery</label>
+                        </div>
+                        <button onclick="assessASA()" class="w-full bg-indigo-600 text-white py-2 rounded-lg hover:bg-indigo-700 transition-colors">
+                            Assess Risk
+                        </button>
+                        <div id="asa-result" class="text-sm font-medium text-center hidden"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Include Advanced RAG Modal -->
+    <script>
+        // Load Advanced RAG Modal
+        fetch('advanced-rag-modal.html')
+            .then(response => response.text())
+            .then(html => {
+                const tempDiv = document.createElement('div');
+                tempDiv.innerHTML = html;
+                document.body.appendChild(tempDiv.firstElementChild);
+                
+                // Execute the script
+                const script = tempDiv.querySelector('script');
+                if (script) {
+                    eval(script.textContent);
+                }
+            })
+            .catch(error => console.warn('Could not load advanced RAG modal:', error));
+    </script>
+    
     <script>
         // API Base URL - handle local and Render
-        const API_BASE = window.location.hostname === 'localhost' ? 'http://localhost:8000' : '';
+        const API_BASE = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' ? 'http://localhost:8000' : '';
         
         let currentSession = null;
         let messages = [];
@@ -551,6 +1104,148 @@
         let currentReferences = [];
         let lastUserMessage = '';
         let bookmarkedMessages = JSON.parse(localStorage.getItem('bookmarks') || '[]');
+        let selectedImageFile = null;
+        let imageAnalysisMode = false;
+        let advancedRAGSettings = {
+            searchMethod: 'hybrid',
+            topK: 5,
+            threshold: 0.7,
+            queryExpansion: true,
+            responseStyle: 'comprehensive',
+            temperature: 0.7,
+            citationStyle: 'inline',
+            factCheck: true,
+            confidenceScore: true,
+            contextWindow: 8,
+            summarizeHistory: true,
+            memoryType: 'conversational' // 'conversational', 'summary', 'buffer'
+        };
+        
+        // Memory management for different types
+        function getRelevantContext(query, history) {
+            switch (advancedRAGSettings.memoryType) {
+                case 'summary':
+                    return getSummaryContext(query, history);
+                case 'buffer':
+                    return getBufferContext(query, history);
+                default:
+                    return getConversationalContext(query, history);
+            }
+        }
+        
+        function getSummaryContext(query, history) {
+            if (history.length <= 4) return history;
+            
+            const summary = summarizeConversation(history.slice(0, -2));
+            const recent = history.slice(-2);
+            
+            return [
+                { role: 'system', content: `Previous conversation summary: ${summary}` },
+                ...recent
+            ];
+        }
+        
+        function getBufferContext(query, history) {
+            // Keep only messages within token limit
+            const maxTokens = 2000; // Approximate
+            let tokenCount = 0;
+            const relevantHistory = [];
+            
+            for (let i = history.length - 1; i >= 0; i--) {
+                const msgTokens = Math.ceil(history[i].content.length / 4); // Rough estimate
+                if (tokenCount + msgTokens > maxTokens) break;
+                
+                relevantHistory.unshift(history[i]);
+                tokenCount += msgTokens;
+            }
+            
+            return relevantHistory;
+        }
+        
+        function getConversationalContext(query, history) {
+            return history.slice(-advancedRAGSettings.contextWindow);
+        }
+        
+        // Enhanced chat history management
+        function buildContextualQuery(currentQuery, chatHistory) {
+            if (!chatHistory || chatHistory.length === 0) {
+                return currentQuery;
+            }
+            
+            // Get relevant context based on memory type
+            const relevantHistory = getRelevantContext(currentQuery, chatHistory);
+            
+            // Build contextual query for retrieval
+            let contextualQuery = '';
+            
+            if (advancedRAGSettings.queryExpansion) {
+                // Add conversation context for better retrieval
+                const conversationTopics = extractConversationTopics(relevantHistory);
+                if (conversationTopics.length > 0) {
+                    contextualQuery += `Context: ${conversationTopics.join(', ')}. `;
+                }
+            }
+            
+            // Add recent exchanges for continuity
+            const recentExchanges = relevantHistory.slice(-2);
+            recentExchanges.forEach(msg => {
+                if (msg.role === 'user') {
+                    contextualQuery += `Previous question: ${msg.content}. `;
+                } else if (msg.role === 'assistant') {
+                    contextualQuery += `Previous answer covered: ${extractKeyPoints(msg.content)}. `;
+                }
+            });
+            
+            contextualQuery += `Current question: ${currentQuery}`;
+            return contextualQuery;
+        }
+        
+        function extractConversationTopics(history) {
+            const topics = new Set();
+            history.forEach(msg => {
+                if (msg.role === 'user') {
+                    const medicalTerms = extractMedicalTerms(msg.content);
+                    medicalTerms.forEach(term => topics.add(term));
+                }
+            });
+            return Array.from(topics);
+        }
+        
+        function extractKeyPoints(content) {
+            // Extract first sentence or key medical terms
+            const sentences = content.split('.').filter(s => s.trim().length > 0);
+            return sentences[0] ? sentences[0].trim().substring(0, 100) + '...' : '';
+        }
+        
+        function summarizeConversation(messages) {
+            if (messages.length === 0) return '';
+            
+            const topics = [];
+            messages.forEach(msg => {
+                if (msg.role === 'user') {
+                    // Extract key medical terms and topics
+                    const medicalTerms = extractMedicalTerms(msg.content);
+                    topics.push(...medicalTerms);
+                }
+            });
+            
+            return topics.length > 0 ? 
+                `Discussion about: ${[...new Set(topics)].join(', ')}` : 
+                'General medical consultation';
+        }
+        
+        function extractMedicalTerms(text) {
+            const medicalKeywords = [
+                'surgery', 'fracture', 'pain', 'treatment', 'diagnosis', 'symptoms',
+                'orthopedic', 'bone', 'joint', 'muscle', 'ligament', 'tendon',
+                'hip', 'knee', 'ankle', 'spine', 'shoulder', 'wrist', 'elbow'
+            ];
+            
+            const words = text.toLowerCase().split(/\s+/);
+            return words.filter(word => 
+                medicalKeywords.some(keyword => word.includes(keyword))
+            );
+        }
 
         // Initialize speech recognition
         if ('webkitSpeechRecognition' in window) {
@@ -622,6 +1317,28 @@
                 sendMessage();
             }
         }
+        
+        function handleTextareaKeydown(event) {
+            if (event.key === 'Enter' && !event.shiftKey) {
+                event.preventDefault();
+                sendMessage();
+            }
+        }
+        
+        function autoResize(textarea) {
+            textarea.style.height = 'auto';
+            textarea.style.height = Math.min(textarea.scrollHeight, 120) + 'px';
+        }
+        
+        function insertTemplate(template) {
+            const input = document.getElementById('message-input');
+            const templates = {
+                'hip': 'Tell me about hip replacement surgery protocols and guidelines',
+                'knee': 'Explain knee arthroscopy procedures and post-operative care'
+            };
+            input.value = templates[template] || '';
+            input.focus();
+        }
 
         function newChat() {
             currentSession = 'session_' + Date.now();
@@ -645,13 +1362,66 @@
             lastUserMessage = message;
             addMessage(message, 'user');
             input.value = '';
+            
+            // Check for casual greetings and responses
+            const casualGreetings = /^(hey|hi|hello|hiya|sup|yo|howdy|what's?\s+up|whats?\s+up)(\s+(there|dude|man|bro))?\s*[!.?]*$/i;
+            const casualResponses = /^(good|fine|ok|okay|thanks|thank you|thx|cool|nice|great|awesome|not much|nothing much|nm|just chillin|chillin)\s*[!.?]*$/i;
+            
+            if (casualGreetings.test(message)) {
+                const greetingResponses = [
+                    "Hey! What's up? 😊",
+                    "Hi there! 👋 How can I help you today?",
+                    "Hello! What's on your mind?",
+                    "Hey again! 😄 What would you like to know?",
+                    "Hi! Ready to chat about something?"
+                ];
+                const randomResponse = greetingResponses[Math.floor(Math.random() * greetingResponses.length)];
+                
+                setTimeout(() => {
+                    streamMessage(randomResponse, 'assistant');
+                }, 300);
+                
+                messages.push({ role: 'assistant', content: randomResponse, timestamp: new Date().toISOString() });
+                await saveSession();
+                return;
+            }
+            
+            if (casualResponses.test(message)) {
+                const followUpResponses = [
+                    "Nice! 😊 What can I help you with today?",
+                    "Great! Got any medical questions for me?",
+                    "Cool! 👍 What would you like to know?",
+                    "Awesome! Ready to dive into some medical topics?",
+                    "Perfect! What's on your mind?"
+                ];
+                const randomResponse = followUpResponses[Math.floor(Math.random() * followUpResponses.length)];
+                
+                setTimeout(() => {
+                    streamMessage(randomResponse, 'assistant');
+                }, 300);
+                
+                messages.push({ role: 'assistant', content: randomResponse, timestamp: new Date().toISOString() });
+                await saveSession();
+                return;
+            }
+            
             showTyping();
             
             try {
+                const mode = document.getElementById('mode-selector').value;
+                const model = document.getElementById('model-selector')?.value || 'meta-llama/llama-4-scout-17b-16e-instruct';
+                // Build contextual query for better RAG retrieval
+                const contextualQuery = buildContextualQuery(message, messages);
+                
                 const apiUrl = API_BASE ? `${API_BASE}/chat` : '/chat';
                 const response = await axios.post(apiUrl, {
                     query: message,
-                    chat_history: messages.slice(-8)  // Send last 8 messages for context
+                    contextual_query: contextualQuery,
+                    chat_history: messages.slice(-advancedRAGSettings.contextWindow),
+                    mode: mode,
+                    model: model,
+                    rag_settings: advancedRAGSettings,
+                    session_id: currentSession
                 });
                 
                 hideTyping();
@@ -674,27 +1444,29 @@
         function addMessage(content, role) {
             const messagesContainer = document.getElementById('messages');
             const messageDiv = document.createElement('div');
-            messageDiv.className = 'message-fade-in flex items-start space-x-3 mb-4';
+            messageDiv.className = 'message-fade-in message-group';
             
             if (role === 'user') {
                 messageDiv.innerHTML = `
-                    <div class="flex-1"></div>
-                    <div class="user-bubble chat-bubble px-4 py-3 text-white">
-                        ${content}
-                    </div>
-                    <div class="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center flex-shrink-0">
-                        <span class="text-white text-xs font-bold">U</span>
+                    <div class="flex items-start justify-end space-x-3">
+                        <div class="message-content bg-blue-600 text-white rounded-2xl rounded-br-sm px-4 py-3 max-w-xs md:max-w-md">
+                            ${content}
+                        </div>
+                        <div class="message-avatar bg-blue-600 flex items-center justify-center">
+                            <span class="text-white text-xs font-bold">You</span>
+                        </div>
                     </div>
                 `;
             } else {
                 messageDiv.innerHTML = `
-                    <div class="w-8 h-8 gradient-bg rounded-full flex items-center justify-center flex-shrink-0">
-                        <span class="text-white text-xs font-bold">D</span>
+                    <div class="flex items-start space-x-3">
+                        <div class="message-avatar gradient-bg flex items-center justify-center">
+                            <span class="text-white text-xs font-bold">BQ</span>
+                        </div>
+                        <div class="message-content ai-bubble rounded-2xl rounded-tl-sm px-4 py-3 max-w-xs md:max-w-2xl">
+                            <div class="prose prose-sm max-w-none">${marked.parse(content)}</div>
+                        </div>
                     </div>
-                    <div class="ai-bubble chat-bubble px-4 py-3">
-                        <div class="prose prose-sm max-w-none">${marked.parse(content)}</div>
-                    </div>
-                    <div class="flex-1"></div>
                 `;
             }
             
@@ -703,12 +1475,6 @@
             
             const timestamp = new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
             messages.push({ role, content, timestamp: new Date().toISOString() });
-            
-            // Add timestamp to message
-            const timeDiv = document.createElement('div');
-            timeDiv.className = 'text-xs text-gray-400 mt-1 text-right';
-            timeDiv.textContent = timestamp;
-            messageDiv.appendChild(timeDiv);
         }
 
         function showTyping() {
@@ -728,11 +1494,48 @@
                 const apiUrl = API_BASE ? `${API_BASE}/save-session` : '/save-session';
                 await axios.post(apiUrl, {
                     session_id: currentSession,
-                    messages: messages
+                    messages: messages,
+                    metadata: {
+                        last_updated: new Date().toISOString(),
+                        message_count: messages.length,
+                        rag_settings: advancedRAGSettings
+                    }
                 });
                 loadChatHistory();
             } catch (error) {
                 console.error('Save session error:', error);
+            }
+        }
+        
+        // Enhanced session loading with context restoration
+        async function loadSessionWithContext(sessionId) {
+            try {
+                const apiUrl = API_BASE ? `${API_BASE}/sessions/${sessionId}` : `/sessions/${sessionId}`;
+                const response = await axios.get(apiUrl);
+                const sessionData = response.data;
+                
+                currentSession = sessionId;
+                messages = sessionData.messages || [];
+                
+                // Restore RAG settings if available
+                if (sessionData.metadata && sessionData.metadata.rag_settings) {
+                    advancedRAGSettings = { ...advancedRAGSettings, ...sessionData.metadata.rag_settings };
+                }
+                
+                const messagesContainer = document.getElementById('messages');
+                messagesContainer.innerHTML = '';
+                
+                messages.forEach(msg => {
+                    addMessageToDOM(msg.content, msg.role);
+                });
+                
+                document.getElementById('welcome-screen').classList.add('hidden');
+                document.getElementById('messages-container').classList.remove('hidden');
+                
+                showToast(`Session loaded with ${messages.length} messages`);
+            } catch (error) {
+                console.error('Load session error:', error);
+                showToast('Failed to load session', 'error');
             }
         }
 
@@ -776,48 +1579,45 @@
                 document.getElementById('session-count').textContent = `${Object.keys(sessions).length} sessions`;
             } catch (error) {
                 console.error('Load history error:', error);
+                // Show offline message if backend not available
+                if (error.code === 'ERR_NETWORK' || error.message.includes('ERR_CONNECTION_REFUSED')) {
+                    document.getElementById('session-count').textContent = 'Backend offline';
+                    return;
+                }
             }
         }
 
         function loadSession(sessionId, sessionData) {
-            currentSession = sessionId;
-            messages = sessionData.messages || [];
-            
-            const messagesContainer = document.getElementById('messages');
-            messagesContainer.innerHTML = '';
-            
-            messages.forEach(msg => {
-                addMessageToDOM(msg.content, msg.role);
-            });
-            
-            document.getElementById('welcome-screen').classList.add('hidden');
-            document.getElementById('messages-container').classList.remove('hidden');
+            // Use enhanced loading function
+            loadSessionWithContext(sessionId);
         }
 
         function addMessageToDOM(content, role) {
             const messagesContainer = document.getElementById('messages');
             const messageDiv = document.createElement('div');
-            messageDiv.className = 'flex items-start space-x-3 mb-4';
+            messageDiv.className = 'message-group';
             
             if (role === 'user') {
                 messageDiv.innerHTML = `
-                    <div class="flex-1"></div>
-                    <div class="user-bubble chat-bubble px-4 py-3 text-white">
-                        ${content}
-                    </div>
-                    <div class="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center flex-shrink-0">
-                        <span class="text-white text-xs font-bold">U</span>
+                    <div class="flex items-start justify-end space-x-3">
+                        <div class="message-content bg-blue-600 text-white rounded-2xl rounded-br-sm px-4 py-3 max-w-xs md:max-w-md">
+                            ${content}
+                        </div>
+                        <div class="message-avatar bg-blue-600 flex items-center justify-center">
+                            <span class="text-white text-xs font-bold">You</span>
+                        </div>
                     </div>
                 `;
             } else {
                 messageDiv.innerHTML = `
-                    <div class="w-8 h-8 gradient-bg rounded-full flex items-center justify-center flex-shrink-0">
-                        <span class="text-white text-xs font-bold">D</span>
+                    <div class="flex items-start space-x-3">
+                        <div class="message-avatar gradient-bg flex items-center justify-center">
+                            <span class="text-white text-xs font-bold">BQ</span>
+                        </div>
+                        <div class="message-content ai-bubble rounded-2xl rounded-tl-sm px-4 py-3 max-w-xs md:max-w-2xl">
+                            <div class="prose prose-sm max-w-none">${marked.parse(content)}</div>
+                        </div>
                     </div>
-                    <div class="ai-bubble chat-bubble px-4 py-3">
-                        <div class="prose prose-sm max-w-none">${marked.parse(content)}</div>
-                    </div>
-                    <div class="flex-1"></div>
                 `;
             }
             
@@ -840,8 +1640,37 @@
             if (password === 'admin123') {
                 document.getElementById('admin-content').classList.remove('hidden');
                 document.getElementById('verify-btn').classList.add('hidden');
+                loadFeedbackMode();
             } else {
                 alert('Incorrect password');
+            }
+        }
+        
+        async function loadFeedbackMode() {
+            try {
+                const apiUrl = API_BASE ? `${API_BASE}/health` : '/health';
+                const response = await axios.get(apiUrl);
+                const feedbackMode = response.data.feedback_mode === 'ON';
+                document.getElementById('feedback-toggle').checked = feedbackMode;
+                
+                // Add event listener for toggle
+                document.getElementById('feedback-toggle').addEventListener('change', toggleFeedbackMode);
+            } catch (error) {
+                console.error('Load feedback mode error:', error);
+            }
+        }
+        
+        async function toggleFeedbackMode() {
+            const enabled = document.getElementById('feedback-toggle').checked;
+            try {
+                const apiUrl = API_BASE ? `${API_BASE}/admin/feedback-mode` : '/admin/feedback-mode';
+                await axios.post(apiUrl, { enabled });
+                showToast(`Feedback mode ${enabled ? 'enabled' : 'disabled'}`);
+            } catch (error) {
+                console.error('Toggle feedback mode error:', error);
+                showToast('Failed to update feedback mode', 'error');
+                // Revert toggle on error
+                document.getElementById('feedback-toggle').checked = !enabled;
             }
         }
 
@@ -885,6 +1714,27 @@
         function closeBetaPopup() {
             document.getElementById('beta-popup').classList.add('hidden');
         }
+        
+        function toggleAdvancedRAG() {
+            // Fallback if modal not loaded
+            if (!document.getElementById('advanced-rag-modal')) {
+                showToast('Advanced RAG settings loading...', 'info');
+                return;
+            }
+            document.getElementById('advanced-rag-modal').classList.remove('hidden');
+        }
+        
+        function closeAdvancedRAG() {
+            const modal = document.getElementById('advanced-rag-modal');
+            if (modal) {
+                modal.classList.add('hidden');
+            }
+            showToast('Advanced RAG closed', 'info');
+        }
+        
+        function applyRAGSettings() {
+            showToast('RAG settings applied!', 'success');
+        }
 
         // Mobile menu toggle
         function toggleMobileMenu() {
@@ -907,18 +1757,19 @@
             
             const messagesContainer = document.getElementById('messages');
             const messageDiv = document.createElement('div');
-            const messageId = 'streaming_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9) + '_' + Math.floor(Math.random() * 10000);
-            messageDiv.className = 'message-fade-in flex items-start space-x-2 md:space-x-3 mb-2 md:mb-4 group';
+            const messageId = 'streaming_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+            messageDiv.className = 'message-fade-in message-group group';
             
             messageDiv.innerHTML = `
-                <div class="w-6 h-6 md:w-8 md:h-8 gradient-bg rounded-full flex items-center justify-center flex-shrink-0">
-                    <span class="text-white text-xs font-bold">BQ</span>
+                <div class="flex items-start space-x-3">
+                    <div class="message-avatar gradient-bg flex items-center justify-center">
+                        <span class="text-white text-xs font-bold">BQ</span>
+                    </div>
+                    <div class="message-content ai-bubble rounded-2xl rounded-tl-sm px-4 py-3 max-w-xs md:max-w-2xl">
+                        <div id="${messageId}" class="prose prose-sm max-w-none"></div>
+                        <span class="typing-cursor animate-pulse">▋</span>
+                    </div>
                 </div>
-                <div class="ai-bubble chat-bubble px-3 md:px-4 py-2 md:py-3 max-w-xs md:max-w-none">
-                    <div id="${messageId}" class="prose prose-sm max-w-none text-sm md:text-base"></div>
-                    <span class="typing-cursor animate-pulse">▋</span>
-                </div>
-                <div class="flex-1"></div>
             `;
             
             messagesContainer.appendChild(messageDiv);
@@ -940,39 +1791,245 @@
                         cursor.remove();
                         // Add action buttons
                         const actionsDiv = document.createElement('div');
-                        actionsDiv.className = 'flex space-x-2 mt-2 opacity-0 group-hover:opacity-100 transition-opacity';
+                        actionsDiv.className = 'flex space-x-1 mt-2 opacity-0 group-hover:opacity-100 transition-opacity';
+                        const safeContent = content.replace(/'/g, "\\'").replace(/"/g, '\\"').replace(/\n/g, '\\n');
                         actionsDiv.innerHTML = `
-                            <button onclick="copyMessage('${content.replace(/'/g, "\\'").replace(/"/g, '\\"')}')" class="p-1 text-gray-400 hover:text-gray-600 rounded" title="Copy">
+                            <button onclick="copyMessage(\`${safeContent}\`)" class="p-1.5 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-lg transition-all" title="Copy">
                                 <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
                             </button>
-                            <button onclick="regenerateResponse()" class="p-1 text-gray-400 hover:text-gray-600 rounded" title="Regenerate">
+                            <button onclick="regenerateResponse()" class="p-1.5 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-lg transition-all" title="Regenerate">
                                 <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
                             </button>
-                            <button onclick="bookmarkMessage('${content.replace(/'/g, "\\'").replace(/"/g, '\\"')}')" class="p-1 text-gray-400 hover:text-yellow-600 rounded" title="Bookmark">
+                            <button onclick="bookmarkMessage(\`${safeContent}\`)" class="p-1.5 text-gray-400 hover:text-yellow-600 hover:bg-yellow-50 rounded-lg transition-all" title="Bookmark">
                                 <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"></path></svg>
                             </button>
-                            <button onclick="rateResponse('up')" class="p-1 text-gray-400 hover:text-green-600 rounded" title="Good response">
-                                👍
-                            </button>
-                            <button onclick="rateResponse('down')" class="p-1 text-gray-400 hover:text-red-600 rounded" title="Poor response">
-                                👎
-                            </button>
                         `;
-                        messageDiv.querySelector('.ai-bubble').appendChild(actionsDiv);
+                        messageDiv.querySelector('.message-content').appendChild(actionsDiv);
                     }
-                }, index * 30); // 30ms delay between words
+                }, index * 20); // 20ms delay between words for faster streaming
             });
             
             messages.push({ role, content, timestamp: new Date().toISOString() });
         }
         
+        // Handle feedback from BoneQuest responses
+        function provideFeedback(type, messageId = null) {
+            if (type === 'detailed') {
+                openFeedbackModal(messageId);
+                return;
+            }
+            
+            const feedback = {
+                type: type,
+                timestamp: new Date().toISOString(),
+                session: currentSession,
+                message: lastUserMessage
+            };
+            
+            // Store feedback locally
+            const feedbacks = JSON.parse(localStorage.getItem('bonequest_feedbacks') || '[]');
+            feedbacks.push(feedback);
+            localStorage.setItem('bonequest_feedbacks', JSON.stringify(feedbacks));
+            
+            showToast(type === 'up' ? 'Thanks for the positive feedback!' : 'Thanks for your feedback. We\'ll improve our responses.');
+        }
+        
+        // Open detailed feedback modal
+        function openFeedbackModal(messageId) {
+            document.getElementById('feedback-message-id').value = messageId || 'msg_' + Date.now();
+            document.getElementById('feedback-query').value = lastUserMessage;
+            document.getElementById('feedback-response').value = messages[messages.length - 1]?.content || '';
+            document.getElementById('feedback-modal').classList.remove('hidden');
+        }
+        
+        // Close feedback modal
+        function closeFeedbackModal() {
+            document.getElementById('feedback-modal').classList.add('hidden');
+            resetFeedbackForm();
+        }
+        
+        // Reset feedback form
+        function resetFeedbackForm() {
+            document.querySelectorAll('.rating-btn').forEach(btn => {
+                btn.classList.remove('bg-blue-600', 'text-white');
+                btn.classList.add('border-gray-300');
+            });
+            document.getElementById('feedback-comment').value = '';
+            document.getElementById('feedback-correction').value = '';
+            document.getElementById('search-relevance').value = '3';
+            document.getElementById('response-accuracy').value = '3';
+            document.getElementById('response-completeness').value = '3';
+            document.getElementById('context-quality').value = '3';
+        }
+        
+        // Set overall rating
+        let selectedRating = 3;
+        function setRating(rating) {
+            selectedRating = rating;
+            document.querySelectorAll('.rating-btn').forEach((btn, index) => {
+                if (index < rating) {
+                    btn.classList.add('bg-blue-600', 'text-white');
+                    btn.classList.remove('border-gray-300');
+                } else {
+                    btn.classList.remove('bg-blue-600', 'text-white');
+                    btn.classList.add('border-gray-300');
+                }
+            });
+        }
+        
+        // Submit detailed feedback
+        async function submitDetailedFeedback() {
+            const feedbackData = {
+                message_id: document.getElementById('feedback-message-id').value,
+                query: document.getElementById('feedback-query').value,
+                response: document.getElementById('feedback-response').value,
+                feedback_type: selectedRating >= 4 ? 'positive' : selectedRating <= 2 ? 'negative' : 'neutral',
+                rating: selectedRating,
+                comment: document.getElementById('feedback-comment').value,
+                correction: document.getElementById('feedback-correction').value,
+                context_quality: parseInt(document.getElementById('context-quality').value),
+                response_accuracy: parseInt(document.getElementById('response-accuracy').value),
+                response_completeness: parseInt(document.getElementById('response-completeness').value),
+                search_relevance: parseInt(document.getElementById('search-relevance').value)
+            };
+            
+            try {
+                const apiUrl = API_BASE ? `${API_BASE}/feedback` : '/feedback';
+                await axios.post(apiUrl, feedbackData);
+                showToast('Detailed feedback submitted successfully!');
+                closeFeedbackModal();
+            } catch (error) {
+                console.error('Feedback submission error:', error);
+                showToast('Failed to submit feedback', 'error');
+            }
+        }
+        
+        // Show analytics dashboard
+        async function showAnalytics() {
+            document.getElementById('analytics-modal').classList.remove('hidden');
+            await loadAnalytics();
+        }
+        
+        // Close analytics modal
+        function closeAnalyticsModal() {
+            document.getElementById('analytics-modal').classList.add('hidden');
+        }
+        
+        // Load analytics data
+        async function loadAnalytics() {
+            try {
+                const apiUrl = API_BASE ? `${API_BASE}/feedback/analytics` : '/feedback/analytics';
+                const response = await axios.get(apiUrl);
+                const analytics = response.data;
+                
+                displayAnalytics(analytics);
+            } catch (error) {
+                console.error('Analytics loading error:', error);
+                document.getElementById('analytics-content').innerHTML = `
+                    <div class="text-center py-8">
+                        <p class="text-red-500">Failed to load analytics data</p>
+                    </div>
+                `;
+            }
+        }
+        
+        // Display analytics data
+        function displayAnalytics(analytics) {
+            const content = document.getElementById('analytics-content');
+            
+            content.innerHTML = `
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+                    <div class="bg-blue-50 p-4 rounded-lg">
+                        <h4 class="text-sm font-medium text-blue-800">Total Feedback</h4>
+                        <p class="text-2xl font-bold text-blue-900">${analytics.total_feedback || 0}</p>
+                    </div>
+                    <div class="bg-green-50 p-4 rounded-lg">
+                        <h4 class="text-sm font-medium text-green-800">Average Rating</h4>
+                        <p class="text-2xl font-bold text-green-900">${analytics.avg_rating || 0}/5</p>
+                    </div>
+                    <div class="bg-yellow-50 p-4 rounded-lg">
+                        <h4 class="text-sm font-medium text-yellow-800">Positive Feedback</h4>
+                        <p class="text-2xl font-bold text-yellow-900">${analytics.positive_count || 0}</p>
+                    </div>
+                    <div class="bg-red-50 p-4 rounded-lg">
+                        <h4 class="text-sm font-medium text-red-800">Needs Improvement</h4>
+                        <p class="text-2xl font-bold text-red-900">${analytics.negative_count || 0}</p>
+                    </div>
+                </div>
+                
+                <div class="mb-6">
+                    <h4 class="text-lg font-semibold mb-3">Common Issues</h4>
+                    <div class="space-y-2">
+                        ${analytics.common_issues?.map(issue => `
+                            <div class="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
+                                <span class="capitalize">${issue.issue.replace('_', ' ')}</span>
+                                <span class="bg-red-100 text-red-800 px-2 py-1 rounded text-sm">${issue.count} reports</span>
+                            </div>
+                        `).join('') || '<p class="text-gray-500">No issues reported</p>'}
+                    </div>
+                </div>
+                
+                <div class="mb-6">
+                    <h4 class="text-lg font-semibold mb-3">AI Improvement Suggestions</h4>
+                    <div class="space-y-2">
+                        ${analytics.improvement_suggestions?.map(suggestion => `
+                            <div class="p-3 bg-blue-50 rounded-lg border-l-4 border-blue-400">
+                                <p class="text-blue-800">${suggestion}</p>
+                            </div>
+                        `).join('') || '<p class="text-gray-500">No suggestions available</p>'}
+                    </div>
+                </div>
+            `;
+        }
+        
         // Copy message to clipboard
         function copyMessage(content) {
-            navigator.clipboard.writeText(content).then(() => {
-                showToast('Message copied to clipboard!');
-            }).catch(() => {
-                showToast('Failed to copy message', 'error');
-            });
+            try {
+                // Remove HTML tags and decode entities
+                const tempDiv = document.createElement('div');
+                tempDiv.innerHTML = content;
+                const textContent = tempDiv.textContent || tempDiv.innerText || content;
+                
+                // Try modern clipboard API first
+                if (navigator.clipboard) {
+                    navigator.clipboard.writeText(textContent).then(() => {
+                        showNotification('✓ Copied to clipboard!', 'success');
+                    }).catch(() => {
+                        fallbackCopy(textContent);
+                    });
+                } else {
+                    fallbackCopy(textContent);
+                }
+            } catch (error) {
+                console.error('Copy error:', error);
+                showNotification('✗ Failed to copy', 'error');
+            }
+        }
+        
+        // Fallback copy function
+        function fallbackCopy(text) {
+            try {
+                const textArea = document.createElement('textarea');
+                textArea.value = text;
+                textArea.style.position = 'fixed';
+                textArea.style.left = '-999999px';
+                textArea.style.top = '-999999px';
+                document.body.appendChild(textArea);
+                textArea.focus();
+                textArea.select();
+                
+                const successful = document.execCommand('copy');
+                document.body.removeChild(textArea);
+                
+                if (successful) {
+                    showNotification('✓ Copied to clipboard!', 'success');
+                } else {
+                    showNotification('✗ Copy failed', 'error');
+                }
+            } catch (err) {
+                console.error('Fallback copy error:', err);
+                showNotification('✗ Copy not supported', 'error');
+            }
         }
         
         // Regenerate last response
@@ -991,9 +2048,12 @@
             
             try {
                 const apiUrl = API_BASE ? `${API_BASE}/chat` : '/chat';
+                const contextualQuery = buildContextualQuery(lastUserMessage, messages);
                 const response = await axios.post(apiUrl, {
                     query: lastUserMessage,
-                    chat_history: messages.slice(-8)
+                    contextual_query: contextualQuery,
+                    chat_history: messages.slice(-advancedRAGSettings.contextWindow),
+                    rag_settings: advancedRAGSettings
                 });
                 
                 hideTyping();
@@ -1022,19 +2082,42 @@
             });
         }
         
-        // Show toast notification
-        function showToast(message, type = 'success') {
-            const toast = document.createElement('div');
+        // Show notification
+        function showNotification(message, type = 'success') {
+            const notification = document.createElement('div');
             const bgColor = type === 'error' ? 'bg-red-500' : type === 'info' ? 'bg-blue-500' : 'bg-green-500';
-            toast.className = `fixed top-4 right-4 z-50 px-4 py-2 rounded-lg text-white text-sm transition-all transform translate-x-full ${bgColor} max-w-md`;
-            toast.textContent = message;
-            document.body.appendChild(toast);
+            notification.className = `fixed top-4 right-4 z-[9999] px-4 py-3 rounded-lg text-white text-sm font-medium shadow-lg transition-all transform translate-x-full ${bgColor} max-w-sm`;
+            notification.innerHTML = `
+                <div class="flex items-center space-x-2">
+                    <span>${message}</span>
+                    <button onclick="this.parentElement.parentElement.remove()" class="ml-2 text-white hover:text-gray-200">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+            `;
+            document.body.appendChild(notification);
             
-            setTimeout(() => toast.classList.remove('translate-x-full'), 100);
+            // Animate in
+            setTimeout(() => notification.classList.remove('translate-x-full'), 100);
+            
+            // Auto remove
             setTimeout(() => {
-                toast.classList.add('translate-x-full');
-                setTimeout(() => document.body.removeChild(toast), 300);
-            }, type === 'info' ? 4000 : 2000);
+                if (notification.parentElement) {
+                    notification.classList.add('translate-x-full');
+                    setTimeout(() => {
+                        if (notification.parentElement) {
+                            notification.remove();
+                        }
+                    }, 300);
+                }
+            }, type === 'info' ? 4000 : 3000);
+        }
+        
+        // Legacy showToast function for compatibility
+        function showToast(message, type = 'success') {
+            showNotification(message, type);
         }
         
         // Toggle quick actions menu
@@ -1069,55 +2152,135 @@
         
         // Bookmark message
         function bookmarkMessage(content) {
-            const bookmark = {
-                id: Date.now(),
-                content: content,
-                timestamp: new Date().toISOString(),
-                session: currentSession
-            };
-            bookmarkedMessages.push(bookmark);
-            localStorage.setItem('bookmarks', JSON.stringify(bookmarkedMessages));
-            showToast('Message bookmarked!');
+            try {
+                // Remove HTML tags for clean bookmark storage
+                const tempDiv = document.createElement('div');
+                tempDiv.innerHTML = content;
+                const cleanContent = tempDiv.textContent || tempDiv.innerText || content;
+                
+                if (!cleanContent || cleanContent.trim().length === 0) {
+                    showNotification('✗ Nothing to bookmark', 'error');
+                    return;
+                }
+                
+                const bookmark = {
+                    id: Date.now() + Math.random(),
+                    content: cleanContent.trim(),
+                    timestamp: new Date().toISOString(),
+                    session: currentSession || 'session_' + Date.now(),
+                    query: lastUserMessage || 'Direct bookmark'
+                };
+                
+                // Load existing bookmarks
+                let existingBookmarks = [];
+                try {
+                    existingBookmarks = JSON.parse(localStorage.getItem('bookmarks') || '[]');
+                } catch (e) {
+                    console.error('Error loading bookmarks:', e);
+                    existingBookmarks = [];
+                }
+                
+                // Check if already bookmarked (first 100 chars)
+                const contentPreview = cleanContent.substring(0, 100);
+                const alreadyBookmarked = existingBookmarks.some(b => 
+                    b.content.substring(0, 100) === contentPreview
+                );
+                
+                if (alreadyBookmarked) {
+                    showNotification('⚠ Already bookmarked!', 'info');
+                    return;
+                }
+                
+                existingBookmarks.push(bookmark);
+                bookmarkedMessages = existingBookmarks;
+                
+                try {
+                    localStorage.setItem('bookmarks', JSON.stringify(bookmarkedMessages));
+                    showNotification('⭐ Bookmarked successfully!', 'success');
+                } catch (e) {
+                    console.error('Error saving bookmark:', e);
+                    showNotification('✗ Failed to save bookmark', 'error');
+                }
+            } catch (error) {
+                console.error('Bookmark error:', error);
+                showNotification('✗ Bookmark failed', 'error');
+            }
         }
         
         // Show bookmarks
         function showBookmarks() {
+            // Reload bookmarks from localStorage
+            bookmarkedMessages = JSON.parse(localStorage.getItem('bookmarks') || '[]');
+            
             if (bookmarkedMessages.length === 0) {
                 showToast('No bookmarks saved', 'info');
                 return;
             }
             
-            let bookmarksHtml = bookmarkedMessages.map(bookmark => 
-                `<div class="border-b pb-2 mb-2"><small>${new Date(bookmark.timestamp).toLocaleString()}</small><br>${bookmark.content.substring(0, 100)}...</div>`
+            let bookmarksHtml = bookmarkedMessages.map((bookmark, index) => 
+                `<div class="border-b pb-3 mb-3 bg-gray-50 p-3 rounded">
+                    <div class="flex justify-between items-start mb-2">
+                        <small class="text-gray-500">${new Date(bookmark.timestamp).toLocaleString()}</small>
+                        <button onclick="removeBookmark(${bookmark.id})" class="text-red-500 hover:text-red-700 text-xs">×</button>
+                    </div>
+                    <div class="text-sm font-medium text-blue-600 mb-1">Q: ${(bookmark.query || 'No query').substring(0, 50)}${bookmark.query && bookmark.query.length > 50 ? '...' : ''}</div>
+                    <div class="text-sm text-gray-700">${bookmark.content.substring(0, 150)}${bookmark.content.length > 150 ? '...' : ''}</div>
+                    <button onclick="copyBookmark('${bookmark.content.replace(/'/g, "\\'").replace(/"/g, '\\"')}')" class="mt-2 text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded hover:bg-blue-200">Copy</button>
+                </div>`
             ).join('');
             
             const modal = document.createElement('div');
             modal.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50';
             modal.innerHTML = `
-                <div class="bg-white rounded-lg p-6 max-w-md w-full mx-4 max-h-96 overflow-y-auto">
-                    <h3 class="text-lg font-semibold mb-4">Bookmarked Messages</h3>
-                    ${bookmarksHtml}
-                    <button onclick="this.closest('.fixed').remove()" class="mt-4 bg-gray-500 text-white px-4 py-2 rounded">Close</button>
+                <div class="bg-white rounded-lg p-6 max-w-2xl w-full mx-4 max-h-[80vh] overflow-y-auto">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-lg font-semibold">Bookmarked Messages (${bookmarkedMessages.length})</h3>
+                        <button onclick="this.closest('.fixed').remove()" class="text-gray-500 hover:text-gray-700">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="space-y-3">
+                        ${bookmarksHtml}
+                    </div>
+                    <div class="flex space-x-2 mt-4">
+                        <button onclick="clearAllBookmarks()" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 text-sm">Clear All</button>
+                        <button onclick="this.closest('.fixed').remove()" class="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600 text-sm">Close</button>
+                    </div>
                 </div>
             `;
             document.body.appendChild(modal);
         }
         
-        // Rate response
+        // Remove single bookmark
+        function removeBookmark(bookmarkId) {
+            bookmarkedMessages = bookmarkedMessages.filter(b => b.id !== bookmarkId);
+            localStorage.setItem('bookmarks', JSON.stringify(bookmarkedMessages));
+            showToast('Bookmark removed');
+            // Refresh the bookmarks modal
+            document.querySelector('.fixed.inset-0').remove();
+            showBookmarks();
+        }
+        
+        // Clear all bookmarks
+        function clearAllBookmarks() {
+            if (confirm('Are you sure you want to clear all bookmarks?')) {
+                bookmarkedMessages = [];
+                localStorage.setItem('bookmarks', JSON.stringify(bookmarkedMessages));
+                showToast('All bookmarks cleared');
+                document.querySelector('.fixed.inset-0').remove();
+            }
+        }
+        
+        // Copy bookmark content
+        function copyBookmark(content) {
+            copyMessage(content);
+        }
+        
+        // Rate response (legacy function)
         function rateResponse(rating) {
-            const feedback = {
-                rating: rating,
-                timestamp: new Date().toISOString(),
-                session: currentSession,
-                message: lastUserMessage
-            };
-            
-            // Store feedback locally
-            const feedbacks = JSON.parse(localStorage.getItem('feedbacks') || '[]');
-            feedbacks.push(feedback);
-            localStorage.setItem('feedbacks', JSON.stringify(feedbacks));
-            
-            showToast(rating === 'up' ? 'Thanks for the positive feedback!' : 'Thanks for the feedback, we\'ll improve!');
+            provideFeedback(rating);
         }
         
         // Toggle dark mode
@@ -1280,10 +2443,517 @@
             }
         });
         
+        // Surgical Planning Functions
+        function showSurgicalPlanning() {
+            document.getElementById('surgical-planning-modal').classList.remove('hidden');
+        }
+        
+        function closeSurgicalPlanning() {
+            document.getElementById('surgical-planning-modal').classList.add('hidden');
+            document.getElementById('surgical-plan-results').classList.add('hidden');
+        }
+        
+        async function generatePreOpPlan() {
+            const surgeryType = document.getElementById('surgery-type').value;
+            const age = document.getElementById('patient-age').value;
+            
+            if (!surgeryType || !age) {
+                showToast('Please fill in surgery type and patient age', 'error');
+                return;
+            }
+            
+            const comorbidities = [];
+            if (document.getElementById('diabetes').checked) comorbidities.push('Diabetes');
+            if (document.getElementById('hypertension').checked) comorbidities.push('Hypertension');
+            if (document.getElementById('cardiac').checked) comorbidities.push('Cardiac Disease');
+            if (document.getElementById('obesity').checked) comorbidities.push('Obesity');
+            
+            // Show loading
+            document.getElementById('plan-content').innerHTML = '<div class="text-center py-4"><div class="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto"></div><p class="mt-2 text-gray-500">Generating AI-powered surgical plan...</p></div>';
+            document.getElementById('surgical-plan-results').classList.remove('hidden');
+            
+            try {
+                const plan = await generateAISurgicalPlan('preop', surgeryType, age, comorbidities);
+                displaySurgicalPlan(plan);
+            } catch (error) {
+                console.error('AI plan generation error:', error);
+                // Fallback to static plan
+                const plan = generateSurgicalPlan('preop', surgeryType, age, comorbidities);
+                displaySurgicalPlan(plan + '<div class="mt-4 p-2 bg-yellow-100 rounded text-sm">⚠️ Using offline template (AI unavailable)</div>');
+            }
+        }
+        
+        async function generatePostOpPlan() {
+            const surgeryType = document.getElementById('completed-surgery').value;
+            const daysPostOp = document.getElementById('days-postop').value;
+            
+            if (!surgeryType || !daysPostOp) {
+                showToast('Please fill in surgery type and days post-op', 'error');
+                return;
+            }
+            
+            const complications = [];
+            if (document.getElementById('infection').checked) complications.push('Infection');
+            if (document.getElementById('bleeding').checked) complications.push('Bleeding');
+            if (document.getElementById('dvt').checked) complications.push('DVT/PE Risk');
+            if (document.getElementById('pain').checked) complications.push('Severe Pain');
+            
+            // Show loading
+            document.getElementById('plan-content').innerHTML = '<div class="text-center py-4"><div class="animate-spin rounded-full h-8 w-8 border-b-2 border-green-600 mx-auto"></div><p class="mt-2 text-gray-500">Generating AI-powered post-op plan...</p></div>';
+            document.getElementById('surgical-plan-results').classList.remove('hidden');
+            
+            try {
+                const plan = await generateAISurgicalPlan('postop', surgeryType, daysPostOp, complications);
+                displaySurgicalPlan(plan);
+            } catch (error) {
+                console.error('AI plan generation error:', error);
+                // Fallback to static plan
+                const plan = generateSurgicalPlan('postop', surgeryType, daysPostOp, complications);
+                displaySurgicalPlan(plan + '<div class="mt-4 p-2 bg-yellow-100 rounded text-sm">⚠️ Using offline template (AI unavailable)</div>');
+            }
+        }
+        
+        function generateSurgicalPlan(type, surgeryType, timeParam, conditions) {
+            const surgeryNames = {
+                'hip-replacement': 'Hip Replacement',
+                'knee-replacement': 'Knee Replacement',
+                'spine-fusion': 'Spine Fusion',
+                'shoulder-arthroscopy': 'Shoulder Arthroscopy',
+                'fracture-fixation': 'Fracture Fixation',
+                'ankle-fusion': 'Ankle Fusion'
+            };
+            
+            if (type === 'preop') {
+                return `
+                    <h5 class="font-semibold text-blue-800 mb-3">Pre-Operative Plan: ${surgeryNames[surgeryType]}</h5>
+                    <div class="space-y-3">
+                        <div><strong>Patient:</strong> ${timeParam} years old</div>
+                        <div><strong>Comorbidities:</strong> ${conditions.length ? conditions.join(', ') : 'None reported'}</div>
+                        
+                        <div class="mt-4">
+                            <strong>Pre-operative Checklist:</strong>
+                            <ul class="list-disc list-inside mt-2 space-y-1">
+                                <li>Complete medical history and physical examination</li>
+                                <li>Laboratory tests: CBC, BMP, PT/PTT, Type & Screen</li>
+                                <li>ECG and chest X-ray (if indicated by age/comorbidities)</li>
+                                <li>Anesthesia consultation</li>
+                                <li>Informed consent discussion</li>
+                                <li>NPO status: 8 hours for solids, 2 hours for clear liquids</li>
+                                <li>Antibiotic prophylaxis: Cefazolin 2g IV 30-60 min before incision</li>
+                                <li>VTE prophylaxis: Sequential compression devices</li>
+                                ${conditions.includes('Diabetes') ? '<li>⚠️ Diabetes: Monitor glucose, adjust insulin regimen</li>' : ''}
+                                ${conditions.includes('Cardiac Disease') ? '<li>⚠️ Cardiac: Cardiology clearance, optimize medications</li>' : ''}
+                            </ul>
+                        </div>
+                        
+                        <div class="mt-4 p-3 bg-yellow-100 rounded">
+                            <strong>⚠️ Risk Factors:</strong>
+                            ${conditions.length ? conditions.map(c => `<div>• ${c}: Requires special monitoring</div>`).join('') : '<div>• Standard risk profile</div>'}
+                        </div>
+                    </div>
+                `;
+            } else {
+                return `
+                    <h5 class="font-semibold text-green-800 mb-3">Post-Operative Plan: ${surgeryNames[surgeryType]} (Day ${timeParam})</h5>
+                    <div class="space-y-3">
+                        <div><strong>Post-Op Day:</strong> ${timeParam}</div>
+                        <div><strong>Complications:</strong> ${conditions.length ? conditions.join(', ') : 'None reported'}</div>
+                        
+                        <div class="mt-4">
+                            <strong>Post-operative Management:</strong>
+                            <ul class="list-disc list-inside mt-2 space-y-1">
+                                <li>Vital signs monitoring q4h x 24h, then q8h</li>
+                                <li>Pain management: Multimodal approach</li>
+                                <li>DVT prophylaxis: Continue until ambulatory</li>
+                                <li>Wound care: Daily inspection, dressing changes PRN</li>
+                                <li>Physical therapy: Begin day 1 post-op</li>
+                                <li>Diet: Clear liquids → regular as tolerated</li>
+                                <li>Foley catheter: Remove when ambulatory</li>
+                                ${conditions.includes('Infection') ? '<li>🔴 Infection: Blood cultures, antibiotics, surgical consultation</li>' : ''}
+                                ${conditions.includes('DVT') ? '<li>🔴 DVT Risk: Duplex ultrasound, anticoagulation</li>' : ''}
+                            </ul>
+                        </div>
+                        
+                        <div class="mt-4">
+                            <strong>Discharge Planning (Day ${Math.max(1, timeParam - 1)}-${parseInt(timeParam) + 2}):</strong>
+                            <ul class="list-disc list-inside mt-2 space-y-1">
+                                <li>Pain controlled with oral medications</li>
+                                <li>Ambulating independently or with assistive device</li>
+                                <li>Wound healing appropriately</li>
+                                <li>Follow-up appointment in 2 weeks</li>
+                                <li>Home health or outpatient PT arranged</li>
+                            </ul>
+                        </div>
+                        
+                        ${conditions.length ? `
+                        <div class="mt-4 p-3 bg-red-100 rounded">
+                            <strong>🚨 Active Issues:</strong>
+                            ${conditions.map(c => `<div>• ${c}: Requires immediate attention</div>`).join('')}
+                        </div>
+                        ` : ''}
+                    </div>
+                `;
+            }
+        }
+        
+        function displaySurgicalPlan(plan) {
+            document.getElementById('plan-content').innerHTML = plan;
+            document.getElementById('surgical-plan-results').classList.remove('hidden');
+        }
+        
+        function showGuideline(type) {
+            const guidelines = {
+                'preop-checklist': `
+                    <h5 class="font-semibold mb-3">WHO Surgical Safety Checklist</h5>
+                    <div class="space-y-4">
+                        <div><strong>Sign In (Before Anesthesia):</strong>
+                            <ul class="list-disc list-inside mt-1">
+                                <li>Patient identity confirmed</li>
+                                <li>Site and procedure confirmed</li>
+                                <li>Consent obtained</li>
+                                <li>Anesthesia safety check completed</li>
+                            </ul>
+                        </div>
+                        <div><strong>Time Out (Before Incision):</strong>
+                            <ul class="list-disc list-inside mt-1">
+                                <li>Team introductions</li>
+                                <li>Patient, site, procedure confirmed</li>
+                                <li>Antibiotic prophylaxis given</li>
+                                <li>Critical steps reviewed</li>
+                            </ul>
+                        </div>
+                        <div><strong>Sign Out (Before Leaving OR):</strong>
+                            <ul class="list-disc list-inside mt-1">
+                                <li>Procedure completed as planned</li>
+                                <li>Counts correct</li>
+                                <li>Specimens labeled</li>
+                                <li>Post-op plan discussed</li>
+                            </ul>
+                        </div>
+                    </div>
+                `,
+                'antibiotic-prophylaxis': `
+                    <h5 class="font-semibold mb-3">Antibiotic Prophylaxis Guidelines</h5>
+                    <div class="space-y-3">
+                        <div><strong>Standard Prophylaxis:</strong>
+                            <ul class="list-disc list-inside mt-1">
+                                <li>Cefazolin 2g IV (3g if >120kg)</li>
+                                <li>Give 30-60 minutes before incision</li>
+                                <li>Redose q4h if surgery >4 hours</li>
+                            </ul>
+                        </div>
+                        <div><strong>β-lactam Allergy:</strong>
+                            <ul class="list-disc list-inside mt-1">
+                                <li>Vancomycin 15mg/kg IV</li>
+                                <li>Give 60-120 minutes before incision</li>
+                                <li>Consider clindamycin 600mg IV</li>
+                            </ul>
+                        </div>
+                        <div><strong>Duration:</strong> Single dose (discontinue within 24h)</div>
+                    </div>
+                `,
+                'thromboprophylaxis': `
+                    <h5 class="font-semibold mb-3">VTE Prophylaxis Guidelines</h5>
+                    <div class="space-y-3">
+                        <div><strong>Mechanical Prophylaxis:</strong>
+                            <ul class="list-disc list-inside mt-1">
+                                <li>Sequential compression devices</li>
+                                <li>Early mobilization</li>
+                                <li>Graduated compression stockings</li>
+                            </ul>
+                        </div>
+                        <div><strong>Pharmacological (High Risk):</strong>
+                            <ul class="list-disc list-inside mt-1">
+                                <li>Enoxaparin 40mg SC daily</li>
+                                <li>Heparin 5000 units SC q8-12h</li>
+                                <li>Start 12-24h post-op</li>
+                            </ul>
+                        </div>
+                        <div><strong>Duration:</strong> Until ambulatory or 10-14 days</div>
+                    </div>
+                `
+            };
+            
+            displaySurgicalPlan(guidelines[type]);
+        }
+        
+        // RAG-Based Surgical Planning Functions
+        async function generateAISurgicalPlan(type, surgeryType, timeParam, conditions) {
+            const mode = document.getElementById('mode-selector')?.value || 'consultant';
+            const model = document.getElementById('model-selector')?.value || 'meta-llama/llama-4-scout-17b-16e-instruct';
+            
+            const prompt = type === 'preop' 
+                ? `Based on uploaded pre-operative protocols and guidelines, generate a comprehensive pre-operative surgical plan for ${surgeryType.replace('-', ' ')} surgery. Patient is ${timeParam} years old with comorbidities: ${conditions.join(', ') || 'none'}. Use RAG to retrieve relevant pre-op documents and provide evidence-based recommendations with citations.`
+                : `Based on uploaded post-operative protocols and guidelines, generate a comprehensive post-operative management plan for ${surgeryType.replace('-', ' ')} surgery on post-op day ${timeParam}. Current complications: ${conditions.join(', ') || 'none'}. Use RAG to retrieve relevant post-op documents and provide evidence-based recommendations with citations.`;
+            
+            const apiUrl = API_BASE ? `${API_BASE}/chat` : '/chat';
+            const response = await axios.post(apiUrl, {
+                query: prompt,
+                chat_history: [],
+                mode: mode,
+                model: model
+            });
+            
+            // Display references if available
+            if (response.data.context && response.data.context.length > 0) {
+                updateReferences(response.data.context, prompt);
+            }
+            
+            return `
+                <div class="bg-gradient-to-r from-blue-50 to-green-50 p-4 rounded-lg mb-4">
+                    <div class="flex items-center space-x-2 mb-2">
+                        <span class="text-lg">📚</span>
+                        <span class="font-semibold text-gray-800">RAG-Based ${type === 'preop' ? 'Pre-Operative' : 'Post-Operative'} Plan</span>
+                        <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded">Evidence-Based</span>
+                        <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">${model.split('/').pop()}</span>
+                    </div>
+                    <div class="prose prose-sm max-w-none">${marked.parse(response.data.response)}</div>
+                    ${response.data.context && response.data.context.length > 0 ? 
+                        `<div class="mt-3 p-2 bg-yellow-50 rounded text-xs text-yellow-800">
+                            📎 Retrieved from ${response.data.context.length} uploaded document(s)
+                        </div>` : ''}
+                </div>
+            `;
+        }
+        
+        // Medical Calculator Functions
+        function showMedicalCalculators() {
+            document.getElementById('medical-calculators-modal').classList.remove('hidden');
+        }
+        
+        function closeMedicalCalculators() {
+            document.getElementById('medical-calculators-modal').classList.add('hidden');
+        }
+        
+        function calculateBMI() {
+            const weight = parseFloat(document.getElementById('bmi-weight').value);
+            const height = parseFloat(document.getElementById('bmi-height').value) / 100; // Convert cm to m
+            
+            if (!weight || !height) {
+                showToast('Please enter valid weight and height', 'error');
+                return;
+            }
+            
+            const bmi = weight / (height * height);
+            let category, color;
+            
+            if (bmi < 18.5) {
+                category = 'Underweight';
+                color = 'text-blue-600';
+            } else if (bmi < 25) {
+                category = 'Normal';
+                color = 'text-green-600';
+            } else if (bmi < 30) {
+                category = 'Overweight';
+                color = 'text-yellow-600';
+            } else {
+                category = 'Obese';
+                color = 'text-red-600';
+            }
+            
+            document.getElementById('bmi-result').innerHTML = `
+                <div class="${color}">
+                    BMI: ${bmi.toFixed(1)} kg/m²<br>
+                    Category: ${category}
+                </div>
+            `;
+            document.getElementById('bmi-result').classList.remove('hidden');
+        }
+        
+        function calculateDosage() {
+            const medication = document.getElementById('medication').value;
+            const weight = parseFloat(document.getElementById('dosage-weight').value);
+            
+            if (!medication || !weight) {
+                showToast('Please select medication and enter weight', 'error');
+                return;
+            }
+            
+            const dosages = {
+                'morphine': { min: 0.1, max: 0.2, unit: 'mg', name: 'Morphine' },
+                'paracetamol': { min: 10, max: 15, unit: 'mg', name: 'Paracetamol' },
+                'ibuprofen': { min: 5, max: 10, unit: 'mg', name: 'Ibuprofen' },
+                'tramadol': { min: 1, max: 2, unit: 'mg', name: 'Tramadol' }
+            };
+            
+            const drug = dosages[medication];
+            const minDose = (drug.min * weight).toFixed(1);
+            const maxDose = (drug.max * weight).toFixed(1);
+            
+            document.getElementById('dosage-result').innerHTML = `
+                <div class="text-green-600">
+                    ${drug.name}<br>
+                    ${minDose} - ${maxDose} ${drug.unit}<br>
+                    (${drug.min}-${drug.max} ${drug.unit}/kg)
+                </div>
+            `;
+            document.getElementById('dosage-result').classList.remove('hidden');
+        }
+        
+        function calculateCreatinine() {
+            const age = parseFloat(document.getElementById('creat-age').value);
+            const weight = parseFloat(document.getElementById('creat-weight').value);
+            const creatinine = parseFloat(document.getElementById('creat-level').value);
+            const gender = document.getElementById('creat-gender').value;
+            
+            if (!age || !weight || !creatinine) {
+                showToast('Please fill in all fields', 'error');
+                return;
+            }
+            
+            // Cockcroft-Gault formula
+            const genderFactor = gender === 'female' ? 0.85 : 1;
+            const crCl = ((140 - age) * weight * genderFactor) / (72 * creatinine);
+            
+            let status, color;
+            if (crCl >= 90) {
+                status = 'Normal';
+                color = 'text-green-600';
+            } else if (crCl >= 60) {
+                status = 'Mild decrease';
+                color = 'text-yellow-600';
+            } else if (crCl >= 30) {
+                status = 'Moderate decrease';
+                color = 'text-orange-600';
+            } else {
+                status = 'Severe decrease';
+                color = 'text-red-600';
+            }
+            
+            document.getElementById('creatinine-result').innerHTML = `
+                <div class="${color}">
+                    CrCl: ${crCl.toFixed(1)} mL/min<br>
+                    Status: ${status}
+                </div>
+            `;
+            document.getElementById('creatinine-result').classList.remove('hidden');
+        }
+        
+        function updatePainLevel() {
+            const level = document.getElementById('pain-scale').value;
+            document.getElementById('pain-value').textContent = level;
+            
+            const assessments = {
+                0: { text: 'No Pain', color: 'text-green-600' },
+                1: { text: 'Minimal Pain', color: 'text-green-500' },
+                2: { text: 'Mild Pain', color: 'text-yellow-500' },
+                3: { text: 'Mild Pain', color: 'text-yellow-500' },
+                4: { text: 'Moderate Pain', color: 'text-orange-500' },
+                5: { text: 'Moderate Pain', color: 'text-orange-500' },
+                6: { text: 'Severe Pain', color: 'text-red-500' },
+                7: { text: 'Severe Pain', color: 'text-red-500' },
+                8: { text: 'Very Severe Pain', color: 'text-red-600' },
+                9: { text: 'Very Severe Pain', color: 'text-red-600' },
+                10: { text: 'Worst Possible Pain', color: 'text-red-700' }
+            };
+            
+            const assessment = assessments[level];
+            const assessmentDiv = document.getElementById('pain-assessment');
+            assessmentDiv.textContent = assessment.text;
+            assessmentDiv.className = `text-sm font-medium text-center p-2 rounded bg-white ${assessment.color}`;
+        }
+        
+        function generatePainPlan() {
+            const level = parseInt(document.getElementById('pain-scale').value);
+            const type = document.getElementById('pain-type').value;
+            
+            let plan = '';
+            if (level <= 3) {
+                plan = 'Mild pain: Paracetamol 1g q6h, ice/heat therapy';
+            } else if (level <= 6) {
+                plan = 'Moderate pain: Paracetamol + Ibuprofen, consider tramadol';
+            } else {
+                plan = 'Severe pain: Multimodal approach, consider opioids, anesthesia consult';
+            }
+            
+            if (type === 'neuropathic') {
+                plan += '. Consider gabapentin or pregabalin for neuropathic component.';
+            }
+            
+            document.getElementById('pain-plan').innerHTML = `<div class="p-2 bg-white rounded">${plan}</div>`;
+            document.getElementById('pain-plan').classList.remove('hidden');
+        }
+        
+        function calculateBloodLoss() {
+            const preHgb = parseFloat(document.getElementById('preop-hgb').value);
+            const postHgb = parseFloat(document.getElementById('postop-hgb').value);
+            const weight = parseFloat(document.getElementById('blood-weight').value);
+            
+            if (!preHgb || !postHgb || !weight) {
+                showToast('Please fill in all fields', 'error');
+                return;
+            }
+            
+            // Estimated blood volume = 70 mL/kg
+            const ebv = weight * 70;
+            const hgbDrop = preHgb - postHgb;
+            const bloodLoss = (hgbDrop / preHgb) * ebv;
+            
+            let severity, color;
+            if (bloodLoss < 500) {
+                severity = 'Minimal';
+                color = 'text-green-600';
+            } else if (bloodLoss < 1000) {
+                severity = 'Moderate';
+                color = 'text-yellow-600';
+            } else {
+                severity = 'Significant';
+                color = 'text-red-600';
+            }
+            
+            document.getElementById('blood-loss-result').innerHTML = `
+                <div class="${color}">
+                    Estimated Blood Loss:<br>
+                    ${bloodLoss.toFixed(0)} mL<br>
+                    Severity: ${severity}
+                </div>
+            `;
+            document.getElementById('blood-loss-result').classList.remove('hidden');
+        }
+        
+        function assessASA() {
+            const asaScore = document.querySelector('input[name="asa"]:checked')?.value;
+            const emergency = document.getElementById('emergency').checked;
+            
+            if (!asaScore) {
+                showToast('Please select ASA classification', 'error');
+                return;
+            }
+            
+            const classifications = {
+                1: { text: 'ASA I - Normal healthy patient', risk: 'Very Low', color: 'text-green-600' },
+                2: { text: 'ASA II - Mild systemic disease', risk: 'Low', color: 'text-yellow-600' },
+                3: { text: 'ASA III - Severe systemic disease', risk: 'Moderate', color: 'text-orange-600' },
+                4: { text: 'ASA IV - Life-threatening disease', risk: 'High', color: 'text-red-600' },
+                5: { text: 'ASA V - Moribund patient', risk: 'Very High', color: 'text-red-700' }
+            };
+            
+            const classification = classifications[asaScore];
+            const emergencyText = emergency ? ' (Emergency)' : '';
+            
+            document.getElementById('asa-result').innerHTML = `
+                <div class="${classification.color}">
+                    ${classification.text}${emergencyText}<br>
+                    Perioperative Risk: ${classification.risk}
+                </div>
+            `;
+            document.getElementById('asa-result').classList.remove('hidden');
+        }
+        
         // Initialize
         document.addEventListener('DOMContentLoaded', function() {
             // Initialize dark mode
             initDarkMode();
+            
+            // Load saved RAG settings
+            const savedRAGSettings = localStorage.getItem('advancedRAGSettings');
+            if (savedRAGSettings) {
+                try {
+                    advancedRAGSettings = JSON.parse(savedRAGSettings);
+                } catch (e) {
+                    console.warn('Failed to load saved RAG settings');
+                }
+            }
             
             // Show landing page by default
             showLanding();
@@ -1291,9 +2961,324 @@
             // Mobile menu button
             document.getElementById('mobile-menu-btn').addEventListener('click', toggleMobileMenu);
             
+            // Initialize pain scale
+            updatePainLevel();
+            
             // Debug API base
             console.log('API_BASE:', API_BASE);
             console.log('Current hostname:', window.location.hostname);
+        });
+        
+        // Image Analysis Functions
+        function toggleImageUpload() {
+            document.getElementById('image-modal').classList.remove('hidden');
+            filterModelsForVision();
+        }
+        
+        function filterModelsForVision() {
+            const modelSelector = document.getElementById('model-selector');
+            const visionModels = ['meta-llama/llama-4-scout-17b-16e-instruct', 'meta-llama/llama-4-maverick-17b-128e-instruct'];
+            
+            // Store original options
+            if (!modelSelector.dataset.originalOptions) {
+                modelSelector.dataset.originalOptions = modelSelector.innerHTML;
+            }
+            
+            // Filter to vision models only
+            const options = Array.from(modelSelector.options);
+            options.forEach(option => {
+                option.style.display = visionModels.includes(option.value) ? 'block' : 'none';
+            });
+            
+            // Set to first vision model if current selection is not vision-capable
+            if (!visionModels.includes(modelSelector.value)) {
+                modelSelector.value = visionModels[0];
+            }
+        }
+        
+        function restoreAllModels() {
+            const modelSelector = document.getElementById('model-selector');
+            if (modelSelector.dataset.originalOptions) {
+                const options = Array.from(modelSelector.options);
+                options.forEach(option => {
+                    option.style.display = 'block';
+                });
+            }
+        }
+        
+        function closeImageModal() {
+            document.getElementById('image-modal').classList.add('hidden');
+            resetImageModal();
+            restoreAllModels();
+        }
+        
+        function resetImageModal() {
+            selectedImageFile = null;
+            const imageInput = document.getElementById('image-input');
+            if (imageInput) imageInput.value = '';
+            
+            const imagePreview = document.getElementById('image-preview');
+            if (imagePreview) imagePreview.classList.add('hidden');
+            
+            const imageQuery = document.getElementById('image-query');
+            if (imageQuery) imageQuery.value = '';
+            
+            const analyzeBtn = document.getElementById('analyze-btn');
+            if (analyzeBtn) analyzeBtn.disabled = true;
+            
+            const analysisStatus = document.getElementById('analysis-status');
+            if (analysisStatus) analysisStatus.classList.add('hidden');
+            
+            const previewImg = document.getElementById('preview-img');
+            if (previewImg) previewImg.src = '';
+            
+            const imageInfo = document.getElementById('image-info');
+            if (imageInfo) imageInfo.textContent = '';
+        }
+        
+        function handleImageSelect() {
+            const input = document.getElementById('image-input');
+            const file = input.files[0];
+            
+            if (!file) {
+                resetImageModal();
+                return;
+            }
+            
+            // Validate file type
+            const validTypes = ['image/jpeg', 'image/png', 'image/tiff', 'application/dicom'];
+            const fileName = file.name.toLowerCase();
+            const isValidType = validTypes.includes(file.type) || 
+                               fileName.endsWith('.dcm') || 
+                               fileName.endsWith('.jpg') || 
+                               fileName.endsWith('.jpeg') || 
+                               fileName.endsWith('.png') || 
+                               fileName.endsWith('.tiff') || 
+                               fileName.endsWith('.tif');
+            
+            if (!isValidType) {
+                showToast('Please select a valid medical image file (JPG, PNG, TIFF, DICOM)', 'error');
+                resetImageModal();
+                return;
+            }
+            
+            selectedImageFile = file;
+            
+            // Show preview for regular images
+            if (file.type.startsWith('image/') && !fileName.endsWith('.dcm')) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    if (e.target && e.target.result) {
+                        document.getElementById('preview-img').src = e.target.result;
+                        document.getElementById('image-preview').classList.remove('hidden');
+                    }
+                };
+                reader.onerror = function() {
+                    console.warn('Could not read image file for preview');
+                    document.getElementById('image-preview').classList.add('hidden');
+                };
+                reader.readAsDataURL(file);
+            } else {
+                // For DICOM files or unsupported preview types
+                document.getElementById('preview-img').src = '';
+                document.getElementById('image-preview').classList.remove('hidden');
+            }
+            
+            // Update file info
+            const sizeKB = (file.size / 1024).toFixed(1);
+            document.getElementById('image-info').textContent = `${file.name} (${sizeKB} KB)`;
+            
+            // Enable analyze button
+            document.getElementById('analyze-btn').disabled = false;
+        }
+        
+        async function analyzeImage() {
+            if (!selectedImageFile || !selectedImageFile.name) {
+                showToast('Please select a valid image file first', 'error');
+                return;
+            }
+            
+            const imageType = document.getElementById('image-type').value;
+            const query = document.getElementById('image-query').value || 'Analyze this medical image';
+            const statusDiv = document.getElementById('analysis-status');
+            
+            statusDiv.innerHTML = '<span class="text-blue-600">🔍 Analyzing image...</span>';
+            statusDiv.classList.remove('hidden');
+            
+            try {
+                const base64Data = await fileToBase64(selectedImageFile);
+                
+                const model = document.getElementById('model-selector')?.value || 'meta-llama/llama-4-scout-17b-16e-instruct';
+                const apiUrl = API_BASE ? `${API_BASE}/analyze-image` : '/analyze-image';
+                const response = await axios.post(apiUrl, {
+                    image_data: base64Data,
+                    image_type: imageType,
+                    query: query,
+                    mode: document.getElementById('mode-selector').value,
+                    model: model
+                });
+                
+                closeImageModal();
+                
+                if (!currentSession) {
+                    newChat();
+                }
+                
+                const fileName = selectedImageFile ? selectedImageFile.name : 'Unknown file';
+                let imagePreview = '';
+                try {
+                    imagePreview = await fileToBase64(selectedImageFile);
+                } catch (previewError) {
+                    console.warn('Could not generate image preview:', previewError);
+                }
+                
+                const userMessage = `
+                    <div class="bg-gray-50 rounded-lg p-3 mb-2">
+                        ${imagePreview ? `<img src="data:image/jpeg;base64,${imagePreview}" class="w-32 h-32 object-cover rounded-lg mb-2">` : ''}
+                        <div class="text-sm">
+                            <div class="font-medium">📸 Image Analysis Request</div>
+                            <div class="text-gray-600 mt-1">
+                                <div><strong>Type:</strong> ${imageType.toUpperCase()}</div>
+                                <div><strong>File:</strong> ${fileName}</div>
+                                <div><strong>Query:</strong> ${query}</div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                addMessage(userMessage, 'user');
+                
+                const analysisResult = formatImageAnalysis(response.data);
+                streamMessage(analysisResult, 'assistant');
+                
+                await saveSession();
+                
+            } catch (error) {
+                console.error('Image analysis error:', error);
+                statusDiv.innerHTML = `<span class="text-red-600">❌ Analysis failed: ${error.message}</span>`;
+                
+                setTimeout(() => {
+                    statusDiv.classList.add('hidden');
+                }, 3000);
+            }
+        }
+        
+        function fileToBase64(file) {
+            return new Promise((resolve, reject) => {
+                if (!file) {
+                    reject(new Error('No file provided'));
+                    return;
+                }
+                
+                if (!(file instanceof File) && !(file instanceof Blob)) {
+                    reject(new Error('Invalid file object'));
+                    return;
+                }
+                
+                const reader = new FileReader();
+                reader.onload = () => {
+                    try {
+                        const result = reader.result;
+                        if (!result || typeof result !== 'string') {
+                            reject(new Error('Failed to read file'));
+                            return;
+                        }
+                        
+                        // Remove data URL prefix (e.g., "data:image/jpeg;base64,")
+                        const base64 = result.includes(',') ? result.split(',')[1] : result;
+                        resolve(base64);
+                    } catch (error) {
+                        reject(error);
+                    }
+                };
+                reader.onerror = () => reject(new Error('File reading failed'));
+                reader.readAsDataURL(file);
+            });
+        }
+        
+        function formatImageAnalysis(data) {
+            let result = `# 🏥 Medical Image Analysis\n\n`;
+            
+            // Add confidence indicator
+            const confidenceLevel = data.confidence >= 0.8 ? 'High' : data.confidence >= 0.6 ? 'Medium' : 'Low';
+            const confidenceColor = data.confidence >= 0.8 ? '🟢' : data.confidence >= 0.6 ? '🟡' : '🔴';
+            
+            result += `**Confidence Level:** ${confidenceColor} ${confidenceLevel} (${(data.confidence * 100).toFixed(1)}%)\n\n`;
+            
+            // Add image metadata
+            if (data.image_metadata && Object.keys(data.image_metadata).length > 0) {
+                result += `## 📊 Image Information\n\n`;
+                Object.entries(data.image_metadata).forEach(([key, value]) => {
+                    const formattedKey = key.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+                    result += `- **${formattedKey}:** ${value}\n`;
+                });
+                result += `\n`;
+            }
+            
+            // Add main analysis
+            result += `## 🔍 Analysis\n\n${data.analysis}\n\n`;
+            
+            // Add key findings
+            if (data.findings && data.findings.length > 0) {
+                result += `## 🎯 Key Findings\n\n`;
+                data.findings.forEach((finding, index) => {
+                    result += `${index + 1}. ${finding}\n`;
+                });
+                result += `\n`;
+            }
+            
+            // Add recommendations
+            if (data.recommendations) {
+                result += `## 💡 Recommendations\n\n${data.recommendations}\n\n`;
+            }
+            
+            // Add disclaimer
+            result += `---\n\n⚠️ **Important:** This AI analysis is for educational purposes only. All medical images require professional radiologist interpretation and clinical correlation.`;
+            
+            return result;
+        }
+        
+        // Drag and drop functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const dropZone = document.getElementById('drop-zone');
+            
+            if (dropZone) {
+                ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+                    dropZone.addEventListener(eventName, preventDefaults, false);
+                });
+                
+                function preventDefaults(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                }
+                
+                ['dragenter', 'dragover'].forEach(eventName => {
+                    dropZone.addEventListener(eventName, highlight, false);
+                });
+                
+                ['dragleave', 'drop'].forEach(eventName => {
+                    dropZone.addEventListener(eventName, unhighlight, false);
+                });
+                
+                function highlight(e) {
+                    dropZone.classList.add('border-blue-400', 'bg-blue-50');
+                }
+                
+                function unhighlight(e) {
+                    dropZone.classList.remove('border-blue-400', 'bg-blue-50');
+                }
+                
+                dropZone.addEventListener('drop', handleDrop, false);
+                
+                function handleDrop(e) {
+                    const dt = e.dataTransfer;
+                    const files = dt.files;
+                    
+                    if (files.length > 0) {
+                        document.getElementById('image-input').files = files;
+                        handleImageSelect();
+                    }
+                }
+            }
         });
     </script>
 </body>

@@ -1,0 +1,1031 @@
+{
+  "total_questions": 20,
+  "successful_queries": 20,
+  "failed_queries": 0,
+  "average_accuracy": 0.4320877780269883,
+  "average_similarity": 0.013175556053976597,
+  "average_term_coverage": 0.7516666666666667,
+  "average_response_time": 18.498229205608368,
+  "detailed_results": [
+    {
+      "question_id": 1,
+      "question": "Responding on a PI, you find an unrestrained driver awake, complaining of severe pelvic and abdominal pain, with a BP of 80/P. Is this patient a rapid extrication? Should you compress or 'rock' the patient's pelvis to assess stability?",
+      "expected_answer": "Yes, the patient is a rapid extrication due to his shock from pelvic and possible abdominal injury. Because the patient already complains of pelvic pain, compression of the pelvis as part of the assessment is not helpful, and aggressive compression may increase bleeding from an unstable pelvis.",
+      "rag_response": "**Clinical Assessment:**\n\nUpon encountering an unrestrained driver with severe pelvic and abdominal pain, a BP of 80/40 mmHg, and a Glasgow Coma Scale (GCS) of 15, it is essential to conduct a thorough assessment to determine the extent of the injury. The patient's vital signs and clinical presentation suggest a high-energy trauma, likely resulting in significant pelvic and abdominal injuries.\n\n**Management Options:**\n\n1. **Rapid Extrication:** Given the patient's unstable vital signs and potential for further injury, rapid extrication is not recommended. Instead, prioritize stabilization of the patient's airway, breathing, and circulation (ABCs) using the Advanced Trauma Life Support (ATLS) protocol.\n2. **Pelvic Stability Assessment:** To assess pelvic stability, perform a gentle, controlled \"rocking\" maneuver of the pelvis, rather than applying direct pressure or compressing the pelvis. This will help determine if the pelvic ring is unstable, which may require surgical intervention.\n3. **C-spine Immobilization:** Given the high-energy nature of the trauma, assume a cervical spine injury until proven otherwise. Immobilize the C-spine using a cervical collar and maintain it until further evaluation and imaging are completed.\n\n**Surgical Considerations:**\n\n1. **Pelvic Ring Instability:** If the pelvic ring is unstable, surgical intervention may be necessary to stabilize the pelvis and prevent further injury. This may involve internal fixation using plates, screws, or other devices.\n2. **Abdominal Injury:** Given the patient's abdominal pain and potential for hollow viscus injury, consider surgical exploration and repair of any intra-abdominal injuries.\n\n**Complications:**\n\n1. **Hemorrhagic Shock:** The patient's low BP and tachycardia suggest potential hemorrhagic shock. Monitor for signs of shock, including decreased urine output, altered mental status, and decreased capillary refill.\n2. **Intra-abdominal Hypertension (IAH):** The patient's abdominal pain and potential for intra-abdominal injury increase the risk of IAH. Monitor for signs of IAH, including increased abdominal pressure, decreased urine output, and decreased cardiac output.\n3. **Pelvic Fracture Complications:** Pelvic fractures can lead to complications such as urethral injury, bladder injury, and vascular injury.\n\n**Evidence Level:**\n\n* The use of ATLS protocol for trauma management is supported by Level I evidence (1).\n* The \"rocking\" maneuver for pelvic stability assessment is supported by Level II evidence (2).\n* The importance of C-spine immobilization in trauma patients is supported by Level I evidence (3).\n\n**Guidelines:**\n\n* Advanced Trauma Life Support (ATLS) protocol (4)\n* Eastern Association for the Surgery of Trauma (EAST) guidelines for pelvic fracture management (5)\n* American College of Surgeons (ACS) guidelines for trauma care",
+      "context_sources": 5,
+      "response_time": 24.206964015960693,
+      "similarity": 0.006977481763399937,
+      "term_coverage": 1.0,
+      "length_ratio": 1.0,
+      "accuracy_score": 0.5034887408816999,
+      "expected_terms": [
+        "extrication",
+        "pain",
+        "injury"
+      ],
+      "rag_terms": [
+        "immobilization",
+        "injury",
+        "trauma",
+        "fracture",
+        "extrication",
+        "pain",
+        "circulation"
+      ],
+      "missing_terms": [],
+      "extra_terms": [
+        "fracture",
+        "trauma",
+        "immobilization",
+        "circulation"
+      ]
+    },
+    {
+      "question_id": 2,
+      "question": "What are appropriate therapies for this patient?",
+      "expected_answer": "Rapid extrication with C-collar onto a long backboard, application of the SAM binder, rapid transport, and establishment of a large bore IV of normal saline enroute to a trauma center would be the preferred interventions for this patient, with secondary survey potentially leading to other therapies (e.g. chest decompression, etc.) \u2013 the SAM binder helps with typical 'open book' pelvic fractures to bring the 'wings' of the pelvis together and help stop bleeding \u2013 it should be applied any time you suspect a pelvic fracture (this could be an unresponsive multi-trauma patient with hypotension, for example, not just patients with pelvic pain)",
+      "rag_response": "**Clinical Assessment:**\n\nBased on the provided information, the patient presents with a lower limb deformity, likely a varus or valgus deformity, given the mention of the lateral and medial collateral ligaments. The deformity may be symptomatic, causing pain and inflammation, or asymptomatic. A thorough clinical assessment, including a detailed history, physical examination, and radiographic evaluation, is necessary to determine the extent and nature of the deformity.\n\n**Management Options:**\n\n1. **Conservative Management:**\n\t* Physical therapy to improve range of motion, strength, and proprioception.\n\t* Orthotics, such as shoe inserts or orthotics, to redistribute pressure and alleviate pain.\n\t* Pain management with medications, such as NSAIDs or acetaminophen.\n2. **Surgical Management:**\n\t* Osteotomy: a surgical procedure to correct the deformity by cutting and realigning the bone.\n\t* Ligament reconstruction: to address laxity or tightness of the collateral ligaments.\n\t* Arthroplasty: in cases of severe joint damage or deformity.\n\n**Surgical Considerations:**\n\n1. **Indications:** Surgical correction is indicated for symptomatic deformities, significant joint damage, or failure of conservative management.\n2. **Techniques:** Osteotomy, ligament reconstruction, or arthroplasty can be performed, depending on the extent and nature of the deformity.\n3. **Complications:** Surgical complications, such as infection, nerve damage, or blood clots, must be managed promptly.\n\n**Complications:**\n\n1. **Infection:** treated with antibiotics and, in severe cases, surgical debridement.\n2. **Nerve damage:** managed with pain management and, in some cases, surgical intervention.\n3. **Blood clots:** treated with anticoagulation and, in severe cases, surgical intervention.\n\n**Evidence Level:**\n\nThe evidence for surgical correction of lower limb deformities is level I and II, with numerous studies demonstrating the effectiveness of osteotomy and ligament reconstruction in improving function and reducing pain.\n\n**Guidelines:**\n\n1. **American Academy of Orthopaedic Surgeons (AAOS):** recommends surgical correction for symptomatic deformities and significant joint damage. [1]\n2. **American College of Foot and Ankle Surgeons (ACFAS):** recommends conservative management for asymptomatic deformities and surgical correction for symptomatic deformities. [2]\n3. **International Society of Orthopaedic Surgery and Traumatology (SICOT):** recommends a multidisciplinary approach to management, including conservative and surgical options. [3]\n\nReferences:\n\n[1] American Academy of Orthopaedic Surgeons. (2019). Lower Limb Deformities. Retrieved from <https://orthoinfo.org/en/staying-healthy/lower-limb-deformities/>\n\n[2] American College of Foot and Ankle Surgeons. (",
+      "context_sources": 5,
+      "response_time": 8.242526769638062,
+      "similarity": 0.013430656934306569,
+      "term_coverage": 0.5,
+      "length_ratio": 1.0,
+      "accuracy_score": 0.35671532846715326,
+      "expected_terms": [
+        "extrication",
+        "pain",
+        "trauma",
+        "fracture"
+      ],
+      "rag_terms": [
+        "trauma",
+        "bone",
+        "ligament",
+        "pain",
+        "nerve",
+        "deformity",
+        "joint",
+        "blood"
+      ],
+      "missing_terms": [
+        "extrication",
+        "fracture"
+      ],
+      "extra_terms": [
+        "bone",
+        "joint",
+        "nerve",
+        "deformity",
+        "ligament",
+        "blood"
+      ]
+    },
+    {
+      "question_id": 3,
+      "question": "The patient also has an unstable, angulated tib/fib fracture. How should you splint this fracture? Do you need to 'splint it as it lies?'.",
+      "expected_answer": "Aluminum/foam SAM splint or other basic splints can be used \u2013 don't spend much time splinting but at least stabilize the fracture. When fractures are angulated or joints held in positions that will not allow effective splinting, gentle restoration of the normal position of the limb is advisable, usually with gentle traction applied. If the patient has a significant increase in pain with the new position, or if the circulation/sensory exam worsens, you may have to reposition.",
+      "rag_response": "**Clinical Assessment:**\n\nA patient with an unstable, angulated tib/fib fracture presents a complex orthopedic emergency. The primary goal is to stabilize the fracture, alleviate pain, and prevent further complications. A thorough clinical assessment is essential to determine the severity of the fracture and the patient's overall condition.\n\n**Management Options:**\n\n1. **Initial Management:** The patient should be immobilized in a **long leg splint** or a **back slab** to maintain alignment and reduce pain. This is a temporary measure to facilitate further evaluation and treatment.\n2. **Radiographic Evaluation:** Obtain anteroposterior (AP) and lateral radiographs of the tibia and fibula to assess the fracture pattern, displacement, and angulation.\n3. **Stabilization:** Consider using a **tibial-fibular external fixator** or a **intramedullary nail** to stabilize the fracture, especially if the patient is hemodynamically unstable or has multiple injuries.\n\n**Surgical Considerations:**\n\n1. **Indications for Surgery:** Surgical intervention is indicated for unstable, angulated, or comminuted fractures, as well as those with significant soft tissue injury or open fractures.\n2. **Surgical Techniques:** The choice of surgical technique depends on the fracture pattern, patient's age, and overall condition. Options include:\n\t* **Intramedullary nailing:** A popular choice for tibial and fibular fractures, offering stability and allowing for early mobilization.\n\t* **Plating:** May be used for more complex fractures or those with significant comminution.\n\t* **External fixation:** A temporary measure to stabilize the fracture, often used in polytrauma patients or those with significant soft tissue injury.\n\n**Complications:**\n\n1. **Malunion:** A common complication of tibial and fibular fractures, leading to chronic pain, limited mobility, and potential deformity.\n2. **Nonunion:** Rare in tibial and fibular fractures, but may occur in cases of inadequate stabilization or poor circulation.\n3. **Infection:** A risk with open fractures or those with significant soft tissue injury.\n4. **Nerve or vascular injury:** Potential complications of tibial and fibular fractures, requiring prompt recognition and management.\n\n**Evidence Level:**\n\n* The use of intramedullary nailing for tibial and fibular fractures is supported by Level I evidence (1, 2).\n* External fixation is a Level II evidence-based treatment option (3).\n* Plating is a Level III evidence-based treatment option (4).\n\n**Guidelines:**\n\n* The Orthopaedic Trauma Association (OTA) guidelines recommend intramedullary nailing for tibial and fibular fractures (5).\n* The American Academy of Orthopaedic Surgeons (AAOS) guidelines suggest external fixation as a temporary measure for unstable fractures (6).\n\nReferences:\n\n1. **Koval KJ",
+      "context_sources": 5,
+      "response_time": 15.792460441589355,
+      "similarity": 0.004250151791135397,
+      "term_coverage": 0.6666666666666666,
+      "length_ratio": 1.0,
+      "accuracy_score": 0.4021250758955677,
+      "expected_terms": [
+        "splint",
+        "fracture",
+        "pain",
+        "circulation",
+        "traction",
+        "joint"
+      ],
+      "rag_terms": [
+        "splint",
+        "injury",
+        "trauma",
+        "fracture",
+        "pain",
+        "circulation",
+        "nerve",
+        "deformity"
+      ],
+      "missing_terms": [
+        "traction",
+        "joint"
+      ],
+      "extra_terms": [
+        "nerve",
+        "trauma",
+        "injury",
+        "deformity"
+      ]
+    },
+    {
+      "question_id": 4,
+      "question": "A small laceration is noted near the site of the angulation. No bone is seen. Is this an 'open' fracture?",
+      "expected_answer": "Yes, any open wound that could communicate with a fracture means the fracture is treated as open. Exposure of bone ends is rare, but would clearly confirm your suspicions. (Do NOT attempt to manipulate the extremity to see this, of course!)",
+      "rag_response": "**Clinical Assessment:**\n\nA small laceration is noted near the site of angulation, with no visible bone. This presentation raises concerns for an open fracture, specifically a type I open fracture according to the Gustilo-Anderson classification system [1]. The presence of a laceration with no visible bone suggests a possible communication between the soft tissues and the fracture site, increasing the risk of infection and other complications.\n\n**Management Options:**\n\n1. **Conservative Management:** Initial management may involve wound cleaning, debridement, and antibiotic prophylaxis to prevent infection. However, given the potential for an open fracture, close monitoring and serial radiographs are essential to assess for signs of fracture instability or progression.\n2. **Surgical Management:** Surgical exploration and debridement may be necessary to assess the extent of the fracture and ensure that all devitalized tissue is removed. This may involve irrigation and debridement of the wound, stabilization of the fracture, and closure of the wound.\n\n**Surgical Considerations:**\n\n1. **Debridement and Irrigation:** Surgical debridement and irrigation are crucial to remove devitalized tissue and prevent infection.\n2. **Stabilization of the Fracture:** Stabilization of the fracture may involve internal fixation, such as plate and screw fixation, or external fixation, depending on the severity and location of the fracture.\n3. **Wound Closure:** Wound closure should be performed in a layered fashion, with careful attention to hemostasis and tissue approximation.\n\n**Complications:**\n\n1. **Infection:** The risk of infection is increased in open fractures, particularly if not adequately managed.\n2. **Malunion or Nonunion:** Fracture instability or inadequate stabilization may lead to malunion or nonunion.\n3. **Nerve or Vascular Injury:** The proximity of the laceration to the hypoglossal nerve and other structures increases the risk of nerve or vascular injury.\n\n**Evidence Level:**\n\nThe management of open fractures is well-established in the literature, with a focus on early debridement and stabilization to prevent complications [2]. The Gustilo-Anderson classification system is widely used to categorize open fractures based on severity [1].\n\n**Guidelines:**\n\n1. **American College of Surgeons (ACS) Guidelines:** The ACS recommends early debridement and stabilization of open fractures to prevent complications [3].\n2. **Orthopaedic Trauma Association (OTA) Guidelines:** The OTA recommends a multidisciplinary approach to the management of open fractures, including orthopedic surgeons, plastic surgeons, and infectious disease specialists [4].\n\nReferences:\n\n[1] Gustilo, R. B., & Anderson, J. T. (1976). Prevention of infection in the treatment of one thousand and twenty-five open fractures of long bones: Retrospective and prospective analyses. Journal of Bone and Joint Surgery, 58(4), 453-458.\n\n[2]",
+      "context_sources": 5,
+      "response_time": 12.903143644332886,
+      "similarity": 0.0069269521410579345,
+      "term_coverage": 1.0,
+      "length_ratio": 1.0,
+      "accuracy_score": 0.503463476070529,
+      "expected_terms": [
+        "fracture",
+        "bone"
+      ],
+      "rag_terms": [
+        "injury",
+        "trauma",
+        "fracture",
+        "bone",
+        "nerve",
+        "joint"
+      ],
+      "missing_terms": [],
+      "extra_terms": [
+        "nerve",
+        "trauma",
+        "joint",
+        "injury"
+      ]
+    },
+    {
+      "question_id": 5,
+      "question": "A passenger in the same vehicle is complaining of midshaft thigh pain. Her vitals are stable currently. How much blood can be lost from a midshaft femur fracture?",
+      "expected_answer": "1000-1500cc of blood can be lost from an 'uncomplicated' midshaft femur fracture.",
+      "rag_response": "**Clinical Assessment:**\n\nA 26-year-old female passenger presents with stable vital signs and complains of midshaft thigh pain following a motor vehicle accident. The primary concern is a potential midshaft femur fracture, which requires prompt evaluation and management.\n\n**Management Options:**\n\n1. **Initial Assessment:** Perform a thorough physical examination, including a detailed neurovascular assessment, to evaluate the extent of injury.\n2. **Imaging Studies:** Order an anteroposterior (AP) and lateral radiograph of the femur to confirm the diagnosis and assess the fracture pattern.\n3. **Stabilization:** Apply a well-padded splint or a temporary external fixator to maintain the limb in a reduced position and prevent further injury.\n\n**Surgical Considerations:**\n\n1. **Indications for Surgery:** Surgical intervention is recommended for:\n\t* Open fractures (Grade 1-3)\n\t* Fractures with significant displacement (>2 cm)\n\t* Fractures with neurovascular compromise\n\t* Fractures with soft tissue damage\n2. **Surgical Techniques:** Options include:\n\t* Intramedullary nailing (IMN)\n\t* Plate fixation\n\t* External fixation\n3. **Timing of Surgery:** Perform surgery as soon as possible, ideally within 24 hours, to minimize the risk of complications.\n\n**Complications:**\n\n1. **Hemorrhage:** The estimated blood loss from a midshaft femur fracture can range from 1,000 to 3,000 mL (1-3 units of blood).\n2. **Infection:** Monitor for signs of infection, such as fever, redness, and swelling, and initiate antibiotic therapy promptly.\n3. **Nerve Injury:** Assess for neurologic deficits, such as numbness, tingling, or weakness, and consider nerve repair or decompression.\n4. **Malunion:** Monitor for signs of malunion, such as limb length discrepancy or rotational deformity, and consider corrective osteotomy.\n\n**Evidence Level:**\n\n* The American College of Surgeons (ACS) recommends early surgical intervention for femur fractures to minimize complications. [1]\n* The Orthopaedic Trauma Association (OTA) suggests that IMN is the preferred treatment for midshaft femur fractures. [2]\n\n**Guidelines:**\n\n* The ACS Trauma Quality Improvement Program (TQIP) recommends the following for femur fractures:\n\t+ Early surgical intervention (within 24 hours)\n\t+ Use of IMN or plate fixation\n\t+ Monitoring for complications, such as infection and malunion [3]\n* The OTA recommends the following for midshaft femur fractures:\n\t+ Use of IMN or plate fixation\n\t+ Monitoring for complications, such as infection and malunion [4]\n\nReferences:\n\n[1] American College of Surgeons. (2019). Advanced Trauma Life Support (ATLS) Student Course Manual.\n\n[2] Orthopaedic Trauma",
+      "context_sources": 5,
+      "response_time": 17.306763648986816,
+      "similarity": 0.035779481562614096,
+      "term_coverage": 1.0,
+      "length_ratio": 1.0,
+      "accuracy_score": 0.517889740781307,
+      "expected_terms": [
+        "fracture",
+        "blood"
+      ],
+      "rag_terms": [
+        "splint",
+        "injury",
+        "swelling",
+        "trauma",
+        "fracture",
+        "pain",
+        "nerve",
+        "deformity",
+        "blood"
+      ],
+      "missing_terms": [],
+      "extra_terms": [
+        "splint",
+        "injury",
+        "swelling",
+        "trauma",
+        "pain",
+        "nerve",
+        "deformity"
+      ]
+    },
+    {
+      "question_id": 6,
+      "question": "How should this injury be cared for?",
+      "expected_answer": "Traction splinting is indicated for midshaft, isolated femur fractures. It is somewhat time-consuming however, and simple immobilization on a backboard should be considered for a patient with multi-system injuries. When applying a traction device, make sure to place the groin strap as far up as possible. Once this strap is applied, and a foot harness in place, traction is applied, then the rest of the straps placed.",
+      "rag_response": "**Clinical Assessment:**\n\nUpon presentation, the patient should undergo a thorough clinical evaluation to assess the extent of the injury. This includes:\n\n1. **Neurological Examination:** Perform a meticulous neurological examination to assess motor function, sensation, and reflexes. Document the findings according to the guidelines provided in [3].\n2. **Imaging Studies:** Order radiographs (X-rays) of the shoulder and humerus to evaluate for fractures, dislocations, or other bony abnormalities. Consider computed tomography (CT) scans or magnetic resonance imaging (MRI) if there is suspicion of soft tissue injuries or internal derangement.\n3. **Spinal Immobilization:** Maintain spinal immobilization using a collar, spinal board, and blocks, as per the guidelines in [2].\n\n**Management Options:**\n\n1. **Conservative Management:** For patients with stable fractures or dislocations, conservative management may be considered. This includes:\n\t* Immobilization in a sling or orthosis\n\t* Pain management with analgesics or non-steroidal anti-inflammatory drugs (NSAIDs)\n\t* Early mobilization and physical therapy to prevent stiffness and promote healing\n2. **Surgical Management:** For patients with unstable fractures or dislocations, surgical management may be necessary. This includes:\n\t* Open reduction and internal fixation (ORIF) of fractures\n\t* Arthroscopic or open repair of soft tissue injuries\n\t* Shoulder arthroplasty or hemiarthroplasty for severe fractures or dislocations\n\n**Surgical Considerations:**\n\n1. **Timing of Surgery:** Surgery should be performed as soon as possible, ideally within 24-48 hours, to minimize the risk of complications and promote healing.\n2. **Type of Surgery:** The type of surgery depends on the severity of the injury and the patient's overall condition. ORIF may be necessary for unstable fractures, while arthroscopic or open repair may be necessary for soft tissue injuries.\n3. **Shoulder Arthroplasty:** Consider shoulder arthroplasty or hemiarthroplasty for severe fractures or dislocations that are not amenable to conservative management.\n\n**Complications:**\n\n1. **Infection:** Monitor for signs of infection, such as redness, swelling, or purulent discharge.\n2. **Nerve Injury:** Be aware of the risk of nerve injury, particularly in patients with severe fractures or dislocations.\n3. **Malunion or Nonunion:** Monitor for signs of malunion or nonunion, such as persistent pain or limited mobility.\n4. **Shoulder Instability:** Be aware of the risk of shoulder instability, particularly in patients with severe fractures or dislocations.\n\n**Evidence Level:**\n\nThe evidence for the management of shoulder injuries is based on Level II and III studies, including case series and retrospective reviews.\n\n**Guidelines:**\n\n1. **American Academy of Orthopaedic Surgeons (AAOS):** The AAOS provides guidelines for the management",
+      "context_sources": 5,
+      "response_time": 7.219709157943726,
+      "similarity": 0.00849514563106796,
+      "term_coverage": 0.5,
+      "length_ratio": 1.0,
+      "accuracy_score": 0.354247572815534,
+      "expected_terms": [
+        "traction",
+        "splint",
+        "immobilization",
+        "fracture"
+      ],
+      "rag_terms": [
+        "immobilization",
+        "injury",
+        "swelling",
+        "dislocation",
+        "reduction",
+        "fracture",
+        "pain",
+        "nerve"
+      ],
+      "missing_terms": [
+        "traction",
+        "splint"
+      ],
+      "extra_terms": [
+        "injury",
+        "swelling",
+        "dislocation",
+        "reduction",
+        "pain",
+        "nerve"
+      ]
+    },
+    {
+      "question_id": 7,
+      "question": "Following any splinting procedure, what three things should be assessed and documented?",
+      "expected_answer": "Circulation, motor, and sensory function. We often we forget to do this, and it can be a major issue as sometimes, particularly with traction or re-positioning the exam can get worse instead of better.",
+      "rag_response": "**Clinical Assessment:**\n\nFollowing any splinting procedure, it is essential to assess and document the following three key parameters:\n\n1. **Range of Motion (ROM):** Evaluate the patient's ROM in the affected joint or limb to ensure that the splint is not causing any restriction or stiffness. This can be done using a goniometer or by observing the patient's ability to move their joint through a normal range of motion.\n2. **Pain and Comfort:** Assess the patient's pain and comfort levels to ensure that the splint is not causing any discomfort or pain. This can be done using a pain scale, such as the Visual Analog Scale (VAS) or the Numerical Rating Scale (NRS).\n3. **Swelling and Circulation:** Evaluate the patient's swelling and circulation in the affected limb to ensure that the splint is not causing any compromise to blood flow. This can be done by observing the limb for signs of swelling, redness, or coolness to the touch.\n\n**Management Options:**\n\nThe management of splinting procedures depends on the underlying condition and the patient's response to treatment. The following options can be considered:\n\n* **Conservative Management:** This involves the use of splints, casts, or orthotics to support and stabilize the affected joint or limb. This can be effective for conditions such as fractures, sprains, or strains.\n* **Surgical Management:** This involves surgical intervention to address underlying conditions such as fractures, tendon or ligament injuries, or joint instability. This may be necessary for conditions that do not respond to conservative management.\n\n**Surgical Considerations:**\n\nSurgical management of splinting procedures may involve the following considerations:\n\n* **Indications:** Surgical intervention may be indicated for conditions that do not respond to conservative management, or for conditions that require more aggressive treatment.\n* **Contraindications:** Surgical intervention may be contraindicated for conditions that are not suitable for surgery, or for patients who are not good candidates for surgery.\n* **Surgical Techniques:** Various surgical techniques may be used, including open reduction and internal fixation (ORIF), arthroscopy, or joint replacement.\n\n**Complications:**\n\nComplications of splinting procedures can include:\n\n* **Infection:** Infection is a potential complication of splinting procedures, particularly if the splint is not properly cleaned and maintained.\n* **Nerve Damage:** Nerve damage can occur if the splint is too tight or if it causes pressure on the nerves.\n* **Vascular Compromise:** Vascular compromise can occur if the splint causes compression of blood vessels, leading to decreased circulation.\n\n**Evidence Level:**\n\nThe evidence level for splinting procedures is generally based on Level III evidence, which includes case series and cohort studies.\n\n**Guidelines:**\n\nThe following guidelines can be referenced for splinting procedures:\n\n* **American Academy of Orthopaedic Surgeons (AAOS):** The AAOS",
+      "context_sources": 5,
+      "response_time": 11.000163555145264,
+      "similarity": 0.008747266479225243,
+      "term_coverage": 0.5,
+      "length_ratio": 1.0,
+      "accuracy_score": 0.35437363323961263,
+      "expected_terms": [
+        "traction",
+        "circulation"
+      ],
+      "rag_terms": [
+        "splint",
+        "swelling",
+        "reduction",
+        "fracture",
+        "ligament",
+        "pain",
+        "circulation",
+        "nerve",
+        "joint",
+        "blood",
+        "tendon"
+      ],
+      "missing_terms": [
+        "traction"
+      ],
+      "extra_terms": [
+        "splint",
+        "swelling",
+        "reduction",
+        "fracture",
+        "pain",
+        "nerve",
+        "joint",
+        "ligament",
+        "blood",
+        "tendon"
+      ]
+    },
+    {
+      "question_id": 8,
+      "question": "If the patient's foot is cool, and pulses not present, what can be done? How long until the muscles and limb suffer irreversible damage?",
+      "expected_answer": "In the setting of a femur fracture, the amount of traction may be varied to see if the pulse will return. Reduction to neutral alignment of other extremity fractures may help to restore a pulse. The general rule is within 4 hours, the muscles will die, and survival of the limb will be in question.",
+      "rag_response": "**Clinical Assessment:**\n\nA patient presents with a cool foot and absent pulses, suggesting compromised perfusion to the lower limb. This clinical scenario warrants immediate attention to prevent irreversible damage to the muscles and limb. The patient's symptoms are consistent with acute limb ischemia (ALI), a medical emergency that requires prompt evaluation and treatment.\n\n**Management Options:**\n\n1. **Initial Assessment:** Perform a thorough history and physical examination to determine the cause of ALI. Evaluate the patient's medical history, including any pre-existing vascular disease, and assess the limb for signs of ischemia, such as pallor, pulselessness, poikilothermia (coolness), pain, and paresthesia (numbness or tingling).\n2. **Non-Invasive Testing:** Order non-invasive vascular studies, such as ankle-brachial index (ABI) and toe-brachial index (TBI), to assess peripheral artery disease (PAD) and identify the level of obstruction.\n3. **Invasive Testing:** Consider invasive testing, such as angiography, to visualize the affected vessels and determine the extent of the obstruction.\n\n**Surgical Considerations:**\n\n1. **Embolectomy:** Perform an emergency embolectomy to remove the embolus and restore blood flow to the affected limb.\n2. **Bypass Grafting:** Consider bypass grafting to bypass the obstructed segment and restore blood flow to the affected limb.\n3. **Thrombectomy:** Perform a thrombectomy to remove the thrombus and restore blood flow to the affected limb.\n\n**Complications:**\n\n1. **Ischemic Muscle Necrosis:** Irreversible damage to the muscles and limb can occur if perfusion is not restored promptly.\n2. **Gangrene:** Ischemia can lead to gangrene, which may require amputation.\n3. **Infection:** Ischemia can increase the risk of infection, which can lead to sepsis and multi-organ failure.\n\n**Evidence Level:**\n\n* The American Heart Association (AHA) recommends immediate surgical intervention for ALI (Class I, Level of Evidence A). [1]\n* The Society for Vascular Surgery (SVS) recommends embolectomy or bypass grafting for ALI (Class I, Level of Evidence A). [2]\n\n**Guidelines:**\n\n* The AHA guidelines for the management of ALI recommend the following: [1]\n + Immediate surgical intervention for ALI\n + Use of anticoagulation therapy to prevent further embolization\n + Use of vasodilators to improve blood flow to the affected limb\n* The SVS guidelines for the management of ALI recommend the following: [2]\n + Embolectomy or bypass grafting for ALI\n + Use of anticoagulation therapy to prevent further embolization\n + Use of vasodilators to improve blood flow to the affected limb\n\nReferences:\n\n[1]",
+      "context_sources": 5,
+      "response_time": 15.399604320526123,
+      "similarity": 0.0040719375636240245,
+      "term_coverage": 0.4,
+      "length_ratio": 1.0,
+      "accuracy_score": 0.322035968781812,
+      "expected_terms": [
+        "reduction",
+        "fracture",
+        "pulse",
+        "traction",
+        "muscle"
+      ],
+      "rag_terms": [
+        "amputation",
+        "artery",
+        "muscle",
+        "pain",
+        "pulse",
+        "blood"
+      ],
+      "missing_terms": [
+        "traction",
+        "reduction",
+        "fracture"
+      ],
+      "extra_terms": [
+        "blood",
+        "pain",
+        "amputation",
+        "artery"
+      ]
+    },
+    {
+      "question_id": 9,
+      "question": "A patient in the other vehicle is complaining of knee pain. On extrication, you place him on a backboard. His knee is slightly bent, and the hip is internally rotated. He is unable to straighten the leg without severe pain. He believes that his knee hit the dashboard. What do you suspect is injured?",
+      "expected_answer": "Patients with posterior hip dislocations from impact vs. the dash often refer pain to the knee. This patient exhibits a typical position. Reduction needs to occur soon to prevent compressive damage to the sciatic nerve. This cannot be done in the field and the patient will have to be immobilized with the knee flexed.",
+      "rag_response": "**Clinical Assessment:**\n\nUpon initial assessment, the patient presents with knee pain, a slightly bent knee, and internal rotation of the hip. The inability to straighten the leg without severe pain suggests a possible injury to the knee joint or surrounding structures. Given the mechanism of injury (dashboard impact), a high index of suspicion for a ligamentous injury, specifically an anterior cruciate ligament (ACL) tear, is warranted.\n\nThe patient's symptoms and physical examination findings are consistent with a possible ACL injury, which is a common consequence of dashboard injuries. The ACL is a critical stabilizer of the knee joint, and its injury can lead to instability, pain, and functional impairment.\n\n**Management Options:**\n\n1. **Conservative Management:**\n\t* Initial treatment involves immobilization, pain management, and physical therapy to maintain range of motion and prevent stiffness.\n\t* A knee brace may be used to provide stability and support.\n\t* Physical therapy focuses on strengthening the surrounding muscles, improving proprioception, and enhancing functional activities.\n2. **Surgical Considerations:**\n\t* Surgical repair or reconstruction of the ACL may be necessary for patients with significant instability, recurrent knee injuries, or persistent symptoms.\n\t* The decision to operate is based on the patient's functional status, activity level, and the severity of the injury.\n\t* Surgical options include arthroscopic ACL reconstruction, open ACL reconstruction, or ACL repair.\n\n**Surgical Considerations:**\n\n* **Arthroscopic ACL Reconstruction:**\n\t+ This is a minimally invasive procedure that involves drilling tunnels in the femur and tibia to secure the graft.\n\t+ The graft is typically taken from the patellar tendon or hamstring tendons.\n\t+ Arthroscopic ACL reconstruction is a common and effective treatment option for ACL injuries.\n* **Open ACL Reconstruction:**\n\t+ This procedure involves a larger incision to access the knee joint and secure the graft.\n\t+ Open ACL reconstruction may be necessary for complex injuries or revision surgeries.\n\n**Complications:**\n\n* **Postoperative Complications:**\n\t+ Infection\n\t+ Nerve damage\n\t+ Vascular injury\n\t+ Graft failure\n* **Chronic Complications:**\n\t+ Knee stiffness\n\t+ Arthritis\n\t+ Meniscal tears\n\t+ Ligamentous laxity\n\n**Evidence Level:**\n\n* The American Academy of Orthopaedic Surgeons (AAOS) recommends arthroscopic ACL reconstruction for patients with ACL injuries who are active and have significant instability (Level I evidence).\n* The AAOS also recommends conservative management for patients with ACL injuries who are sedentary or have mild instability (Level II evidence).\n\n**Guidelines:**\n\n* American Academy of Orthopaedic Surgeons (AAOS). (2019). Anterior Cruciate Ligament Injuries. Retrieved from <https://www.aaos.org/~/media/AAOS/advocacy/fact%20sheets/2019/",
+      "context_sources": 5,
+      "response_time": 28.086636066436768,
+      "similarity": 0.0075282308657465494,
+      "term_coverage": 0.5,
+      "length_ratio": 1.0,
+      "accuracy_score": 0.3537641154328733,
+      "expected_terms": [
+        "nerve",
+        "pain",
+        "dislocation",
+        "reduction"
+      ],
+      "rag_terms": [
+        "immobilization",
+        "injury",
+        "ligament",
+        "pain",
+        "nerve",
+        "joint",
+        "muscle",
+        "tendon"
+      ],
+      "missing_terms": [
+        "dislocation",
+        "reduction"
+      ],
+      "extra_terms": [
+        "immobilization",
+        "injury",
+        "ligament",
+        "tendon",
+        "joint",
+        "muscle"
+      ]
+    },
+    {
+      "question_id": 10,
+      "question": "Following restocking your truck, you are called for a 'jumper' who jumps from the second story window of a school after screaming \"I can't take these little bastards\". He was witnessed to land in an almost standing position before crumpling to the ground. What types of bony injuries are usually associated with such a mechanism?",
+      "expected_answer": "This is referred to as a 'Don Juan' injury. Ask your partner why\u2026Jumping from a height and landing on one's feet leads to several predictable fractures (and often with other injuries, including pelvic and abdominal). The heelbones (calcanei), knees, hips, and lumbar spine are at greatest risk of fracture.",
+      "rag_response": "**Clinical Assessment:**\n\nUpon arrival, the patient is found to be unresponsive, with a Glasgow Coma Scale (GCS) score of 3. The patient's vital signs are:\n\n- Pulse: 120 bpm\n- Blood Pressure: 90/60 mmHg\n- Respiratory Rate: 24 breaths/min\n- Oxygen Saturation: 92% on room air\n\nPhysical examination reveals:\n\n- Multiple lacerations and abrasions on the face, neck, and upper extremities\n- Bilateral long bone fractures (likely tibia and fibula) with possible associated soft tissue injuries\n- Possible spinal cord injury (SCI) or traumatic brain injury (TBI) given the mechanism of injury\n\n**Management Options:**\n\n1. **Initial Stabilization:** Secure the patient's airway, breathing, and circulation (ABCs) with cervical spine stabilization and possible intubation.\n2. **Imaging:** Order a chest X-ray, cervical spine X-ray, and whole-body CT scan to evaluate for injuries to the head, neck, spine, and long bones.\n3. **Resuscitation:** Administer oxygen, fluids, and blood products as needed to maintain hemodynamic stability.\n\n**Surgical Considerations:**\n\n1. **Orthopedic Surgery:** Consider surgical intervention for the long bone fractures, especially if there is significant displacement or instability.\n2. **Spinal Surgery:** If SCI is suspected, consider surgical intervention to stabilize the spine and prevent further neurological deterioration.\n3. **Neurosurgery:** If TBI is suspected, consider surgical intervention to evacuate any intracranial hemorrhages or repair any skull fractures.\n\n**Complications:**\n\n1. **Infection:** Monitor for signs of infection, such as fever, redness, and swelling, and administer antibiotics as needed.\n2. **Nonunion or Malunion:** Monitor for signs of nonunion or malunion, such as pain, swelling, or limited mobility, and consider surgical intervention if necessary.\n3. **Nerve Damage:** Monitor for signs of nerve damage, such as numbness, tingling, or weakness, and consider surgical intervention if necessary.\n\n**Evidence Level:**\n\nThe management of long bone fractures and SCI/TBI is based on Level I and II evidence from the following sources:\n\n* Orthopedic Trauma Association (OTA) guidelines for the management of long bone fractures [1]\n* American Association of Neurological Surgeons (AANS) guidelines for the management of SCI [2]\n* Brain Trauma Foundation (BTF) guidelines for the management of TBI [3]\n\n**Guidelines:**\n\n* OTA guidelines recommend surgical intervention for long bone fractures with significant displacement or instability [1].\n* AANS guidelines recommend surgical intervention for SCI with neurological deficits or spinal instability [2].\n* BTF guidelines recommend surgical intervention for TBI with intracranial hemorrhages or skull fractures [3].\n\nReferences:\n\n[1] Orthopedic Trauma",
+      "context_sources": 5,
+      "response_time": 31.046836853027344,
+      "similarity": 0.01827079934747145,
+      "term_coverage": 1.0,
+      "length_ratio": 1.0,
+      "accuracy_score": 0.5091353996737358,
+      "expected_terms": [
+        "fracture",
+        "bone",
+        "injury"
+      ],
+      "rag_terms": [
+        "injury",
+        "swelling",
+        "trauma",
+        "fracture",
+        "bone",
+        "pain",
+        "pulse",
+        "circulation",
+        "nerve",
+        "blood"
+      ],
+      "missing_terms": [],
+      "extra_terms": [
+        "swelling",
+        "trauma",
+        "pain",
+        "pulse",
+        "circulation",
+        "nerve",
+        "blood"
+      ]
+    },
+    {
+      "question_id": 11,
+      "question": "In frustration with his situation the teacher punches the ground with a closed fist, and howls in pain. He is tender over the 5th metacarpal of the hand, with mild deformity near the metacarpal head. What classic fracture is this?",
+      "expected_answer": "This is a classic mechanism and exam for a 'boxer's fracture' which may go undiagnosed for hours to days. If there is significant angulation of the fracture, the patient may have problems with range of motion and grip. Remember to wear padded gloves when you hit hard objects!",
+      "rag_response": "**Clinical Assessment:**\n\nThe teacher's presentation of tenderness over the 5th metacarpal of the hand, with mild deformity near the metacarpal head, is suggestive of a classic fracture. The most likely diagnosis is a **Boxer's Fracture**, also known as a 5th metacarpal fracture. This type of fracture occurs when the metacarpal bone of the little finger is broken, typically due to a direct blow to the hand.\n\n**Management Options:**\n\n1. **Conservative Management:** Initial treatment for a Boxer's Fracture often involves immobilization with a splint or cast to allow for healing. The patient is advised to avoid heavy lifting, bending, or strenuous activities to prevent displacement of the fracture.\n2. **Surgical Management:** In cases where the fracture is significantly displaced or the patient has a high demand for hand function, surgical intervention may be necessary. This typically involves open reduction and internal fixation (ORIF) using a plate and screws to stabilize the fracture.\n\n**Surgical Considerations:**\n\nWhen considering surgical management, the following factors should be taken into account:\n\n* The degree of displacement: If the fracture is significantly displaced, surgical intervention may be necessary to restore proper alignment and function.\n* The patient's activity level: Patients with high demand for hand function, such as athletes or individuals who engage in heavy manual labor, may require surgical intervention to ensure proper healing and minimize the risk of complications.\n* The presence of any associated injuries: If the patient has any associated injuries, such as a nerve injury or a fracture of the adjacent metacarpal bones, surgical intervention may be necessary to address these injuries simultaneously.\n\n**Complications:**\n\nPotential complications of a Boxer's Fracture include:\n\n* Malunion: If the fracture is not properly aligned, it may lead to malunion, which can result in a permanent deformity.\n* Nonunion: If the fracture does not heal properly, it may lead to nonunion, which can result in chronic pain and limited hand function.\n* Nerve injury: The nerves that run through the hand and wrist are at risk of injury during the healing process, which can result in numbness, tingling, or weakness in the affected hand.\n\n**Evidence Level:**\n\nThe management of Boxer's Fractures is well-established in the medical literature. A 2018 systematic review and meta-analysis published in the Journal of Hand Surgery found that surgical management resulted in better outcomes in terms of pain, function, and patient satisfaction compared to conservative management (Level I evidence).\n\n**Guidelines:**\n\nThe American Academy of Orthopaedic Surgeons (AAOS) and the American Society for Surgery of the Hand (ASSH) have established guidelines for the management of Boxer's Fractures. According to these guidelines, surgical intervention is recommended for fractures with significant displacement or for patients with high demand for hand function (Level II evidence).\n\nReferences",
+      "context_sources": 5,
+      "response_time": 23.760377407073975,
+      "similarity": 0.0036330608537693005,
+      "term_coverage": 1.0,
+      "length_ratio": 1.0,
+      "accuracy_score": 0.5018165304268847,
+      "expected_terms": [
+        "fracture"
+      ],
+      "rag_terms": [
+        "splint",
+        "immobilization",
+        "injury",
+        "reduction",
+        "fracture",
+        "bone",
+        "pain",
+        "nerve",
+        "deformity"
+      ],
+      "missing_terms": [],
+      "extra_terms": [
+        "splint",
+        "immobilization",
+        "injury",
+        "reduction",
+        "bone",
+        "pain",
+        "nerve",
+        "deformity"
+      ]
+    },
+    {
+      "question_id": 12,
+      "question": "A nursing home patient fell out of bed, and is complaining of hip pain. What is the mortality of a hip fracture in an elderly patient?",
+      "expected_answer": "Elderly patients who suffer 'hip' fractures (actually proximal femur and femoral neck fractures) have generally poor outcomes due to the need for bedrest or operations. Within a year, approximately 30-40% will die of related causes (pneumonia due to bedrest, operative complications, etc.)",
+      "rag_response": "**Clinical Assessment:**\n\nA 75-year-old nursing home patient presents with a complaint of hip pain after falling out of bed. The patient's medical history includes hypertension, diabetes mellitus, and a history of osteoporosis. Physical examination reveals tenderness over the greater trochanter, limited range of motion in the hip joint, and a positive Trendelenburg sign. The patient's vital signs are stable, with a blood pressure of 140/80 mmHg and a pulse of 80 beats per minute.\n\n**Management Options:**\n\n1. **Conservative Management:** Initial management involves immobilizing the patient in bed with a hip spica cast or a bedboard to prevent further injury and promote healing. Pain management is crucial, and the patient may require analgesics such as acetaminophen or nonsteroidal anti-inflammatory drugs (NSAIDs).\n2. **Surgical Management:** Surgical intervention is often necessary to stabilize the hip joint and promote healing. The most common surgical options include:\n\t* **Hemiarthroplasty:** A partial hip replacement that involves replacing the femoral head with a prosthetic component.\n\t* **Total Hip Arthroplasty (THA):** A complete hip replacement that involves replacing both the femoral head and the acetabulum with prosthetic components.\n\t* **Internal Fixation:** A surgical procedure that involves stabilizing the fracture with internal fixation devices such as screws or plates.\n\n**Surgical Considerations:**\n\n1. **Timing:** The timing of surgical intervention is crucial. Studies have shown that early surgical intervention (within 48 hours) is associated with better outcomes and reduced mortality rates [1].\n2. **Type of Surgery:** The type of surgery performed depends on the patient's overall health, the severity of the fracture, and the patient's functional status. Hemiarthroplasty is often preferred in patients with a displaced femoral neck fracture, while THA is preferred in patients with a displaced intertrochanteric fracture.\n3. **Implant Selection:** The selection of implant material and design is critical. Studies have shown that metal-on-metal implants are associated with higher rates of complications, including metallosis and pseudotumor formation [2].\n\n**Complications:**\n\n1. **Infection:** Surgical site infection is a common complication of hip fracture surgery. Early recognition and treatment are essential to prevent further complications.\n2. **Dislocation:** Dislocation is a common complication of hip fracture surgery, particularly in patients with a history of hip dislocation or those who have undergone previous hip surgery.\n3. **Femoral Nerve Injury:** Femoral nerve injury is a common complication of hip fracture surgery, particularly in patients who have undergone internal fixation.\n\n**Evidence Level:**\n\n1. **Level I:** Randomized controlled trials (RCTs) have shown that early surgical intervention is associated with better outcomes and reduced mortality rates [1].\n2. **Level II:** Observational studies have shown",
+      "context_sources": 5,
+      "response_time": 15.091336250305176,
+      "similarity": 0.00488848151542927,
+      "term_coverage": 1.0,
+      "length_ratio": 1.0,
+      "accuracy_score": 0.5024442407577147,
+      "expected_terms": [
+        "fracture"
+      ],
+      "rag_terms": [
+        "injury",
+        "dislocation",
+        "fracture",
+        "pain",
+        "pulse",
+        "nerve",
+        "joint",
+        "blood"
+      ],
+      "missing_terms": [],
+      "extra_terms": [
+        "injury",
+        "dislocation",
+        "pain",
+        "pulse",
+        "nerve",
+        "joint",
+        "blood"
+      ]
+    },
+    {
+      "question_id": 13,
+      "question": "When checking the patient's pulses, you are unable to find a dorsalis pedis pulse on either side. What percent of the population normally lacks a dorsalis pedis pulse?",
+      "expected_answer": "12-17% of the Caucasian population do not have a dorsalis pedis pulse, the posterior tibial pulses are basically always present, in African-Americans up to 9% lack a posterior tibial pulse. In patients over age 45 one or the other may be dominant, and the other not palpable, but detectable with ultrasound.",
+      "rag_response": "**Clinical Assessment:**\n\nA patient presents with an inability to palpate the dorsalis pedis pulse on either side. This finding is significant, as the dorsalis pedis pulse is a crucial indicator of pedal circulation. The absence of this pulse may indicate atherosclerotic disease, peripheral artery disease (PAD), or other vascular pathology.\n\n**Management Options:**\n\n1. **Conservative Management:** Initial management should focus on risk factor modification, including smoking cessation, exercise, and dietary changes to improve lipid profiles and blood pressure control. Patients with PAD should be advised to avoid smoking, as it significantly increases the risk of cardiovascular events.\n2. **Surgical Considerations:** In cases where conservative management fails or is contraindicated, surgical options may be considered. These include:\n\t* Angioplasty and stenting: A minimally invasive procedure to widen narrowed or blocked arteries.\n\t* Bypass surgery: A surgical procedure to bypass blocked or narrowed arteries.\n\t* Endovascular therapy: A minimally invasive procedure to treat PAD using catheters and balloons.\n\n**Surgical Considerations:**\n\nWhen considering surgical options, it is essential to assess the patient's overall vascular health and identify the specific location and extent of the arterial blockage. The decision to proceed with surgery should be based on the patient's symptoms, lifestyle, and overall health.\n\n**Complications:**\n\nPotential complications of surgical interventions for PAD include:\n\n1. **Infection:** A risk of infection with any invasive procedure.\n2. **Bleeding:** A risk of bleeding during or after surgery.\n3. **Nerve damage:** A risk of nerve damage during surgery.\n4. **Stroke:** A risk of stroke during or after surgery.\n\n**Evidence Level:**\n\nThe evidence for surgical interventions in PAD is based on Level I and II studies, which demonstrate the effectiveness of these procedures in improving symptoms and quality of life.\n\n**Guidelines:**\n\nThe American Heart Association (AHA) and the American College of Cardiology (ACC) provide guidelines for the management of PAD. According to the AHA/ACC guidelines, patients with PAD should be treated with lifestyle modifications and pharmacological therapy, with surgical interventions considered in cases where these measures fail or are contraindicated. [1]\n\n**References:**\n\n1. Hirsch AT, et al. ACC/AHA 2006 update of guidelines for peripheral arterial disease: executive summary. Circulation. 2006;113(11):1474-1495.\n2. Norgren L, et al. Inter-society consensus for the management of peripheral arterial disease (TASC II). J Vasc Surg. 2007;45(1):S5-S67.\n\n**Prevalence of Dorsalis Pedis Pulse Absence:**\n\nA study published in the Journal of Vascular Surgery found that approximately 10% of the population lacks a palpable dorsalis pedis pulse. [2]\n\n**References:**",
+      "context_sources": 5,
+      "response_time": 21.07916259765625,
+      "similarity": 0.006311139160618492,
+      "term_coverage": 1.0,
+      "length_ratio": 1.0,
+      "accuracy_score": 0.5031555695803093,
+      "expected_terms": [
+        "pulse"
+      ],
+      "rag_terms": [
+        "artery",
+        "pulse",
+        "circulation",
+        "nerve",
+        "blood"
+      ],
+      "missing_terms": [],
+      "extra_terms": [
+        "nerve",
+        "blood",
+        "artery",
+        "circulation"
+      ]
+    },
+    {
+      "question_id": 14,
+      "question": "This same patient became entangled in the sheets falling out of bed, and has a shoulder dislocation. What is the most common nerve injured with a dislocated shoulder and where can you check sensation for this nerve?",
+      "expected_answer": "The axillary nerve. The area of sensation is over the lateral shoulder (deltoid muscle area, just over the humeral head). If sensation is absent, this is important to note before immobilization.",
+      "rag_response": "**Clinical Assessment:**\n\nA patient with a shoulder dislocation, likely due to entanglement in bed sheets, presents with a significant risk of nerve injury. The most common nerve injured in shoulder dislocations is the **Axillary Nerve** (C5-C6). The axillary nerve is at risk due to its proximity to the shoulder joint and its course through the quadrilateral space.\n\nTo assess for axillary nerve injury, check for:\n\n1. **Sensation:** Evaluate the patient's sensation over the deltoid muscle, particularly in the region of the deltoid tubercle. A decrease or loss of sensation in this area may indicate axillary nerve injury.\n2. **Motor function:** Assess the patient's motor function, particularly in the deltoid muscle, which is innervated by the axillary nerve. Weakness or paralysis of the deltoid muscle may indicate axillary nerve injury.\n3. **Muscle atrophy:** Evaluate the patient's muscle mass and tone, particularly in the deltoid muscle. Atrophy or wasting of the deltoid muscle may indicate chronic axillary nerve injury.\n\n**Management Options:**\n\n1. **Conservative management:** Initial management of shoulder dislocation and suspected axillary nerve injury may involve conservative measures, such as:\n\t* Reduction of the dislocation using closed reduction techniques.\n\t* Immobilization of the shoulder in a sling or brace to prevent further injury.\n\t* Pain management using analgesics or NSAIDs.\n\t* Physical therapy to maintain range of motion and prevent stiffness.\n2. **Surgical management:** If conservative management fails or if there is significant nerve injury, surgical intervention may be necessary. This may involve:\n\t* Open reduction and internal fixation (ORIF) of the shoulder joint.\n\t* Repair of the axillary nerve or surrounding tissues.\n\t* Reconstruction of the shoulder joint using arthroscopic or open techniques.\n\n**Surgical Considerations:**\n\n1. **Timing:** The optimal timing for surgical intervention is debated, but most surgeons agree that surgery should be performed within 2-3 weeks of the injury to minimize the risk of complications.\n2. **Approach:** The surgical approach may involve a deltopectoral or anterior approach, depending on the surgeon's preference and the extent of the injury.\n3. **Nerve repair:** If the axillary nerve is injured, repair may involve direct nerve repair or nerve grafting.\n\n**Complications:**\n\n1. **Nerve injury:** The most significant complication of shoulder dislocation is nerve injury, particularly to the axillary nerve.\n2. **Arthrosis:** Shoulder dislocation may lead to arthrosis or degenerative joint disease, particularly if the dislocation is recurrent.\n3. **Infection:** As with any surgical procedure, there is a risk of infection with shoulder dislocation and surgical intervention.\n\n**Evidence Level:**\n\nThe evidence for management of shoulder dislocation and axillary nerve injury is primarily based on Level III and IV",
+      "context_sources": 5,
+      "response_time": 21.368383169174194,
+      "similarity": 0.07092198581560284,
+      "term_coverage": 1.0,
+      "length_ratio": 1.0,
+      "accuracy_score": 0.5354609929078014,
+      "expected_terms": [
+        "nerve",
+        "immobilization",
+        "muscle"
+      ],
+      "rag_terms": [
+        "immobilization",
+        "injury",
+        "dislocation",
+        "reduction",
+        "pain",
+        "nerve",
+        "joint",
+        "muscle"
+      ],
+      "missing_terms": [],
+      "extra_terms": [
+        "injury",
+        "dislocation",
+        "reduction",
+        "pain",
+        "joint"
+      ]
+    },
+    {
+      "question_id": 15,
+      "question": "Walking to the light rail station, a Vikings fan steps on a Green Bay fan's face, severely twisting his ankle. He is very tender below the medial malleolus. What other area needs to be examined?",
+      "expected_answer": "This injury has an associated fracture of the proximal fibula (lateral leg, just below the knee); it is called a 'Maisonneuve' fracture. Don't forget to examine the calf and knee, especially laterally, and splint the knee if indicated. This does NOT occur with lateral (inversion) sprains (though please still check the knee, for injury)",
+      "rag_response": "**Clinical Assessment:**\n\nA 30-year-old male patient presents with a severe ankle sprain after being stepped on by a fellow. The patient is tender below the medial malleolus, indicating a potential medial malleolar fracture or a severe inversion ankle sprain. Given the mechanism of injury and the location of tenderness, it is essential to examine the following areas:\n\n1. **Medial malleolus:** Assess for tenderness, swelling, and instability.\n2. **Deltoid ligament:** Evaluate for laxity or instability, as this ligament is often injured in severe ankle sprains.\n3. **Medial ankle joint:** Check for pain and stiffness, as this area may be affected by the injury.\n4. **Peroneal tendons:** Examine for tenderness and instability, as these tendons can be injured in ankle sprains.\n5. **Neurovascular status:** Assess for numbness, tingling, or weakness in the foot and toes, as well as for decreased pulses or capillary refill.\n\n**Management Options:**\n\n1. **Conservative management:**\n\t* Immobilization in a walking boot or cast for 4-6 weeks.\n\t* Pain management with acetaminophen or NSAIDs.\n\t* Physical therapy to improve range of motion and strength.\n\t* Weight-bearing status should be determined by the treating physician.\n2. **Surgical considerations:**\n\t* Open reduction and internal fixation (ORIF) may be necessary for medial malleolar fractures or severe deltoid ligament injuries.\n\t* Arthroscopy may be used to evaluate and treat associated ankle joint injuries.\n\n**Surgical Considerations:**\n\n1. **Indications for surgery:**\n\t* Medial malleolar fractures with significant displacement or comminution.\n\t* Severe deltoid ligament injuries with instability.\n\t* Associated ankle joint injuries, such as osteochondral defects or ligamentous injuries.\n2. **Surgical techniques:**\n\t* ORIF using a plate or screw fixation.\n\t* Arthroscopy to evaluate and treat associated ankle joint injuries.\n\n**Complications:**\n\n1. **Medial malleolar fracture complications:**\n\t* Malunion or nonunion.\n\t* Chronic pain or stiffness.\n\t* Instability or arthritis.\n2. **Deltoid ligament injury complications:**\n\t* Chronic instability or laxity.\n\t* Arthritis or degenerative joint disease.\n\t* Chronic pain or stiffness.\n\n**Evidence Level:**\n\n* Conservative management: Level II evidence (moderate-quality evidence) supports the use of immobilization and physical therapy for ankle sprains (1).\n* Surgical management: Level III evidence (low-quality evidence) supports the use of ORIF for medial malleolar fractures (2).\n\n**Guidelines:**\n\n* American Academy of Orthopaedic Surgeons (AAOS) guidelines recommend conservative management for most ankle sprains, with surgery reserved for",
+      "context_sources": 5,
+      "response_time": 30.026622533798218,
+      "similarity": 0.013315579227696404,
+      "term_coverage": 0.6666666666666666,
+      "length_ratio": 1.0,
+      "accuracy_score": 0.4066577896138482,
+      "expected_terms": [
+        "splint",
+        "fracture",
+        "injury"
+      ],
+      "rag_terms": [
+        "immobilization",
+        "injury",
+        "swelling",
+        "reduction",
+        "fracture",
+        "ligament",
+        "pain",
+        "pulse",
+        "tendon",
+        "joint"
+      ],
+      "missing_terms": [
+        "splint"
+      ],
+      "extra_terms": [
+        "immobilization",
+        "swelling",
+        "reduction",
+        "pain",
+        "pulse",
+        "tendon",
+        "joint",
+        "ligament"
+      ]
+    },
+    {
+      "question_id": 16,
+      "question": "If this fracture is missed, will the patient notice?",
+      "expected_answer": "This fracture is easily missed, the patient may walk around for some time with nagging, but not severe pain. Injuries to the peroneal nerve are relatively common if this isn't recognized and treated. Pro hockey players have played on these fractures during playoffs etc. (against medical advice, of course), so they are not an immediately disabling injury.",
+      "rag_response": "**Clinical Assessment:**\n\nA patient with a missed tibial deformity, specifically a varus malalignment, may not immediately notice the deformity. However, as the deformity progresses, it can lead to various symptoms, including:\n\n- Gait disturbances\n- Pain in the knee or ankle\n- Limited range of motion\n- Muscle weakness\n- Skin irritation or pressure sores due to uneven weight distribution\n\nThe patient may also experience functional limitations, such as difficulty walking or climbing stairs, which can impact their quality of life.\n\n**Management Options:**\n\n1. **Conservative Management:**\n   - Initial treatment may involve physical therapy to improve range of motion and strengthen surrounding muscles.\n   - Orthotics, such as shoe inserts or knee braces, may be prescribed to alleviate symptoms and improve alignment.\n   - Pain management strategies, including medication and lifestyle modifications, may be employed to manage discomfort.\n\n2. **Surgical Considerations:**\n   - Surgical correction is often necessary to realign the tibia and restore the mechanical axis.\n   - The goal of surgery is to correct the deformity, alleviate symptoms, and improve functional outcomes.\n   - Surgical options include:\n     - **Osteotomy:** A surgical procedure that involves cutting and realigning the bone to correct the deformity.\n     - **Lengthening:** A procedure that involves lengthening the bone to correct the deformity and improve alignment.\n     - **Arthrodesis:** A procedure that involves fusing the joint to eliminate pain and improve stability.\n\n**Surgical Considerations:**\n\n- **Step 3B:** After opening wedge correction, the osteotomy also realigns the diaphyseal line of the convex cortex so that it is colinear.\n- **Tibial Frame Applied:** To correct deformity illustrated in A (Figure 32.19).\n- **Mechanical Axis Reestablished:** A total of 26\u00b0, realigning and overlapping the mechanical axis lines to reestablish the colinearity of the hip-knee-ankle axis.\n\n**Complications:**\n\n- **Infection:** A common complication of surgical procedures, which can be managed with antibiotics and wound care.\n- **Nerve Damage:** A potential complication of surgery, which can be managed with nerve repair or resection.\n- **Malunion:** A complication where the bone fails to heal properly, which can be managed with additional surgery.\n\n**Evidence Level:**\n\n- The American Academy of Orthopaedic Surgeons (AAOS) recommends surgical correction for tibial deformities that cause significant symptoms or functional limitations. [1]\n- The Orthopaedic Trauma Association (OTA) recommends a multidisciplinary approach to managing tibial deformities, including orthotics, physical therapy, and surgery. [2]\n\n**Guidelines:**\n\n- The AAOS guidelines for the management of tibial deformities recommend a stepwise approach, starting with conservative management and progressing to surgery if necessary",
+      "context_sources": 5,
+      "response_time": 6.893712997436523,
+      "similarity": 0.005545286506469501,
+      "term_coverage": 0.5,
+      "length_ratio": 1.0,
+      "accuracy_score": 0.35277264325323476,
+      "expected_terms": [
+        "nerve",
+        "pain",
+        "fracture",
+        "injury"
+      ],
+      "rag_terms": [
+        "trauma",
+        "bone",
+        "pain",
+        "nerve",
+        "deformity",
+        "joint",
+        "muscle"
+      ],
+      "missing_terms": [
+        "fracture",
+        "injury"
+      ],
+      "extra_terms": [
+        "trauma",
+        "bone",
+        "deformity",
+        "joint",
+        "muscle"
+      ]
+    },
+    {
+      "question_id": 17,
+      "question": "The patient states he cannot feel his 4th and 5th toes. He is panicked over the thought of losing his sensation there 'for life'. What can you tell him?",
+      "expected_answer": "Almost all cases in which the patient reports altered sensation in the absence of a circulatory deficit or major dislocation/deformity will resolve over days to weeks. Essentially, swelling around the injury affects nerves, which alters sensation to points distally. As the swelling goes away, the nerve usually will gradually recover its function. Rapid progression of sensory changes is often a bad thing, and may signal compartment syndrome or poor circulation.",
+      "rag_response": "**Clinical Assessment:**\n\nThe patient presents with a complaint of numbness in the 4th and 5th toes, which is a common symptom of peripheral neuropathy. The patient's primary concern is the potential loss of sensation in these toes, which may be a sign of a more significant underlying condition. A thorough clinical assessment is necessary to determine the cause of the numbness.\n\n**Differential Diagnosis:**\n\n1. **Peripheral neuropathy**: caused by damage to the peripheral nerves, which can be due to various factors such as diabetes, trauma, or compression.\n2. **Sensory nerve entrapment**: caused by compression of the sensory nerves, which can be due to conditions such as Morton's neuroma or tarsal tunnel syndrome.\n3. **Radial or peroneal nerve injury**: caused by trauma or compression of the radial or peroneal nerves, which can result in numbness in the toes.\n\n**Management Options:**\n\n1. **Conservative management**: includes physical therapy, orthotics, and pain management to alleviate symptoms and prevent further damage.\n2. **Surgical management**: may be necessary to relieve compression or repair damaged nerves.\n\n**Surgical Considerations:**\n\n1. **Sensory nerve decompression**: involves releasing compressed nerves to alleviate symptoms.\n2. **Nerve repair**: involves repairing damaged nerves to restore function.\n3. **Nerve grafting**: involves using a graft to bridge a nerve gap and restore function.\n\n**Complications:**\n\n1. **Nerve damage**: can occur during surgery, leading to permanent numbness or weakness.\n2. **Infection**: can occur after surgery, leading to further complications.\n3. **Scarring**: can occur after surgery, leading to limited mobility or numbness.\n\n**Evidence Level:**\n\n1. **Level I evidence**: studies have shown that surgical management can be effective in relieving symptoms of peripheral neuropathy and sensory nerve entrapment (1, 2).\n2. **Level II evidence**: studies have shown that conservative management can be effective in alleviating symptoms of peripheral neuropathy and sensory nerve entrapment (3, 4).\n\n**Guidelines:**\n\n1. **American Academy of Orthopaedic Surgeons (AAOS)**: recommends conservative management for mild cases of peripheral neuropathy and sensory nerve entrapment (5).\n2. **American Academy of Neurology (AAN)**: recommends surgical management for severe cases of peripheral neuropathy and sensory nerve entrapment (6).\n\n**References:**\n\n1. **Level I evidence**: \"Surgical management of peripheral neuropathy: a systematic review\" (Journal of Neurosurgery, 2019).\n2. **Level I evidence**: \"Sensory nerve decompression for Morton's neuroma: a systematic review\" (Journal of Foot and Ankle Surgery, 2018).\n3. **Level II evidence**: \"Conservative management of peripheral neuropathy: a systematic review\" (Journal",
+      "context_sources": 5,
+      "response_time": 25.58589506149292,
+      "similarity": 0.00922509225092251,
+      "term_coverage": 0.3333333333333333,
+      "length_ratio": 1.0,
+      "accuracy_score": 0.3046125461254613,
+      "expected_terms": [
+        "injury",
+        "swelling",
+        "dislocation",
+        "circulation",
+        "nerve",
+        "deformity"
+      ],
+      "rag_terms": [
+        "nerve",
+        "pain",
+        "trauma",
+        "injury"
+      ],
+      "missing_terms": [
+        "swelling",
+        "dislocation",
+        "deformity",
+        "circulation"
+      ],
+      "extra_terms": [
+        "pain",
+        "trauma"
+      ]
+    },
+    {
+      "question_id": 18,
+      "question": "A 2 year old was dragged to the Twins game by her parents (season ticket holders), and now refuses to use her R arm. No other trauma has been noted. What is the most common cause of this injury?",
+      "expected_answer": "The 'nursemaid's elbow' is usually caused by traction on the arm of a toddler (though we can see this injury even up to the age of 9-10 years!). At this age, the ligaments that hold the radius in place in the elbow are loose, and dislocation occurs. Reduction is a fairly easy process of turning the hand and flexing the elbow, but obviously we need to be careful not to be trying to relocate a fracture!",
+      "rag_response": "**Clinical Assessment:**\n\nA 2-year-old child presents with refusal to use her right arm after being dragged to the Twins game by her parents. The child has no other reported trauma. The primary concern is a potential shoulder injury, specifically a subluxation or dislocation of the glenohumeral joint.\n\n**Management Options:**\n\n1. **Conservative Management:**\n   - Initial treatment involves reducing the child's pain and discomfort with acetaminophen or ibuprofen.\n   - Gentle range-of-motion exercises should be initiated to maintain flexibility and prevent stiffness.\n   - A shoulder immobilizer or sling may be used to support the arm and promote healing.\n\n2. **Surgical Considerations:**\n   - If the child's symptoms persist or worsen, surgical intervention may be necessary to reduce the subluxation or dislocation.\n   - The goal of surgery is to restore normal anatomy and function to the shoulder joint.\n   - Surgical options include closed reduction, open reduction, and stabilization with sutures or hardware.\n\n**Complications:**\n\n1. **Nerve Injury:**\n   - The axillary nerve is at risk during shoulder surgery, and injury can result in weakness or paralysis of the deltoid muscle.\n   - Management involves physical therapy to improve range of motion and strength.\n\n2. **Infection:**\n   - Postoperative infection is a potential complication of shoulder surgery.\n   - Management involves antibiotics and, in severe cases, surgical debridement.\n\n**Evidence Level:**\n\nThe American Academy of Pediatrics (AAP) recommends a conservative approach to managing shoulder injuries in children, with surgery reserved for cases where conservative management fails (AAP, 2018).\n\n**Guidelines:**\n\n1. **AAP Guidelines:**\n   - The AAP recommends a stepwise approach to managing shoulder injuries in children, starting with conservative management and progressing to surgery if necessary (AAP, 2018).\n\n2. **Orthopedic Society of North America (OSNA) Guidelines:**\n   - The OSNA recommends a multidisciplinary approach to managing shoulder injuries in children, involving orthopedic surgeons, physical therapists, and other healthcare professionals (OSNA, 2020).\n\n**References:**\n\n1. American Academy of Pediatrics. (2018). Management of shoulder injuries in children. Pediatrics, 142(3), e20182073.\n\n2. Orthopedic Society of North America. (2020). Shoulder injuries in children. Journal of Orthopaedic and Sports Physical Therapy, 50(5), 251-262.\n\n3. [1] - This reference is not directly relevant to the clinical scenario presented, but it does provide information on the anatomy and biomechanics of the shoulder joint.\n\n4. [2] - This reference provides information on the anatomy of the shoulder joint, specifically the glenohumeral ligaments.\n\n5. [3] - This reference provides information on the anatomy of the spine, specifically the ligamentum flavum.",
+      "context_sources": 5,
+      "response_time": 18.863162517547607,
+      "similarity": 0.008607439286812173,
+      "term_coverage": 0.6666666666666666,
+      "length_ratio": 1.0,
+      "accuracy_score": 0.40430371964340606,
+      "expected_terms": [
+        "injury",
+        "dislocation",
+        "reduction",
+        "fracture",
+        "traction",
+        "ligament"
+      ],
+      "rag_terms": [
+        "injury",
+        "dislocation",
+        "reduction",
+        "trauma",
+        "ligament",
+        "pain",
+        "nerve",
+        "joint",
+        "muscle"
+      ],
+      "missing_terms": [
+        "traction",
+        "fracture"
+      ],
+      "extra_terms": [
+        "trauma",
+        "pain",
+        "nerve",
+        "joint",
+        "muscle"
+      ]
+    },
+    {
+      "question_id": 19,
+      "question": "A man who jumped up to celebrate the Twins covering the spread is stricken when his knee 'locks up'. He is severely distressed, and cannot seem to straighten the knee. What is the usual cause of an atraumatic locked knee?",
+      "expected_answer": "Generally, a knee 'locks' because of a meniscal tear (tear in the cartilage lining of the knee joint), unlocking usually requires good pain relief and often sedation. Usually if this is occurring, arthroscopy is indicated to see if it can be trimmed or repaired. Knee locking after acute trauma is often due to fractures and muscle spasm.",
+      "rag_response": "**Clinical Assessment:**\n\nA 30-year-old male patient presents with a sudden onset of knee locking, characterized by an inability to straighten the knee joint. The patient reports no preceding trauma, but rather a sudden, severe pain and stiffness in the knee. The patient's medical history is unremarkable, and he has no known underlying conditions that may predispose him to knee locking.\n\n**Differential Diagnosis:**\n\nBased on the patient's presentation, the most likely cause of an atraumatic locked knee is a Baker's cyst or a meniscal tear, particularly a longitudinal tear in the medial meniscus. Other possible causes include:\n\n* Meniscal cyst\n* Osteochondritis dissecans\n* Ligamentous injuries (e.g., ACL or PCL tears)\n* Synovial chondromatosis\n\n**Management Options:**\n\n1. **Conservative Management:**\n\t* Initial treatment involves rest, ice, compression, and elevation (RICE) to reduce pain and inflammation.\n\t* Physical therapy may be recommended to improve range of motion and strengthen surrounding muscles.\n\t* Anti-inflammatory medications, such as NSAIDs, may be prescribed to manage pain and inflammation.\n2. **Surgical Considerations:**\n\t* Arthroscopic surgery is often recommended for meniscal tears, particularly if the patient experiences persistent pain or locking.\n\t* Open meniscectomy may be necessary if the meniscal tear is complex or if the patient has a large meniscal cyst.\n\t* Ligamentous injuries may require surgical repair or reconstruction.\n\n**Surgical Considerations:**\n\n* Arthroscopic meniscectomy is a minimally invasive procedure that involves removing the damaged meniscus.\n* Open meniscectomy involves making a larger incision to access the knee joint.\n* Ligamentous injuries may require surgical repair or reconstruction using techniques such as ACL reconstruction or PCL repair.\n\n**Complications:**\n\n* Infection\n* Bleeding\n* Nerve damage\n* Arthrofibrosis (stiffness and limited range of motion)\n* Meniscal or ligamentous instability\n\n**Evidence Level:**\n\n* A 2019 systematic review published in the Journal of Orthopaedic and Sports Physical Therapy found that arthroscopic meniscectomy was associated with improved outcomes compared to conservative management for meniscal tears (Level I evidence).\n* A 2020 meta-analysis published in the Journal of Bone and Joint Surgery found that open meniscectomy was associated with higher complication rates compared to arthroscopic meniscectomy (Level II evidence).\n\n**Guidelines:**\n\n* The American Academy of Orthopaedic Surgeons (AAOS) recommends arthroscopic meniscectomy as a treatment option for meniscal tears (Grade A recommendation).\n* The American College of Sports Medicine (ACSM) recommends conservative management as the initial treatment for knee locking, with surgical intervention reserved for patients who do not respond to conservative management (Grade B recommendation",
+      "context_sources": 5,
+      "response_time": 22.482846975326538,
+      "similarity": 0.014343623323978797,
+      "term_coverage": 0.8,
+      "length_ratio": 1.0,
+      "accuracy_score": 0.4471718116619894,
+      "expected_terms": [
+        "trauma",
+        "fracture",
+        "pain",
+        "joint",
+        "muscle"
+      ],
+      "rag_terms": [
+        "trauma",
+        "bone",
+        "ligament",
+        "pain",
+        "nerve",
+        "joint",
+        "muscle"
+      ],
+      "missing_terms": [
+        "fracture"
+      ],
+      "extra_terms": [
+        "nerve",
+        "ligament",
+        "bone"
+      ]
+    },
+    {
+      "question_id": 20,
+      "question": "A patient suffers an amputation of his thumb from a band saw. How should you care for the thumb and is this patient a candidate for re-implantation?",
+      "expected_answer": "Greater efforts are made to re-implant thumbs if possible, isolated fingers may depend on which finger, handedness of the patient, and amount of soft tissue injury. If the patient is healthy, and the amputation was sharp (e.g. saw, rather than a crush injury), the odds of re-implantation success are fairly good within the first 6 hours. The thumb should be placed in a bag, with damp dressings, then the bag placed on ice if possible. No direct ice should be applied to the amputated digit. A few surgeons in the Twin Cites do re-implantation, they practice at Fairview-University, North, and HCMC. Incidentally, toes are not reimplanted, and finger/thumbs do the best of all re-implants.",
+      "rag_response": "**Clinical Assessment:**\n\nA patient suffering an amputation of the thumb from a band saw presents with a complex injury requiring prompt and meticulous management. The thumb is a vital component of the hand, responsible for grasping, manipulation, and fine motor functions. The amputation may result in significant functional impairment, necessitating a thorough evaluation to determine the best course of treatment.\n\n**Management Options:**\n\n1. **Conservative Management:** Initial management involves stabilizing the wound, controlling bleeding, and administering tetanus prophylaxis. The patient should be evaluated for potential nerve and vascular injuries, and a thorough examination of the remaining hand and forearm is essential to assess for any associated injuries.\n2. **Surgical Consideration:** Re-implantation of the amputated thumb is a viable option, provided the patient is a suitable candidate. The decision to proceed with re-implantation depends on several factors, including:\n\t* The length and viability of the amputated thumb\n\t* The presence of any associated injuries to the surrounding tissues\n\t* The patient's overall health and medical comorbidities\n\t* The availability of a suitable donor site for re-attachment\n\n**Surgical Considerations:**\n\nRe-implantation of the amputated thumb involves a multidisciplinary approach, including orthopedic surgery, plastic surgery, and hand surgery. The procedure involves:\n\t* Debridement of the amputated thumb to remove any non-viable tissue\n\t* Re-attachment of the thumb to the remaining stump using microsurgical techniques\n\t* Re-establishment of blood flow and nerve function\n\t* Post-operative care and rehabilitation to optimize functional recovery\n\n**Complications:**\n\nPotential complications associated with re-implantation of the amputated thumb include:\n\t* Infection\n\t* Nerve damage\n\t* Vascular compromise\n\t* Non-union or delayed union of the re-attached thumb\n\t* Chronic pain or neuropathic pain\n\n**Evidence Level:**\n\nThe decision to proceed with re-implantation of the amputated thumb is based on evidence from Level I and II studies, which demonstrate improved functional outcomes and patient satisfaction with re-implantation compared to conservative management alone [1, 2].\n\n**Guidelines:**\n\nThe American Academy of Orthopaedic Surgeons (AAOS) and the American Society for Surgery of the Hand (ASSH) provide guidelines for the management of thumb amputations, recommending re-implantation as a viable option for patients with suitable candidates [3, 4].\n\n**References:**\n\n[1] Chung, K. C., et al. (2011). A prospective study of reimplantation of amputated digits. Journal of Hand Surgery, 36(10), 1731-1738.\n\n[2] Weinzweig, N., et al. (2005). Reimplantation of the",
+      "context_sources": 5,
+      "response_time": 13.608276128768921,
+      "similarity": 0.012241329058583503,
+      "term_coverage": 1.0,
+      "length_ratio": 1.0,
+      "accuracy_score": 0.5061206645292917,
+      "expected_terms": [
+        "amputation",
+        "injury"
+      ],
+      "rag_terms": [
+        "amputation",
+        "injury",
+        "pain",
+        "nerve",
+        "blood"
+      ],
+      "missing_terms": [],
+      "extra_terms": [
+        "nerve",
+        "pain",
+        "blood"
+      ]
+    }
+  ],
+  "top_performers": [],
+  "needs_improvement": [
+    {
+      "question_id": 2,
+      "question": "What are appropriate therapies for this patient?",
+      "expected_answer": "Rapid extrication with C-collar onto a long backboard, application of the SAM binder, rapid transport, and establishment of a large bore IV of normal saline enroute to a trauma center would be the preferred interventions for this patient, with secondary survey potentially leading to other therapies (e.g. chest decompression, etc.) \u2013 the SAM binder helps with typical 'open book' pelvic fractures to bring the 'wings' of the pelvis together and help stop bleeding \u2013 it should be applied any time you suspect a pelvic fracture (this could be an unresponsive multi-trauma patient with hypotension, for example, not just patients with pelvic pain)",
+      "rag_response": "**Clinical Assessment:**\n\nBased on the provided information, the patient presents with a lower limb deformity, likely a varus or valgus deformity, given the mention of the lateral and medial collateral ligaments. The deformity may be symptomatic, causing pain and inflammation, or asymptomatic. A thorough clinical assessment, including a detailed history, physical examination, and radiographic evaluation, is necessary to determine the extent and nature of the deformity.\n\n**Management Options:**\n\n1. **Conservative Management:**\n\t* Physical therapy to improve range of motion, strength, and proprioception.\n\t* Orthotics, such as shoe inserts or orthotics, to redistribute pressure and alleviate pain.\n\t* Pain management with medications, such as NSAIDs or acetaminophen.\n2. **Surgical Management:**\n\t* Osteotomy: a surgical procedure to correct the deformity by cutting and realigning the bone.\n\t* Ligament reconstruction: to address laxity or tightness of the collateral ligaments.\n\t* Arthroplasty: in cases of severe joint damage or deformity.\n\n**Surgical Considerations:**\n\n1. **Indications:** Surgical correction is indicated for symptomatic deformities, significant joint damage, or failure of conservative management.\n2. **Techniques:** Osteotomy, ligament reconstruction, or arthroplasty can be performed, depending on the extent and nature of the deformity.\n3. **Complications:** Surgical complications, such as infection, nerve damage, or blood clots, must be managed promptly.\n\n**Complications:**\n\n1. **Infection:** treated with antibiotics and, in severe cases, surgical debridement.\n2. **Nerve damage:** managed with pain management and, in some cases, surgical intervention.\n3. **Blood clots:** treated with anticoagulation and, in severe cases, surgical intervention.\n\n**Evidence Level:**\n\nThe evidence for surgical correction of lower limb deformities is level I and II, with numerous studies demonstrating the effectiveness of osteotomy and ligament reconstruction in improving function and reducing pain.\n\n**Guidelines:**\n\n1. **American Academy of Orthopaedic Surgeons (AAOS):** recommends surgical correction for symptomatic deformities and significant joint damage. [1]\n2. **American College of Foot and Ankle Surgeons (ACFAS):** recommends conservative management for asymptomatic deformities and surgical correction for symptomatic deformities. [2]\n3. **International Society of Orthopaedic Surgery and Traumatology (SICOT):** recommends a multidisciplinary approach to management, including conservative and surgical options. [3]\n\nReferences:\n\n[1] American Academy of Orthopaedic Surgeons. (2019). Lower Limb Deformities. Retrieved from <https://orthoinfo.org/en/staying-healthy/lower-limb-deformities/>\n\n[2] American College of Foot and Ankle Surgeons. (",
+      "context_sources": 5,
+      "response_time": 8.242526769638062,
+      "similarity": 0.013430656934306569,
+      "term_coverage": 0.5,
+      "length_ratio": 1.0,
+      "accuracy_score": 0.35671532846715326,
+      "expected_terms": [
+        "extrication",
+        "pain",
+        "trauma",
+        "fracture"
+      ],
+      "rag_terms": [
+        "trauma",
+        "bone",
+        "ligament",
+        "pain",
+        "nerve",
+        "deformity",
+        "joint",
+        "blood"
+      ],
+      "missing_terms": [
+        "extrication",
+        "fracture"
+      ],
+      "extra_terms": [
+        "bone",
+        "joint",
+        "nerve",
+        "deformity",
+        "ligament",
+        "blood"
+      ]
+    },
+    {
+      "question_id": 6,
+      "question": "How should this injury be cared for?",
+      "expected_answer": "Traction splinting is indicated for midshaft, isolated femur fractures. It is somewhat time-consuming however, and simple immobilization on a backboard should be considered for a patient with multi-system injuries. When applying a traction device, make sure to place the groin strap as far up as possible. Once this strap is applied, and a foot harness in place, traction is applied, then the rest of the straps placed.",
+      "rag_response": "**Clinical Assessment:**\n\nUpon presentation, the patient should undergo a thorough clinical evaluation to assess the extent of the injury. This includes:\n\n1. **Neurological Examination:** Perform a meticulous neurological examination to assess motor function, sensation, and reflexes. Document the findings according to the guidelines provided in [3].\n2. **Imaging Studies:** Order radiographs (X-rays) of the shoulder and humerus to evaluate for fractures, dislocations, or other bony abnormalities. Consider computed tomography (CT) scans or magnetic resonance imaging (MRI) if there is suspicion of soft tissue injuries or internal derangement.\n3. **Spinal Immobilization:** Maintain spinal immobilization using a collar, spinal board, and blocks, as per the guidelines in [2].\n\n**Management Options:**\n\n1. **Conservative Management:** For patients with stable fractures or dislocations, conservative management may be considered. This includes:\n\t* Immobilization in a sling or orthosis\n\t* Pain management with analgesics or non-steroidal anti-inflammatory drugs (NSAIDs)\n\t* Early mobilization and physical therapy to prevent stiffness and promote healing\n2. **Surgical Management:** For patients with unstable fractures or dislocations, surgical management may be necessary. This includes:\n\t* Open reduction and internal fixation (ORIF) of fractures\n\t* Arthroscopic or open repair of soft tissue injuries\n\t* Shoulder arthroplasty or hemiarthroplasty for severe fractures or dislocations\n\n**Surgical Considerations:**\n\n1. **Timing of Surgery:** Surgery should be performed as soon as possible, ideally within 24-48 hours, to minimize the risk of complications and promote healing.\n2. **Type of Surgery:** The type of surgery depends on the severity of the injury and the patient's overall condition. ORIF may be necessary for unstable fractures, while arthroscopic or open repair may be necessary for soft tissue injuries.\n3. **Shoulder Arthroplasty:** Consider shoulder arthroplasty or hemiarthroplasty for severe fractures or dislocations that are not amenable to conservative management.\n\n**Complications:**\n\n1. **Infection:** Monitor for signs of infection, such as redness, swelling, or purulent discharge.\n2. **Nerve Injury:** Be aware of the risk of nerve injury, particularly in patients with severe fractures or dislocations.\n3. **Malunion or Nonunion:** Monitor for signs of malunion or nonunion, such as persistent pain or limited mobility.\n4. **Shoulder Instability:** Be aware of the risk of shoulder instability, particularly in patients with severe fractures or dislocations.\n\n**Evidence Level:**\n\nThe evidence for the management of shoulder injuries is based on Level II and III studies, including case series and retrospective reviews.\n\n**Guidelines:**\n\n1. **American Academy of Orthopaedic Surgeons (AAOS):** The AAOS provides guidelines for the management",
+      "context_sources": 5,
+      "response_time": 7.219709157943726,
+      "similarity": 0.00849514563106796,
+      "term_coverage": 0.5,
+      "length_ratio": 1.0,
+      "accuracy_score": 0.354247572815534,
+      "expected_terms": [
+        "traction",
+        "splint",
+        "immobilization",
+        "fracture"
+      ],
+      "rag_terms": [
+        "immobilization",
+        "injury",
+        "swelling",
+        "dislocation",
+        "reduction",
+        "fracture",
+        "pain",
+        "nerve"
+      ],
+      "missing_terms": [
+        "traction",
+        "splint"
+      ],
+      "extra_terms": [
+        "injury",
+        "swelling",
+        "dislocation",
+        "reduction",
+        "pain",
+        "nerve"
+      ]
+    },
+    {
+      "question_id": 7,
+      "question": "Following any splinting procedure, what three things should be assessed and documented?",
+      "expected_answer": "Circulation, motor, and sensory function. We often we forget to do this, and it can be a major issue as sometimes, particularly with traction or re-positioning the exam can get worse instead of better.",
+      "rag_response": "**Clinical Assessment:**\n\nFollowing any splinting procedure, it is essential to assess and document the following three key parameters:\n\n1. **Range of Motion (ROM):** Evaluate the patient's ROM in the affected joint or limb to ensure that the splint is not causing any restriction or stiffness. This can be done using a goniometer or by observing the patient's ability to move their joint through a normal range of motion.\n2. **Pain and Comfort:** Assess the patient's pain and comfort levels to ensure that the splint is not causing any discomfort or pain. This can be done using a pain scale, such as the Visual Analog Scale (VAS) or the Numerical Rating Scale (NRS).\n3. **Swelling and Circulation:** Evaluate the patient's swelling and circulation in the affected limb to ensure that the splint is not causing any compromise to blood flow. This can be done by observing the limb for signs of swelling, redness, or coolness to the touch.\n\n**Management Options:**\n\nThe management of splinting procedures depends on the underlying condition and the patient's response to treatment. The following options can be considered:\n\n* **Conservative Management:** This involves the use of splints, casts, or orthotics to support and stabilize the affected joint or limb. This can be effective for conditions such as fractures, sprains, or strains.\n* **Surgical Management:** This involves surgical intervention to address underlying conditions such as fractures, tendon or ligament injuries, or joint instability. This may be necessary for conditions that do not respond to conservative management.\n\n**Surgical Considerations:**\n\nSurgical management of splinting procedures may involve the following considerations:\n\n* **Indications:** Surgical intervention may be indicated for conditions that do not respond to conservative management, or for conditions that require more aggressive treatment.\n* **Contraindications:** Surgical intervention may be contraindicated for conditions that are not suitable for surgery, or for patients who are not good candidates for surgery.\n* **Surgical Techniques:** Various surgical techniques may be used, including open reduction and internal fixation (ORIF), arthroscopy, or joint replacement.\n\n**Complications:**\n\nComplications of splinting procedures can include:\n\n* **Infection:** Infection is a potential complication of splinting procedures, particularly if the splint is not properly cleaned and maintained.\n* **Nerve Damage:** Nerve damage can occur if the splint is too tight or if it causes pressure on the nerves.\n* **Vascular Compromise:** Vascular compromise can occur if the splint causes compression of blood vessels, leading to decreased circulation.\n\n**Evidence Level:**\n\nThe evidence level for splinting procedures is generally based on Level III evidence, which includes case series and cohort studies.\n\n**Guidelines:**\n\nThe following guidelines can be referenced for splinting procedures:\n\n* **American Academy of Orthopaedic Surgeons (AAOS):** The AAOS",
+      "context_sources": 5,
+      "response_time": 11.000163555145264,
+      "similarity": 0.008747266479225243,
+      "term_coverage": 0.5,
+      "length_ratio": 1.0,
+      "accuracy_score": 0.35437363323961263,
+      "expected_terms": [
+        "traction",
+        "circulation"
+      ],
+      "rag_terms": [
+        "splint",
+        "swelling",
+        "reduction",
+        "fracture",
+        "ligament",
+        "pain",
+        "circulation",
+        "nerve",
+        "joint",
+        "blood",
+        "tendon"
+      ],
+      "missing_terms": [
+        "traction"
+      ],
+      "extra_terms": [
+        "splint",
+        "swelling",
+        "reduction",
+        "fracture",
+        "pain",
+        "nerve",
+        "joint",
+        "ligament",
+        "blood",
+        "tendon"
+      ]
+    },
+    {
+      "question_id": 8,
+      "question": "If the patient's foot is cool, and pulses not present, what can be done? How long until the muscles and limb suffer irreversible damage?",
+      "expected_answer": "In the setting of a femur fracture, the amount of traction may be varied to see if the pulse will return. Reduction to neutral alignment of other extremity fractures may help to restore a pulse. The general rule is within 4 hours, the muscles will die, and survival of the limb will be in question.",
+      "rag_response": "**Clinical Assessment:**\n\nA patient presents with a cool foot and absent pulses, suggesting compromised perfusion to the lower limb. This clinical scenario warrants immediate attention to prevent irreversible damage to the muscles and limb. The patient's symptoms are consistent with acute limb ischemia (ALI), a medical emergency that requires prompt evaluation and treatment.\n\n**Management Options:**\n\n1. **Initial Assessment:** Perform a thorough history and physical examination to determine the cause of ALI. Evaluate the patient's medical history, including any pre-existing vascular disease, and assess the limb for signs of ischemia, such as pallor, pulselessness, poikilothermia (coolness), pain, and paresthesia (numbness or tingling).\n2. **Non-Invasive Testing:** Order non-invasive vascular studies, such as ankle-brachial index (ABI) and toe-brachial index (TBI), to assess peripheral artery disease (PAD) and identify the level of obstruction.\n3. **Invasive Testing:** Consider invasive testing, such as angiography, to visualize the affected vessels and determine the extent of the obstruction.\n\n**Surgical Considerations:**\n\n1. **Embolectomy:** Perform an emergency embolectomy to remove the embolus and restore blood flow to the affected limb.\n2. **Bypass Grafting:** Consider bypass grafting to bypass the obstructed segment and restore blood flow to the affected limb.\n3. **Thrombectomy:** Perform a thrombectomy to remove the thrombus and restore blood flow to the affected limb.\n\n**Complications:**\n\n1. **Ischemic Muscle Necrosis:** Irreversible damage to the muscles and limb can occur if perfusion is not restored promptly.\n2. **Gangrene:** Ischemia can lead to gangrene, which may require amputation.\n3. **Infection:** Ischemia can increase the risk of infection, which can lead to sepsis and multi-organ failure.\n\n**Evidence Level:**\n\n* The American Heart Association (AHA) recommends immediate surgical intervention for ALI (Class I, Level of Evidence A). [1]\n* The Society for Vascular Surgery (SVS) recommends embolectomy or bypass grafting for ALI (Class I, Level of Evidence A). [2]\n\n**Guidelines:**\n\n* The AHA guidelines for the management of ALI recommend the following: [1]\n + Immediate surgical intervention for ALI\n + Use of anticoagulation therapy to prevent further embolization\n + Use of vasodilators to improve blood flow to the affected limb\n* The SVS guidelines for the management of ALI recommend the following: [2]\n + Embolectomy or bypass grafting for ALI\n + Use of anticoagulation therapy to prevent further embolization\n + Use of vasodilators to improve blood flow to the affected limb\n\nReferences:\n\n[1]",
+      "context_sources": 5,
+      "response_time": 15.399604320526123,
+      "similarity": 0.0040719375636240245,
+      "term_coverage": 0.4,
+      "length_ratio": 1.0,
+      "accuracy_score": 0.322035968781812,
+      "expected_terms": [
+        "reduction",
+        "fracture",
+        "pulse",
+        "traction",
+        "muscle"
+      ],
+      "rag_terms": [
+        "amputation",
+        "artery",
+        "muscle",
+        "pain",
+        "pulse",
+        "blood"
+      ],
+      "missing_terms": [
+        "traction",
+        "reduction",
+        "fracture"
+      ],
+      "extra_terms": [
+        "blood",
+        "pain",
+        "amputation",
+        "artery"
+      ]
+    },
+    {
+      "question_id": 9,
+      "question": "A patient in the other vehicle is complaining of knee pain. On extrication, you place him on a backboard. His knee is slightly bent, and the hip is internally rotated. He is unable to straighten the leg without severe pain. He believes that his knee hit the dashboard. What do you suspect is injured?",
+      "expected_answer": "Patients with posterior hip dislocations from impact vs. the dash often refer pain to the knee. This patient exhibits a typical position. Reduction needs to occur soon to prevent compressive damage to the sciatic nerve. This cannot be done in the field and the patient will have to be immobilized with the knee flexed.",
+      "rag_response": "**Clinical Assessment:**\n\nUpon initial assessment, the patient presents with knee pain, a slightly bent knee, and internal rotation of the hip. The inability to straighten the leg without severe pain suggests a possible injury to the knee joint or surrounding structures. Given the mechanism of injury (dashboard impact), a high index of suspicion for a ligamentous injury, specifically an anterior cruciate ligament (ACL) tear, is warranted.\n\nThe patient's symptoms and physical examination findings are consistent with a possible ACL injury, which is a common consequence of dashboard injuries. The ACL is a critical stabilizer of the knee joint, and its injury can lead to instability, pain, and functional impairment.\n\n**Management Options:**\n\n1. **Conservative Management:**\n\t* Initial treatment involves immobilization, pain management, and physical therapy to maintain range of motion and prevent stiffness.\n\t* A knee brace may be used to provide stability and support.\n\t* Physical therapy focuses on strengthening the surrounding muscles, improving proprioception, and enhancing functional activities.\n2. **Surgical Considerations:**\n\t* Surgical repair or reconstruction of the ACL may be necessary for patients with significant instability, recurrent knee injuries, or persistent symptoms.\n\t* The decision to operate is based on the patient's functional status, activity level, and the severity of the injury.\n\t* Surgical options include arthroscopic ACL reconstruction, open ACL reconstruction, or ACL repair.\n\n**Surgical Considerations:**\n\n* **Arthroscopic ACL Reconstruction:**\n\t+ This is a minimally invasive procedure that involves drilling tunnels in the femur and tibia to secure the graft.\n\t+ The graft is typically taken from the patellar tendon or hamstring tendons.\n\t+ Arthroscopic ACL reconstruction is a common and effective treatment option for ACL injuries.\n* **Open ACL Reconstruction:**\n\t+ This procedure involves a larger incision to access the knee joint and secure the graft.\n\t+ Open ACL reconstruction may be necessary for complex injuries or revision surgeries.\n\n**Complications:**\n\n* **Postoperative Complications:**\n\t+ Infection\n\t+ Nerve damage\n\t+ Vascular injury\n\t+ Graft failure\n* **Chronic Complications:**\n\t+ Knee stiffness\n\t+ Arthritis\n\t+ Meniscal tears\n\t+ Ligamentous laxity\n\n**Evidence Level:**\n\n* The American Academy of Orthopaedic Surgeons (AAOS) recommends arthroscopic ACL reconstruction for patients with ACL injuries who are active and have significant instability (Level I evidence).\n* The AAOS also recommends conservative management for patients with ACL injuries who are sedentary or have mild instability (Level II evidence).\n\n**Guidelines:**\n\n* American Academy of Orthopaedic Surgeons (AAOS). (2019). Anterior Cruciate Ligament Injuries. Retrieved from <https://www.aaos.org/~/media/AAOS/advocacy/fact%20sheets/2019/",
+      "context_sources": 5,
+      "response_time": 28.086636066436768,
+      "similarity": 0.0075282308657465494,
+      "term_coverage": 0.5,
+      "length_ratio": 1.0,
+      "accuracy_score": 0.3537641154328733,
+      "expected_terms": [
+        "nerve",
+        "pain",
+        "dislocation",
+        "reduction"
+      ],
+      "rag_terms": [
+        "immobilization",
+        "injury",
+        "ligament",
+        "pain",
+        "nerve",
+        "joint",
+        "muscle",
+        "tendon"
+      ],
+      "missing_terms": [
+        "dislocation",
+        "reduction"
+      ],
+      "extra_terms": [
+        "immobilization",
+        "injury",
+        "ligament",
+        "tendon",
+        "joint",
+        "muscle"
+      ]
+    },
+    {
+      "question_id": 16,
+      "question": "If this fracture is missed, will the patient notice?",
+      "expected_answer": "This fracture is easily missed, the patient may walk around for some time with nagging, but not severe pain. Injuries to the peroneal nerve are relatively common if this isn't recognized and treated. Pro hockey players have played on these fractures during playoffs etc. (against medical advice, of course), so they are not an immediately disabling injury.",
+      "rag_response": "**Clinical Assessment:**\n\nA patient with a missed tibial deformity, specifically a varus malalignment, may not immediately notice the deformity. However, as the deformity progresses, it can lead to various symptoms, including:\n\n- Gait disturbances\n- Pain in the knee or ankle\n- Limited range of motion\n- Muscle weakness\n- Skin irritation or pressure sores due to uneven weight distribution\n\nThe patient may also experience functional limitations, such as difficulty walking or climbing stairs, which can impact their quality of life.\n\n**Management Options:**\n\n1. **Conservative Management:**\n   - Initial treatment may involve physical therapy to improve range of motion and strengthen surrounding muscles.\n   - Orthotics, such as shoe inserts or knee braces, may be prescribed to alleviate symptoms and improve alignment.\n   - Pain management strategies, including medication and lifestyle modifications, may be employed to manage discomfort.\n\n2. **Surgical Considerations:**\n   - Surgical correction is often necessary to realign the tibia and restore the mechanical axis.\n   - The goal of surgery is to correct the deformity, alleviate symptoms, and improve functional outcomes.\n   - Surgical options include:\n     - **Osteotomy:** A surgical procedure that involves cutting and realigning the bone to correct the deformity.\n     - **Lengthening:** A procedure that involves lengthening the bone to correct the deformity and improve alignment.\n     - **Arthrodesis:** A procedure that involves fusing the joint to eliminate pain and improve stability.\n\n**Surgical Considerations:**\n\n- **Step 3B:** After opening wedge correction, the osteotomy also realigns the diaphyseal line of the convex cortex so that it is colinear.\n- **Tibial Frame Applied:** To correct deformity illustrated in A (Figure 32.19).\n- **Mechanical Axis Reestablished:** A total of 26\u00b0, realigning and overlapping the mechanical axis lines to reestablish the colinearity of the hip-knee-ankle axis.\n\n**Complications:**\n\n- **Infection:** A common complication of surgical procedures, which can be managed with antibiotics and wound care.\n- **Nerve Damage:** A potential complication of surgery, which can be managed with nerve repair or resection.\n- **Malunion:** A complication where the bone fails to heal properly, which can be managed with additional surgery.\n\n**Evidence Level:**\n\n- The American Academy of Orthopaedic Surgeons (AAOS) recommends surgical correction for tibial deformities that cause significant symptoms or functional limitations. [1]\n- The Orthopaedic Trauma Association (OTA) recommends a multidisciplinary approach to managing tibial deformities, including orthotics, physical therapy, and surgery. [2]\n\n**Guidelines:**\n\n- The AAOS guidelines for the management of tibial deformities recommend a stepwise approach, starting with conservative management and progressing to surgery if necessary",
+      "context_sources": 5,
+      "response_time": 6.893712997436523,
+      "similarity": 0.005545286506469501,
+      "term_coverage": 0.5,
+      "length_ratio": 1.0,
+      "accuracy_score": 0.35277264325323476,
+      "expected_terms": [
+        "nerve",
+        "pain",
+        "fracture",
+        "injury"
+      ],
+      "rag_terms": [
+        "trauma",
+        "bone",
+        "pain",
+        "nerve",
+        "deformity",
+        "joint",
+        "muscle"
+      ],
+      "missing_terms": [
+        "fracture",
+        "injury"
+      ],
+      "extra_terms": [
+        "trauma",
+        "bone",
+        "deformity",
+        "joint",
+        "muscle"
+      ]
+    },
+    {
+      "question_id": 17,
+      "question": "The patient states he cannot feel his 4th and 5th toes. He is panicked over the thought of losing his sensation there 'for life'. What can you tell him?",
+      "expected_answer": "Almost all cases in which the patient reports altered sensation in the absence of a circulatory deficit or major dislocation/deformity will resolve over days to weeks. Essentially, swelling around the injury affects nerves, which alters sensation to points distally. As the swelling goes away, the nerve usually will gradually recover its function. Rapid progression of sensory changes is often a bad thing, and may signal compartment syndrome or poor circulation.",
+      "rag_response": "**Clinical Assessment:**\n\nThe patient presents with a complaint of numbness in the 4th and 5th toes, which is a common symptom of peripheral neuropathy. The patient's primary concern is the potential loss of sensation in these toes, which may be a sign of a more significant underlying condition. A thorough clinical assessment is necessary to determine the cause of the numbness.\n\n**Differential Diagnosis:**\n\n1. **Peripheral neuropathy**: caused by damage to the peripheral nerves, which can be due to various factors such as diabetes, trauma, or compression.\n2. **Sensory nerve entrapment**: caused by compression of the sensory nerves, which can be due to conditions such as Morton's neuroma or tarsal tunnel syndrome.\n3. **Radial or peroneal nerve injury**: caused by trauma or compression of the radial or peroneal nerves, which can result in numbness in the toes.\n\n**Management Options:**\n\n1. **Conservative management**: includes physical therapy, orthotics, and pain management to alleviate symptoms and prevent further damage.\n2. **Surgical management**: may be necessary to relieve compression or repair damaged nerves.\n\n**Surgical Considerations:**\n\n1. **Sensory nerve decompression**: involves releasing compressed nerves to alleviate symptoms.\n2. **Nerve repair**: involves repairing damaged nerves to restore function.\n3. **Nerve grafting**: involves using a graft to bridge a nerve gap and restore function.\n\n**Complications:**\n\n1. **Nerve damage**: can occur during surgery, leading to permanent numbness or weakness.\n2. **Infection**: can occur after surgery, leading to further complications.\n3. **Scarring**: can occur after surgery, leading to limited mobility or numbness.\n\n**Evidence Level:**\n\n1. **Level I evidence**: studies have shown that surgical management can be effective in relieving symptoms of peripheral neuropathy and sensory nerve entrapment (1, 2).\n2. **Level II evidence**: studies have shown that conservative management can be effective in alleviating symptoms of peripheral neuropathy and sensory nerve entrapment (3, 4).\n\n**Guidelines:**\n\n1. **American Academy of Orthopaedic Surgeons (AAOS)**: recommends conservative management for mild cases of peripheral neuropathy and sensory nerve entrapment (5).\n2. **American Academy of Neurology (AAN)**: recommends surgical management for severe cases of peripheral neuropathy and sensory nerve entrapment (6).\n\n**References:**\n\n1. **Level I evidence**: \"Surgical management of peripheral neuropathy: a systematic review\" (Journal of Neurosurgery, 2019).\n2. **Level I evidence**: \"Sensory nerve decompression for Morton's neuroma: a systematic review\" (Journal of Foot and Ankle Surgery, 2018).\n3. **Level II evidence**: \"Conservative management of peripheral neuropathy: a systematic review\" (Journal",
+      "context_sources": 5,
+      "response_time": 25.58589506149292,
+      "similarity": 0.00922509225092251,
+      "term_coverage": 0.3333333333333333,
+      "length_ratio": 1.0,
+      "accuracy_score": 0.3046125461254613,
+      "expected_terms": [
+        "injury",
+        "swelling",
+        "dislocation",
+        "circulation",
+        "nerve",
+        "deformity"
+      ],
+      "rag_terms": [
+        "nerve",
+        "pain",
+        "trauma",
+        "injury"
+      ],
+      "missing_terms": [
+        "swelling",
+        "dislocation",
+        "deformity",
+        "circulation"
+      ],
+      "extra_terms": [
+        "pain",
+        "trauma"
+      ]
+    }
+  ]
+}

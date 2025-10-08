@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BoneQuest Documentation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+        .gradient-bg { background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); }
+        .code-block { background: #1e293b; color: #e2e8f0; }
+        .feature-card { transition: transform 0.2s; }
+        .feature-card:hover { transform: translateY(-2px); }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="gradient-bg text-white py-8">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                    <div class="w-12 h-12 bg-white/20 backdrop-blur-lg rounded-xl flex items-center justify-center">
+                        <span class="text-white font-bold text-xl">BQ</span>
+                    </div>
+                    <div>
+                        <h1 class="text-3xl font-bold">BoneQuest Documentation</h1>
+                        <p class="text-blue-100">Complete guide to orthopedic AI assistant</p>
+                    </div>
+                </div>
+                <a href="index.html" class="bg-white/20 backdrop-blur-lg px-4 py-2 rounded-lg hover:bg-white/30 transition-colors">
+                    ← Back to App
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="bg-white border-b sticky top-0 z-40">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex space-x-8 overflow-x-auto py-4">
+                <a href="#overview" class="text-blue-600 hover:text-blue-800 font-medium whitespace-nowrap">Overview</a>
+                <a href="#features" class="text-gray-600 hover:text-blue-600 whitespace-nowrap">Features</a>
+                <a href="#rag" class="text-gray-600 hover:text-blue-600 whitespace-nowrap">RAG System</a>
+                <a href="#modes" class="text-gray-600 hover:text-blue-600 whitespace-nowrap">User Modes</a>
+                <a href="#feedback" class="text-gray-600 hover:text-blue-600 whitespace-nowrap">Feedback System</a>
+                <a href="#api" class="text-gray-600 hover:text-blue-600 whitespace-nowrap">API Reference</a>
+                <a href="#performance" class="text-gray-600 hover:text-blue-600 whitespace-nowrap">Performance</a>
+                <a href="#deployment" class="text-gray-600 hover:text-blue-600 whitespace-nowrap">Deployment</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Content -->
+    <div class="max-w-6xl mx-auto px-4 py-8">
+        <!-- Overview -->
+        <section id="overview" class="mb-12">
+            <h2 class="text-2xl font-bold mb-6">Overview</h2>
+            <div class="bg-white rounded-lg p-6 shadow-sm">
+                <p class="text-lg text-gray-700 mb-4">
+                    BoneQuest is an advanced orthopedic AI assistant powered by Retrieval-Augmented Generation (RAG) technology. 
+                    It provides evidence-based medical information to both patients and healthcare professionals.
+                </p>
+                <div class="grid md:grid-cols-4 gap-6 mt-6">
+                    <div class="text-center">
+                        <div class="w-16 h-16 gradient-bg rounded-xl flex items-center justify-center mx-auto mb-3">
+                            <span class="text-white text-2xl">🧠</span>
+                        </div>
+                        <h3 class="font-semibold">AI-Powered</h3>
+                        <p class="text-sm text-gray-600">Groq LLaMA 3.1 8B model</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-16 h-16 gradient-bg rounded-xl flex items-center justify-center mx-auto mb-3">
+                            <span class="text-white text-2xl">📚</span>
+                        </div>
+                        <h3 class="font-semibold">Evidence-Based</h3>
+                        <p class="text-sm text-gray-600">RAG with document citations</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-16 h-16 gradient-bg rounded-xl flex items-center justify-center mx-auto mb-3">
+                            <span class="text-white text-2xl">👥</span>
+                        </div>
+                        <h3 class="font-semibold">Role-Based</h3>
+                        <p class="text-sm text-gray-600">Patient to Consultant levels</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-16 h-16 gradient-bg rounded-xl flex items-center justify-center mx-auto mb-3">
+                            <span class="text-white text-2xl">📈</span>
+                        </div>
+                        <h3 class="font-semibold">Analytics</h3>
+                        <p class="text-sm text-gray-600">Advanced feedback system</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features -->
+        <section id="features" class="mb-12">
+            <h2 class="text-2xl font-bold mb-6">Core Features</h2>
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="feature-card bg-white rounded-lg p-6 shadow-sm">
+                    <h3 class="text-lg font-semibold mb-3 flex items-center">
+                        <span class="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center mr-3">💬</span>
+                        Intelligent Chat Interface
+                    </h3>
+                    <ul class="text-gray-600 space-y-2">
+                        <li>• ChatGPT-like conversational interface</li>
+                        <li>• Real-time streaming responses</li>
+                        <li>• Session management and history</li>
+                        <li>• Voice input/output support</li>
+                    </ul>
+                </div>
+                
+                <div class="feature-card bg-white rounded-lg p-6 shadow-sm">
+                    <h3 class="text-lg font-semibold mb-3 flex items-center">
+                        <span class="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center mr-3">🔍</span>
+                        Advanced Search
+                    </h3>
+                    <ul class="text-gray-600 space-y-2">
+                        <li>• TF-IDF vector search</li>
+                        <li>• Partial word matching</li>
+                        <li>• Relevance scoring</li>
+                        <li>• Context-aware retrieval</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card bg-white rounded-lg p-6 shadow-sm">
+                    <h3 class="text-lg font-semibold mb-3 flex items-center">
+                        <span class="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center mr-3">📊</span>
+                        Analytics Dashboard
+                    </h3>
+                    <ul class="text-gray-600 space-y-2">
+                        <li>• User feedback analytics</li>
+                        <li>• Performance metrics</li>
+                        <li>• Common issues tracking</li>
+                        <li>• Improvement suggestions</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card bg-white rounded-lg p-6 shadow-sm">
+                    <h3 class="text-lg font-semibold mb-3 flex items-center">
+                        <span class="w-8 h-8 bg-yellow-100 rounded-lg flex items-center justify-center mr-3">🔒</span>
+                        Admin Controls
+                    </h3>
+                    <ul class="text-gray-600 space-y-2">
+                        <li>• Document upload management</li>
+                        <li>• Feedback mode toggle</li>
+                        <li>• System statistics</li>
+                        <li>• User session monitoring</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- RAG System -->
+        <section id="rag" class="mb-12">
+            <h2 class="text-2xl font-bold mb-6">RAG (Retrieval-Augmented Generation)</h2>
+            <div class="bg-white rounded-lg p-6 shadow-sm">
+                <h3 class="text-lg font-semibold mb-4">How RAG Works in BoneQuest</h3>
+                <div class="grid md:grid-cols-3 gap-6 mb-6">
+                    <div class="text-center">
+                        <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mx-auto mb-3">
+                            <span class="text-blue-600 font-bold">1</span>
+                        </div>
+                        <h4 class="font-medium">Document Processing</h4>
+                        <p class="text-sm text-gray-600 mt-2">PDFs are extracted and chunked into 1500-word segments with 100-word overlap</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-3">
+                            <span class="text-green-600 font-bold">2</span>
+                        </div>
+                        <h4 class="font-medium">Retrieval</h4>
+                        <p class="text-sm text-gray-600 mt-2">TF-IDF search finds relevant chunks with partial matching and scoring</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mx-auto mb-3">
+                            <span class="text-purple-600 font-bold">3</span>
+                        </div>
+                        <h4 class="font-medium">Generation</h4>
+                        <p class="text-sm text-gray-600 mt-2">LLaMA model generates responses with inline citations [1][2][3]</p>
+                    </div>
+                </div>
+                
+                <div class="code-block rounded-lg p-4 mb-4">
+                    <h4 class="text-white font-medium mb-2">Search Algorithm</h4>
+                    <pre class="text-sm"><code>def search_documents(query, n_results=5):
+    # Enhanced keyword matching with partial matches
+    for word in query.split():
+        if len(word) > 2:
+            # Exact match: score += count * 2
+            # Partial match: score += 0.5
+    
+    # Sort by relevance score
+    return top_results[:n_results]</code></pre>
+                </div>
+
+                <div class="bg-blue-50 rounded-lg p-4">
+                    <h4 class="font-medium text-blue-800 mb-2">Key Benefits</h4>
+                    <ul class="text-blue-700 text-sm space-y-1">
+                        <li>• <strong>Accuracy:</strong> Responses based on uploaded medical documents</li>
+                        <li>• <strong>Traceability:</strong> Every claim is cited with source references</li>
+                        <li>• <strong>Relevance:</strong> Advanced search finds contextually appropriate content</li>
+                        <li>• <strong>Freshness:</strong> Knowledge base updates with new document uploads</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- User Modes -->
+        <section id="modes" class="mb-12">
+            <h2 class="text-2xl font-bold mb-6">Role-Based Clinical Support</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-white rounded-lg p-6 shadow-sm">
+                    <h3 class="text-lg font-semibold mb-4 flex items-center">
+                        <span class="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center mr-3">👤</span>
+                        Patient Mode
+                    </h3>
+                    <div class="space-y-3">
+                        <div>
+                            <h4 class="font-medium text-gray-800">Format:</h4>
+                            <ul class="text-sm text-gray-600 mt-1 space-y-1">
+                                <li>• TL;DR summary</li>
+                                <li>• Simple explanation</li>
+                                <li>• Next steps</li>
+                                <li>• Confidence level</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-medium text-gray-800">Style:</h4>
+                            <ul class="text-sm text-gray-600 mt-1 space-y-1">
+                                <li>• Plain language</li>
+                                <li>• Reassuring tone</li>
+                                <li>• Medical disclaimer</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg p-6 shadow-sm">
+                    <h3 class="text-lg font-semibold mb-4 flex items-center">
+                        <span class="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center mr-3">🎓</span>
+                        Junior Resident
+                    </h3>
+                    <div class="space-y-3">
+                        <div>
+                            <h4 class="font-medium text-gray-800">Format:</h4>
+                            <ul class="text-sm text-gray-600 mt-1 space-y-1">
+                                <li>• Clinical summary</li>
+                                <li>• Key learning points</li>
+                                <li>• Differential diagnosis</li>
+                                <li>• Red flags</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-medium text-gray-800">Focus:</h4>
+                            <ul class="text-sm text-gray-600 mt-1 space-y-1">
+                                <li>• Educational content</li>
+                                <li>• Basic concepts</li>
+                                <li>• Common pitfalls</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg p-6 shadow-sm">
+                    <h3 class="text-lg font-semibold mb-4 flex items-center">
+                        <span class="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center mr-3">👨‍⚕️</span>
+                        Senior Resident
+                    </h3>
+                    <div class="space-y-3">
+                        <div>
+                            <h4 class="font-medium text-gray-800">Format:</h4>
+                            <ul class="text-sm text-gray-600 mt-1 space-y-1">
+                                <li>• Clinical assessment</li>
+                                <li>• Management options</li>
+                                <li>• Surgical considerations</li>
+                                <li>• Complications</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-medium text-gray-800">Focus:</h4>
+                            <ul class="text-sm text-gray-600 mt-1 space-y-1">
+                                <li>• Decision-making</li>
+                                <li>• Evidence-based care</li>
+                                <li>• Guidelines</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg p-6 shadow-sm">
+                    <h3 class="text-lg font-semibold mb-4 flex items-center">
+                        <span class="w-8 h-8 bg-orange-100 rounded-lg flex items-center justify-center mr-3">🩺</span>
+                        Consultant
+                    </h3>
+                    <div class="space-y-3">
+                        <div>
+                            <h4 class="font-medium text-gray-800">Format:</h4>
+                            <ul class="text-sm text-gray-600 mt-1 space-y-1">
+                                <li>• Expert opinion</li>
+                                <li>• Advanced management</li>
+                                <li>• Surgical techniques</li>
+                                <li>• Teaching points</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-medium text-gray-800">Focus:</h4>
+                            <ul class="text-sm text-gray-600 mt-1 space-y-1">
+                                <li>• Complex cases</li>
+                                <li>• Latest research</li>
+                                <li>• Expert consultation</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-blue-50 rounded-lg p-6 mt-6">
+                <h3 class="text-lg font-semibold text-blue-800 mb-3">Clinical Role Selection</h3>
+                <p class="text-blue-700 mb-3">BoneQuest adapts its responses based on your clinical role and expertise level:</p>
+                <div class="grid md:grid-cols-2 gap-4 text-sm">
+                    <div>
+                        <h4 class="font-medium text-blue-800">Patient Mode:</h4>
+                        <p class="text-blue-600">Simple, empathetic explanations for general public with medical disclaimers</p>
+                    </div>
+                    <div>
+                        <h4 class="font-medium text-blue-800">Junior Resident:</h4>
+                        <p class="text-blue-600">Educational focus with learning objectives and basic clinical concepts</p>
+                    </div>
+                    <div>
+                        <h4 class="font-medium text-blue-800">Senior Resident:</h4>
+                        <p class="text-blue-600">Advanced clinical guidance with management decisions and evidence</p>
+                    </div>
+                    <div>
+                        <h4 class="font-medium text-blue-800">Consultant:</h4>
+                        <p class="text-blue-600">Expert-level consultation with complex cases and latest research</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Feedback System -->
+        <section id="feedback" class="mb-12">
+            <h2 class="text-2xl font-bold mb-6">Advanced Feedback System</h2>
+            <div class="bg-white rounded-lg p-6 shadow-sm">
+                <div class="grid md:grid-cols-2 gap-6 mb-6">
+                    <div>
+                        <h3 class="text-lg font-semibold mb-3">Feedback Collection</h3>
+                        <ul class="text-gray-600 space-y-2">
+                            <li>• <strong>Quick Feedback:</strong> 👍/👎 buttons</li>
+                            <li>• <strong>Detailed Feedback:</strong> Multi-dimensional ratings</li>
+                            <li>• <strong>Categories:</strong> Search relevance, accuracy, completeness</li>
+                            <li>• <strong>Comments:</strong> Free-text improvement suggestions</li>
+                            <li>• <strong>Corrections:</strong> User-provided accurate answers</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-semibold mb-3">Analytics & Insights</h3>
+                        <ul class="text-gray-600 space-y-2">
+                            <li>• <strong>Performance Metrics:</strong> Average ratings, trends</li>
+                            <li>• <strong>Issue Detection:</strong> Common problem identification</li>
+                            <li>• <strong>AI Suggestions:</strong> Automated improvement recommendations</li>
+                            <li>• <strong>Query Analysis:</strong> Search performance insights</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-50 rounded-lg p-4">
+                    <h4 class="font-medium mb-2">Feedback Processing Pipeline</h4>
+                    <div class="text-sm text-gray-600">
+                        <strong>Collection</strong> → <strong>Categorization</strong> → <strong>Analysis</strong> → <strong>Insights</strong> → <strong>Improvements</strong>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- API Reference -->
+        <section id="api" class="mb-12">
+            <h2 class="text-2xl font-bold mb-6">API Reference</h2>
+            <div class="space-y-6">
+                <div class="bg-white rounded-lg p-6 shadow-sm">
+                    <h3 class="text-lg font-semibold mb-4">Core Endpoints</h3>
+                    <div class="space-y-4">
+                        <div class="border-l-4 border-blue-500 pl-4">
+                            <h4 class="font-medium">POST /chat</h4>
+                            <p class="text-sm text-gray-600 mb-2">Send chat message with mode selection</p>
+                            <div class="code-block rounded p-3 text-sm">
+<pre>{
+  "query": "What is arthroscopy?",
+  "chat_history": [...],
+  "mode": "normal" // or "advanced"
+}</pre>
+                            </div>
+                        </div>
+
+                        <div class="border-l-4 border-green-500 pl-4">
+                            <h4 class="font-medium">POST /upload</h4>
+                            <p class="text-sm text-gray-600 mb-2">Upload PDF documents (admin only)</p>
+                            <div class="code-block rounded p-3 text-sm">
+<pre>Content-Type: multipart/form-data
+file: [PDF file]</pre>
+                            </div>
+                        </div>
+
+                        <div class="border-l-4 border-purple-500 pl-4">
+                            <h4 class="font-medium">POST /feedback</h4>
+                            <p class="text-sm text-gray-600 mb-2">Submit detailed user feedback</p>
+                            <div class="code-block rounded p-3 text-sm">
+<pre>{
+  "message_id": "msg_123",
+  "rating": 4,
+  "feedback_type": "positive",
+  "search_relevance": 4,
+  "response_accuracy": 5,
+  "comment": "Very helpful response"
+}</pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg p-6 shadow-sm">
+                    <h3 class="text-lg font-semibold mb-4">Analytics Endpoints</h3>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div>
+                            <h4 class="font-medium">GET /feedback/analytics</h4>
+                            <p class="text-sm text-gray-600">Comprehensive feedback analytics</p>
+                        </div>
+                        <div>
+                            <h4 class="font-medium">GET /stats</h4>
+                            <p class="text-sm text-gray-600">System statistics and document count</p>
+                        </div>
+                        <div>
+                            <h4 class="font-medium">GET /sessions</h4>
+                            <p class="text-sm text-gray-600">User chat sessions</p>
+                        </div>
+                        <div>
+                            <h4 class="font-medium">GET /health</h4>
+                            <p class="text-sm text-gray-600">System health check</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Performance -->
+        <section id="performance" class="mb-12">
+            <h2 class="text-2xl font-bold mb-6">Performance Metrics</h2>
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="bg-white rounded-lg p-6 shadow-sm text-center">
+                    <div class="text-3xl font-bold text-blue-600 mb-2">~2-4s</div>
+                    <h3 class="font-semibold">Response Time</h3>
+                    <p class="text-sm text-gray-600 mt-2">Average inference time including search and generation</p>
+                </div>
+                
+                <div class="bg-white rounded-lg p-6 shadow-sm text-center">
+                    <div class="text-3xl font-bold text-green-600 mb-2">600</div>
+                    <h3 class="font-semibold">Max Tokens</h3>
+                    <p class="text-sm text-gray-600 mt-2">Maximum response length for comprehensive answers</p>
+                </div>
+                
+                <div class="bg-white rounded-lg p-6 shadow-sm text-center">
+                    <div class="text-3xl font-bold text-purple-600 mb-2">1500</div>
+                    <h3 class="font-semibold">Chunk Size</h3>
+                    <p class="text-sm text-gray-600 mt-2">Words per document chunk for optimal context</p>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-lg p-6 shadow-sm mt-6">
+                <h3 class="text-lg font-semibold mb-4">Optimization Features</h3>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <h4 class="font-medium mb-2">Search Optimization</h4>
+                        <ul class="text-sm text-gray-600 space-y-1">
+                            <li>• TF-IDF vectorization for fast retrieval</li>
+                            <li>• Partial word matching for better recall</li>
+                            <li>• Relevance scoring with exact/partial weights</li>
+                            <li>• Top-K filtering (default: 5 results)</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-medium mb-2">Response Generation</h4>
+                        <ul class="text-sm text-gray-600 space-y-1">
+                            <li>• Streaming responses for better UX</li>
+                            <li>• Context-aware prompt engineering</li>
+                            <li>• Temperature optimization (0.2)</li>
+                            <li>• Efficient token usage</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Deployment -->
+        <section id="deployment" class="mb-12">
+            <h2 class="text-2xl font-bold mb-6">Deployment Guide</h2>
+            <div class="space-y-6">
+                <div class="bg-white rounded-lg p-6 shadow-sm">
+                    <h3 class="text-lg font-semibold mb-4">Local Development</h3>
+                    <div class="code-block rounded-lg p-4">
+<pre><code># Clone repository
+git clone &lt;repository&gt;
+cd BoneQuest-RAG
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Set environment variables
+echo "GROQ_API_KEY=your_groq_api_key" > .env
+
+# Run application
+python backend/main.py
+
+# Access at http://localhost:8000</code></pre>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg p-6 shadow-sm">
+                    <h3 class="text-lg font-semibold mb-4">Render Deployment</h3>
+                    <div class="space-y-3">
+                        <div>
+                            <h4 class="font-medium">1. Connect Repository</h4>
+                            <p class="text-sm text-gray-600">Link your GitHub repository to Render</p>
+                        </div>
+                        <div>
+                            <h4 class="font-medium">2. Environment Variables</h4>
+                            <p class="text-sm text-gray-600">Set <code class="bg-gray-100 px-1 rounded">GROQ_API_KEY</code> in Render dashboard</p>
+                        </div>
+                        <div>
+                            <h4 class="font-medium">3. Deploy</h4>
+                            <p class="text-sm text-gray-600">Uses <code class="bg-gray-100 px-1 rounded">render.yaml</code> configuration for automatic deployment</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg p-6 shadow-sm">
+                    <h3 class="text-lg font-semibold mb-4">Docker Deployment</h3>
+                    <div class="code-block rounded-lg p-4">
+<pre><code># Build image
+docker build -t bonequest .
+
+# Run container
+docker run -p 8000:8000 -e GROQ_API_KEY=your_key bonequest</code></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tech Stack -->
+        <section id="tech-stack" class="mb-12">
+            <h2 class="text-2xl font-bold mb-6">Technology Stack</h2>
+            <div class="bg-white rounded-lg p-6 shadow-sm">
+                <div class="grid md:grid-cols-4 gap-6">
+                    <div>
+                        <h3 class="font-semibold mb-3 text-blue-600">Backend</h3>
+                        <ul class="text-sm text-gray-600 space-y-1">
+                            <li>• FastAPI</li>
+                            <li>• Uvicorn</li>
+                            <li>• Pydantic</li>
+                            <li>• Python 3.8+</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold mb-3 text-green-600">AI & ML</h3>
+                        <ul class="text-sm text-gray-600 space-y-1">
+                            <li>• Groq API</li>
+                            <li>• LLaMA 3.1 8B</li>
+                            <li>• Scikit-learn</li>
+                            <li>• NumPy</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold mb-3 text-purple-600">Frontend</h3>
+                        <ul class="text-sm text-gray-600 space-y-1">
+                            <li>• HTML5</li>
+                            <li>• Tailwind CSS</li>
+                            <li>• Vanilla JavaScript</li>
+                            <li>• Axios</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold mb-3 text-orange-600">Storage</h3>
+                        <ul class="text-sm text-gray-600 space-y-1">
+                            <li>• JSON files</li>
+                            <li>• Local filesystem</li>
+                            <li>• Browser localStorage</li>
+                            <li>• PyPDF2</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-8">
+        <div class="max-w-6xl mx-auto px-4 text-center">
+            <div class="flex items-center justify-center space-x-3 mb-4">
+                <div class="w-10 h-10 gradient-bg rounded-lg flex items-center justify-center">
+                    <span class="text-white font-bold">BQ</span>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold">BoneQuest AI</h3>
+                    <p class="text-sm text-gray-400">Orthopedic RAG Assistant</p>
+                </div>
+            </div>
+            <p class="text-gray-400">
+                © BoneQuest AI is an Orthopedics RAG Assistant project under DRONAM. All rights reserved.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Update active navigation link on scroll
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('nav a[href^="#"]');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('text-blue-600', 'font-medium');
+                link.classList.add('text-gray-600');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.remove('text-gray-600');
+                    link.classList.add('text-blue-600', 'font-medium');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+[
+  {
+    "message_id": "streaming_1757317328561_d1q2tgotu_7460",
+    "query": "How do you prepare for surgery?",
+    "response": "To prepare for surgery, patients should:\n\n1. Understand the procedure: Arthroscopy is a minimally invasive surgery that allows doctors to find problems and perform surgery inside a joint without making a large incision [1].\n2. Follow pre-surgery instructions: Patients should clean the incision site with regular soap and water [2].\n3. Be aware of post-surgery precautions: Patients should avoid twisting and squatting, and follow their doctor's instructions for lifting things or moving their knee if they had a repair of torn tissue [2].\n\nINSUFFICIENT EVIDENCE for specific preparation instructions such as fasting, medication, or other pre-surgical requirements.\n\nWas this answer helpful? (\ud83d\udc4d/\ud83d\udc4e) If not, please suggest a correction.",
+    "feedback_type": "neutral",
+    "rating": 3,
+    "comment": "",
+    "correction": "How do you prepare for surgery?\nSurgery can be stressful. This information will help you understand what you can expect.\nAnd it will help you safely prepare for surgery.\nPreparing for surgery\n\u2022 Be sure you have someone to take you home. Anesthesia and pain medicine will make\nit unsafe for you to drive or get home on your own.\n\u2022 Understand exactly what surgery is planned, along with the risks, benefits, and other\noptions.\n\u2022 Tell your doctor ALL the medicines and natural health products you take. Some may\nincrease the risk of problems during your surgery. Your doctor will tell you if you\nshould stop taking any of them before the surgery and how soon to do it. ",
+    "context_quality": 3,
+    "response_accuracy": 3,
+    "response_completeness": 3,
+    "search_relevance": 3,
+    "id": "fb_0_20250908_131325",
+    "timestamp": "2025-09-08T13:13:25.207042"
+  },
+  {
+    "message_id": "streaming_1757319309996_qemtt98vk_7003",
+    "query": "what is avn necrosis of femoral",
+    "response": "**Clinical Summary:**\nAvascular necrosis (AVN) of the femoral head is a condition characterized by the death of bone tissue due to inadequate blood supply, leading to collapse and potential arthritis of the hip joint. It is a common complication of various conditions, including trauma, corticosteroid use, and systemic diseases.\n\n**Differential Diagnosis:**\n\n1. Osteoarthritis\n2. Rheumatoid arthritis\n3. Septic arthritis\n4. Slipped capital femoral epiphysis (SCFE)\n5. Femoral neck fracture\n6. Bone tumors (e.g., osteosarcoma, chondrosarcoma)\n\n**Key Findings to Look for:**\n\n1. **Imaging:**\n\t* Radiographs: loss of femoral head density, subchondral sclerosis, and cystic changes\n\t* MRI: T1-weighted images showing low signal intensity in the femoral head, T2-weighted images showing high signal intensity in the femoral head\n\t* CT scans: showing subchondral bone collapse and fragmentation\n2. **Clinical:**\n\t* Pain in the groin or hip region\n\t* Limited range of motion\n\t* Weakness or stiffness in the hip\n\n**Recommended Next Diagnostic Steps:**\n\n1. **Imaging:**\n\t* MRI of the hip (sagittal and coronal planes)\n\t* CT scan of the hip (if MRI is not available)\n2. **Laboratory:**\n\t* Complete blood count (CBC)\n\t* Erythrocyte sedimentation rate (ESR)\n\t* C-reactive protein (CRP)\n\n**Management Considerations:**\n\n1. **Conservative management:**\n\t* Pain management with NSAIDs or acetaminophen\n\t* Physical therapy to maintain range of motion and strength\n2. **Surgical management:**\n\t* Core decompression\n\t* Bone grafting\n\t* Osteotomy\n\t* Total hip arthroplasty (in advanced cases)\n\n**References:**\n\n1. Mankin HJ, Brower TD. Bilateral Idiopathic Aseptic Necrosis of the Femur in Adults: \u201cChandler's Disease.\u201d J Hosp Joint Dis 1962;23:42. [1]\n2. Marcus ND, Enneking WF, Massam RA. The Silent Hip in Idiopathic Aseptic Necrosis: Treatment by Bone Grafting. J Bone Joint Surg Am 1973;55:1351. [74]\n3. Merle D'Aubigne\u00e9 R, Postel M, Mazabraud A, et al. Idiopathic Necrosis of the Femoral Head in Adults. J Bone Joint Surg Br 1965;47:612. [76]\n4. Based on provided documents, the following imaging findings are consistent with AVN of the femoral head: loss of femoral head density",
+    "feedback_type": "positive",
+    "rating": 4,
+    "comment": "",
+    "correction": "",
+    "context_quality": 4,
+    "response_accuracy": 4,
+    "response_completeness": 4,
+    "search_relevance": 3,
+    "id": "fb_1_20250908_134633",
+    "timestamp": "2025-09-08T13:46:33.141180"
+  },
+  {
+    "message_id": "streaming_1757394674652_sp651pszx_9623",
+    "query": "",
+    "response": "# \ud83c\udfe5 Medical Image Analysis\n\n**Confidence Level:** \ud83d\udfe1 Medium (77.0%)\n\n## \ud83d\udcca Image Information\n\n- **Format:** JPEG\n- **Dimensions:** 600x1200\n- **Color Mode:** L\n- **Modality:** XRAY\n- **File Size Kb:** 41.873046875\n- **Mean Intensity:** 69.26644166666667\n- **Intensity Range:** 0-255\n- **Contrast Ratio:** 1.06810725738031\n- **Histogram Peaks:** 15\n- **Quality Assessment:** Good contrast\n\n## \ud83d\udd0d Analysis\n\n**TECHNIQUE & QUALITY:**\n- The X-ray image appears to be a lateral view of the lower leg.\n- The image is adequately penetrated, allowing for clear visualization of the bones and surrounding soft tissues.\n- The positioning seems acceptable, although the exact alignment cannot be fully assessed without additional views.\n\n**SYSTEMATIC REVIEW:**\n- **Bones:** The tibial shaft shows a clear discontinuity with angulation and displacement, indicating a fracture. The cortical integrity is compromised at the fracture site. The trabecular pattern appears normal in the visualized portions of the bone. The fibula is intact.\n- **Joints:** The knee joint appears to have a normal joint space and articular surfaces, with no obvious abnormalities.\n- **Soft tissues:** There is noticeable swelling around the fracture site, but no calcifications are evident.\n\n**FINDINGS:**\n- A fracture of the tibia is present, located in the mid to distal shaft.\n- The fracture pattern appears to be oblique.\n- There is significant displacement and angulation of the distal fragment.\n- The proximal and distal fragments are not perfectly aligned.\n- No obvious fractures of the fibula are seen.\n\n**IMPRESSION:**\n- The primary finding is an oblique fracture of the tibial shaft with significant displacement and angulation.\n- This fracture has clinical significance as it may require intervention for proper healing and to prevent further complications.\n\n**RECOMMENDATIONS:**\n- Additional views (e.g., AP view) would be beneficial for a more comprehensive assessment of the fracture and alignment.\n- Clinical correlation is required to assess for any neurovascular compromise and to plan management (e.g., reduction, immobilization, surgery).\n\n**DISCLAIMER:** AI analysis for educational purposes only. Professional radiologist interpretation required.\n\n## \ud83c\udfaf Key Findings\n\n1. - **Joints:** The knee joint appears to have a normal joint space and articular surfaces, with no obvious abnormalities.\n2. **FINDINGS:**\n3. - The primary finding is an oblique fracture of the tibial shaft with significant displacement and angulation.\n\n## \ud83d\udca1 Recommendations\n\nConsider clinical correlation with patient symptoms \u2022 Follow institutional protocols for X-ray interpretation \u2022 Professional radiologist review required for definitive diagnosis\n\n---\n\n\u26a0\ufe0f **Important:** This AI analysis is for educational purposes only. All medical images require professional radiologist interpretation and clinical correlation.",
+    "feedback_type": "neutral",
+    "rating": 3,
+    "comment": "Corrections / Revisions Needed:\n\nBone Involved:\n\nYou stated: \"The tibial shaft shows a clear discontinuity...\"\n\n\n\nThe image shows the distal femur and the patella anterior to the femoral condyles. The tibia is not the primary bone fractured here.\n\nThe fracture is located in the mid-to-distal femoral shaft, not the tibial shaft.\n\nFracture Pattern:\n\nYou described it as an oblique fracture.\n\n ",
+    "correction": "Correction: This is actually a femoral shaft fracture, not the tibia.\nCorrection: This fracture is transverse, not oblique. The break runs roughly horizontally across the bone, and the fragments are sharply displaced.",
+    "context_quality": 3,
+    "response_accuracy": 3,
+    "response_completeness": 3,
+    "search_relevance": 3,
+    "id": "fb_2_20250909_104604",
+    "timestamp": "2025-09-09T10:46:04.284468"
+  }
+]

@@ -5,3 +5,15 @@ python-dotenv
 mangum
 PyPDF2
 uvicorn
+# Advanced RAG
+sentence-transformers
+faiss-cpu
+numpy
+scikit-learn
+# Image Analysis
+Pillow
+opencv-python
+pydicom
+matplotlib
+base64
+requests

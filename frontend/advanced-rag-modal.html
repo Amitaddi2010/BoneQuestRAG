@@ -1,0 +1,188 @@
+<!-- Advanced RAG Settings Modal -->
+<div id="advanced-rag-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+    <div class="bg-white rounded-2xl p-6 w-full max-w-4xl mx-4 max-h-[90vh] overflow-y-auto">
+        <div class="flex justify-between items-center mb-6">
+            <h3 class="text-xl font-semibold text-gray-900">🔧 Advanced RAG Configuration</h3>
+            <button onclick="closeAdvancedRAG()" class="text-gray-400 hover:text-gray-600">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+        </div>
+        
+        <div class="grid md:grid-cols-2 gap-6">
+            <!-- Retrieval Settings -->
+            <div class="bg-blue-50 rounded-lg p-4">
+                <h4 class="text-lg font-semibold text-blue-800 mb-4">📚 Retrieval Settings</h4>
+                
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Search Method</label>
+                        <select id="search-method" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+                            <option value="hybrid">🔄 Hybrid (Semantic + Keyword)</option>
+                            <option value="semantic">🧠 Semantic Only</option>
+                            <option value="keyword">🔍 Keyword Only</option>
+                            <option value="dense">📊 Dense Retrieval</option>
+                        </select>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Top-K Documents: <span id="topk-value">5</span></label>
+                        <input type="range" id="topk-slider" min="1" max="20" value="5" class="w-full" oninput="updateTopK()">
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Similarity Threshold: <span id="threshold-value">0.7</span></label>
+                        <input type="range" id="threshold-slider" min="0.1" max="1.0" step="0.1" value="0.7" class="w-full" oninput="updateThreshold()">
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Query Enhancement</label>
+                        <div class="space-y-2">
+                            <label class="flex items-center"><input type="checkbox" id="query-expansion" class="mr-2" checked> Enable query expansion</label>
+                            <label class="flex items-center"><input type="checkbox" id="synonym-expansion" class="mr-2"> Medical synonym expansion</label>
+                            <label class="flex items-center"><input type="checkbox" id="context-rewrite" class="mr-2" checked> Context-aware rewriting</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Generation Settings -->
+            <div class="bg-green-50 rounded-lg p-4">
+                <h4 class="text-lg font-semibold text-green-800 mb-4">🤖 Generation Settings</h4>
+                
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Response Style</label>
+                        <select id="response-style" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500">
+                            <option value="comprehensive">📋 Comprehensive</option>
+                            <option value="concise">⚡ Concise</option>
+                            <option value="detailed">📖 Detailed</option>
+                            <option value="bullet">• Bullet Points</option>
+                        </select>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Temperature: <span id="temp-value">0.7</span></label>
+                        <input type="range" id="temp-slider" min="0.1" max="1.0" step="0.1" value="0.7" class="w-full" oninput="updateTemp()">
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Citation Style</label>
+                        <div class="space-y-2">
+                            <label class="flex items-center"><input type="radio" name="citation" value="inline" class="mr-2" checked> Inline citations [1]</label>
+                            <label class="flex items-center"><input type="radio" name="citation" value="footnote" class="mr-2"> Footnote style</label>
+                            <label class="flex items-center"><input type="radio" name="citation" value="none" class="mr-2"> No citations</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Advanced Features -->
+        <div class="mt-6 bg-purple-50 rounded-lg p-4">
+            <h4 class="text-lg font-semibold text-purple-800 mb-4">🚀 Advanced Features</h4>
+            <div class="grid md:grid-cols-3 gap-4">
+                <div>
+                    <label class="flex items-center"><input type="checkbox" id="multi-hop" class="mr-2"> Multi-hop reasoning</label>
+                    <p class="text-xs text-gray-600 ml-6">Chain multiple document retrievals</p>
+                </div>
+                <div>
+                    <label class="flex items-center"><input type="checkbox" id="fact-check" class="mr-2" checked> Fact verification</label>
+                    <p class="text-xs text-gray-600 ml-6">Cross-reference claims</p>
+                </div>
+                <div>
+                    <label class="flex items-center"><input type="checkbox" id="confidence-score" class="mr-2" checked> Confidence scoring</label>
+                    <p class="text-xs text-gray-600 ml-6">Show answer confidence</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Action Buttons -->
+        <div class="flex space-x-3 mt-6">
+            <button onclick="applyRAGSettings()" class="flex-1 bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition-colors">
+                Apply Settings
+            </button>
+            <button onclick="resetRAGSettings()" class="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
+                Reset Default
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+// Advanced RAG Functions
+function toggleAdvancedRAG() {
+    document.getElementById('advanced-rag-modal').classList.remove('hidden');
+    loadRAGSettings();
+}
+
+function closeAdvancedRAG() {
+    document.getElementById('advanced-rag-modal').classList.add('hidden');
+}
+
+function loadRAGSettings() {
+    document.getElementById('search-method').value = advancedRAGSettings.searchMethod;
+    document.getElementById('topk-slider').value = advancedRAGSettings.topK;
+    document.getElementById('threshold-slider').value = advancedRAGSettings.threshold;
+    document.getElementById('query-expansion').checked = advancedRAGSettings.queryExpansion;
+    document.getElementById('response-style').value = advancedRAGSettings.responseStyle;
+    document.getElementById('temp-slider').value = advancedRAGSettings.temperature;
+    document.querySelector(`input[name="citation"][value="${advancedRAGSettings.citationStyle}"]`).checked = true;
+    document.getElementById('fact-check').checked = advancedRAGSettings.factCheck;
+    document.getElementById('confidence-score').checked = advancedRAGSettings.confidenceScore;
+    
+    updateTopK();
+    updateThreshold();
+    updateTemp();
+}
+
+function updateTopK() {
+    const value = document.getElementById('topk-slider').value;
+    document.getElementById('topk-value').textContent = value;
+}
+
+function updateThreshold() {
+    const value = document.getElementById('threshold-slider').value;
+    document.getElementById('threshold-value').textContent = value;
+}
+
+function updateTemp() {
+    const value = document.getElementById('temp-slider').value;
+    document.getElementById('temp-value').textContent = value;
+}
+
+function applyRAGSettings() {
+    advancedRAGSettings = {
+        searchMethod: document.getElementById('search-method').value,
+        topK: parseInt(document.getElementById('topk-slider').value),
+        threshold: parseFloat(document.getElementById('threshold-slider').value),
+        queryExpansion: document.getElementById('query-expansion').checked,
+        responseStyle: document.getElementById('response-style').value,
+        temperature: parseFloat(document.getElementById('temp-slider').value),
+        citationStyle: document.querySelector('input[name="citation"]:checked').value,
+        factCheck: document.getElementById('fact-check').checked,
+        confidenceScore: document.getElementById('confidence-score').checked
+    };
+    
+    localStorage.setItem('advancedRAGSettings', JSON.stringify(advancedRAGSettings));
+    showToast('Advanced RAG settings applied! 🚀');
+    closeAdvancedRAG();
+}
+
+function resetRAGSettings() {
+    advancedRAGSettings = {
+        searchMethod: 'hybrid',
+        topK: 5,
+        threshold: 0.7,
+        queryExpansion: true,
+        responseStyle: 'comprehensive',
+        temperature: 0.7,
+        citationStyle: 'inline',
+        factCheck: true,
+        confidenceScore: true
+    };
+    loadRAGSettings();
+    showToast('RAG settings reset to default');
+}
+</script>
