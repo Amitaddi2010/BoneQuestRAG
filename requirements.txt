@@ -15,5 +15,4 @@ Pillow
 opencv-python
 pydicom
 matplotlib
-base64
 requests
