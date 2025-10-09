@@ -1,0 +1,23 @@
+service: bonequest-rag
+
+provider:
+  name: aws
+  runtime: python3.11
+  region: us-east-1
+  environment:
+    GROQ_API_KEY: ${env:GROQ_API_KEY}
+
+functions:
+  api:
+    handler: lambda_handler.handler
+    timeout: 30
+    events:
+      - http:
+          path: /{proxy+}
+          method: ANY
+      - http:
+          path: /
+          method: ANY
+
+plugins:
+  - serverless-python-requirements
